@@ -5,6 +5,7 @@ import {
   Activity, Languages, PenTool, CheckSquare, CheckCircle2, Users,
   ChevronDown, Sparkles, Code2, Boxes,
 } from "lucide-react";
+import { PrecisionCanvas } from "@/components/PrecisionCanvas";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -389,6 +390,7 @@ function Precision() {
         <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[120px]" />
         <div className="absolute left-1/3 top-1/3 h-[400px] w-[400px] rounded-full bg-tertiary/20 blur-[120px]" />
       </div>
+      <PrecisionCanvas />
       <div className="z-10 max-w-2xl space-y-6 px-6 text-center">
         <h2 className="text-5xl font-bold glow-text" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>Architectural Precision</h2>
         <p className="text-lg text-muted-foreground">Built on a custom high-performance engine to ensure your workspace remains fluid even with hundreds of active modules.</p>
