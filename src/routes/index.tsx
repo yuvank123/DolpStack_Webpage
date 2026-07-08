@@ -83,12 +83,8 @@ function Hero() {
             </button>
           </div>
         </div>
-        <div className="relative h-[500px] w-full">
-          <div className="absolute inset-0 rounded-3xl glass-card overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,color-mix(in_oklch,var(--primary)_25%,transparent),transparent_60%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,color-mix(in_oklch,var(--tertiary)_20%,transparent),transparent_55%)]" />
-            <NeuralCanvas />
-          </div>
+        <div className="relative h-[640px] w-full md:h-[720px] md:-mr-32 md:w-[130%]">
+          <NeuralCanvas />
           <div className="absolute -bottom-6 -left-6 rounded-2xl glass-card p-4 animate-float">
             <div className="flex items-center gap-3">
               <div className="grid h-10 w-10 place-items-center rounded-lg bg-tertiary/20">
