@@ -6,6 +6,7 @@ import {
   ChevronDown, Sparkles, Code2, Boxes,
 } from "lucide-react";
 import { PrecisionCanvas } from "@/components/PrecisionCanvas";
+import { NeuralCanvas } from "@/components/NeuralCanvas";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -84,21 +85,9 @@ function Hero() {
         </div>
         <div className="relative h-[500px] w-full">
           <div className="absolute inset-0 rounded-3xl glass-card overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,color-mix(in_oklch,var(--primary)_35%,transparent),transparent_60%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,color-mix(in_oklch,var(--tertiary)_30%,transparent),transparent_55%)]" />
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="animate-float relative">
-                <div className="grid h-40 w-40 place-items-center rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl">
-                  <Sparkles className="h-16 w-16 text-primary glow-text" />
-                </div>
-                <div className="absolute -right-16 top-6 rounded-2xl glass-card p-3 text-xs">
-                  <Code2 className="h-4 w-4 text-tertiary" />
-                </div>
-                <div className="absolute -left-14 bottom-4 rounded-2xl glass-card p-3 text-xs">
-                  <Activity className="h-4 w-4 text-primary" />
-                </div>
-              </div>
-            </div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,color-mix(in_oklch,var(--primary)_25%,transparent),transparent_60%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,color-mix(in_oklch,var(--tertiary)_20%,transparent),transparent_55%)]" />
+            <NeuralCanvas />
           </div>
           <div className="absolute -bottom-6 -left-6 rounded-2xl glass-card p-4 animate-float">
             <div className="flex items-center gap-3">
