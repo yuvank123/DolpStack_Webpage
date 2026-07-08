@@ -33,8 +33,12 @@ export function NeuralCanvas() {
       renderer.setClearColor(0x000000, 0);
       container.appendChild(renderer.domElement);
 
+      const isDark = document.documentElement.classList.contains("dark");
+      const nodeColor = isDark ? 0xffffff : 0x1e293b;
+      const lineColor = isDark ? 0x60a5fa : 0x6366f1;
+      const dustColor = isDark ? 0x60a5fa : 0x94a3b8;
       const nodeGeo = new THREE.SphereGeometry(0.012, 8, 8);
-      const nodeMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
+      const nodeMat = new THREE.MeshBasicMaterial({ color: nodeColor, transparent: true, opacity: isDark ? 0.8 : 0.55 });
       const nodes = new THREE.InstancedMesh(nodeGeo, nodeMat, NODE_COUNT);
 
       const nodePositions: InstanceType<typeof THREE.Vector3>[] = [];
@@ -68,10 +72,10 @@ export function NeuralCanvas() {
 
       const lineGeo = new THREE.BufferGeometry().setFromPoints(linePairs);
       const lineMat = new THREE.LineBasicMaterial({
-        color: 0x00f0ff,
+        color: lineColor,
         transparent: true,
-        opacity: 0.15,
-        blending: THREE.AdditiveBlending,
+        opacity: isDark ? 0.15 : 0.2,
+        blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
       });
       const lines = new THREE.LineSegments(lineGeo, lineMat);
       scene.add(lines);
@@ -82,7 +86,7 @@ export function NeuralCanvas() {
         dustPos.push((Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10);
       }
       dustGeo.setAttribute("position", new THREE.Float32BufferAttribute(dustPos, 3));
-      const dustMat = new THREE.PointsMaterial({ color: 0x00f0ff, size: 0.005, transparent: true, opacity: 0.2 });
+      const dustMat = new THREE.PointsMaterial({ color: dustColor, size: 0.005, transparent: true, opacity: isDark ? 0.2 : 0.3 });
       const particles = new THREE.Points(dustGeo, dustMat);
       scene.add(particles);
 
