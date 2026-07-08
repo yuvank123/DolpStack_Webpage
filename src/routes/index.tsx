@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, PlayCircle, Zap, Mic, Bug, LayoutGrid, LayoutDashboard,
   Activity, Languages, PenTool, CheckSquare, CheckCircle2, Users,
-  ChevronDown, Sparkles, Code2, Boxes,
+  ChevronDown, Boxes,
 } from "lucide-react";
 import { PrecisionCanvas } from "@/components/PrecisionCanvas";
 import { NeuralCanvas } from "@/components/NeuralCanvas";
