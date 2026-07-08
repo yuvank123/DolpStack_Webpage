@@ -25,7 +25,7 @@ export function NeuralCanvas() {
       const scene = new THREE.Scene();
       const clock = new THREE.Clock();
       const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-      camera.position.set(1.5, 0.5, 5);
+      camera.position.set(0, 0, 6);
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
@@ -107,9 +107,9 @@ export function NeuralCanvas() {
       const animate = () => {
         const t = clock.getElapsedTime();
         mouse.lerp(targetMouse, 0.05);
-        camera.position.x = 1.5 + mouse.x * 0.2;
-        camera.position.y = 0.5 + mouse.y * 0.2;
-        camera.lookAt(0.5, 0, 0);
+        camera.position.x = mouse.x * 0.3;
+        camera.position.y = mouse.y * 0.3;
+        camera.lookAt(0, 0, 0);
 
         const breathing = 1 + Math.sin(t * 0.5) * 0.02;
         nodes.rotation.y = t * 0.05;
