@@ -143,7 +143,7 @@ function Hero() {
             <span>SSO & SAML</span>
           </div>
         </div>
-        <div className="relative h-[420px] w-full md:h-[540px]">
+        <div className="relative h-[440px] w-full md:h-[600px] md:-mr-16 lg:-mr-24 md:w-[115%]">
           <NeuralCanvas />
         </div>
       </div>
