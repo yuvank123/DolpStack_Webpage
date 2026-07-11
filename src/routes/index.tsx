@@ -96,7 +96,7 @@ function Nav() {
       <div className={`${container} flex h-14 items-center justify-between`}>
         <a href="#" className="flex items-center gap-2">
           <div className="grid h-6 w-6 place-items-center rounded-md bg-foreground text-background text-[11px] font-bold" style={display}>D</div>
-          <span className="text-[15px] font-semibold tracking-tight" style={display}>DevScale</span>
+          <span className="text-[15px] font-semibold tracking-tight" style={display}>DolpStack</span>
         </a>
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
           <a href="#features" className="transition-colors hover:text-foreground">Features</a>
@@ -129,7 +129,7 @@ function Hero() {
             <span className="text-muted-foreground">engineering teams that ship.</span>
           </h1>
           <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            DevScale unifies documentation, trackers, AI agents, and collaborative debuggers into a single command center — no more context switching between fifty tabs.
+            DolpStack unifies documentation, trackers, AI agents, and collaborative debuggers into a single command center — no more context switching between fifty tabs.
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-1">
             <PrimaryBtn>Start free trial <ArrowRight className="h-3.5 w-3.5" /></PrimaryBtn>
@@ -143,7 +143,7 @@ function Hero() {
             <span>SSO & SAML</span>
           </div>
         </div>
-        <div className="relative h-[420px] w-full md:h-[540px]">
+        <div className="relative h-[440px] w-full md:h-[600px] md:-mr-16 lg:-mr-24 md:w-[115%]">
           <NeuralCanvas />
         </div>
       </div>
@@ -390,7 +390,7 @@ function Comparison() {
       <div className={container}>
         <div className="mb-12 max-w-2xl space-y-3">
           <Eyebrow>Comparison</Eyebrow>
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>The old way, and the DevScale way.</h2>
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>The old way, and the DolpStack way.</h2>
         </div>
         <div className="overflow-hidden rounded-lg border border-border">
           <table className="w-full text-sm">
@@ -398,7 +398,7 @@ function Comparison() {
               <tr className="border-b border-border bg-muted/40 text-left">
                 <th className="w-40 px-5 py-3 text-xs font-medium uppercase tracking-wider text-muted-foreground"></th>
                 <th className="px-5 py-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Before</th>
-                <th className="px-5 py-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">With DevScale</th>
+                <th className="px-5 py-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">With DolpStack</th>
               </tr>
             </thead>
             <tbody>
@@ -500,8 +500,8 @@ function Testimonials() {
 
 function FAQ() {
   const faqs = [
-    { q: "Is DevScale available for desktop?", a: "Yes. DevScale ships as a native cross-platform desktop app for macOS, Windows, and Linux, alongside the web workspace." },
-    { q: "How secure is my code?", a: "DevScale never stores your source. We connect to your existing providers (GitHub, GitLab) and process everything in your workspace with per-project isolation." },
+    { q: "Is DolpStack available for desktop?", a: "Yes. DolpStack ships as a native cross-platform desktop app for macOS, Windows, and Linux, alongside the web workspace." },
+    { q: "How secure is my code?", a: "DolpStack never stores your source. We connect to your existing providers (GitHub, GitLab) and process everything in your workspace with per-project isolation." },
     { q: "Can I build my own modules?", a: "Yes — our SDK lets you build custom modules in React or Vue and deploy them to a private team marketplace." },
     { q: "Do you support SSO and SAML?", a: "SSO, SAML, and SCIM are available on the Business and Enterprise plans, alongside audit logs and role-based access control." },
   ];
@@ -559,7 +559,7 @@ function Footer() {
       <div className={`${container} flex flex-col items-start justify-between gap-6 md:flex-row md:items-center`}>
         <div className="flex items-center gap-2">
           <div className="grid h-6 w-6 place-items-center rounded-md bg-foreground text-background text-[11px] font-bold" style={display}>D</div>
-          <span className="text-sm font-semibold tracking-tight" style={display}>DevScale</span>
+          <span className="text-sm font-semibold tracking-tight" style={display}>DolpStack</span>
         </div>
         <div className="flex flex-wrap gap-6 text-xs text-muted-foreground">
           <a href="#" className="transition-colors hover:text-foreground">Privacy</a>
@@ -567,7 +567,7 @@ function Footer() {
           <a href="#" className="transition-colors hover:text-foreground">Security</a>
           <a href="#" className="transition-colors hover:text-foreground">Contact</a>
         </div>
-        <div className="text-xs text-muted-foreground">© 2026 DevScale, Inc.</div>
+        <div className="text-xs text-muted-foreground">© 2026 DolpStack, Inc.</div>
       </div>
     </footer>
   );

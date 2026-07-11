@@ -77,9 +77,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DevScale — One Workspace. Every Tool." },
-      { name: "description", content: "DevScale unifies your documentation, trackers, AI agents, and collaborative debuggers into a single, high-performance command center." },
-      { property: "og:title", content: "DevScale — One Workspace. Every Tool." },
+      { title: "DolpStack — One Workspace. Every Tool." },
+      { name: "description", content: "DolpStack unifies your documentation, trackers, AI agents, and collaborative debuggers into a single, high-performance command center." },
+      { property: "og:title", content: "DolpStack — One Workspace. Every Tool." },
       { property: "og:description", content: "The unified glass-UI workspace for developers who ship faster." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
