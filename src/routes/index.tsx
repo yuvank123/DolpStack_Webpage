@@ -163,7 +163,7 @@ function LandingPage() {
 
 /* ---------- primitives ---------- */
 
-const container = "mx-auto w-full max-w-6xl px-6 md:px-8";
+const container = "mx-auto w-full max-w-[1440px] px-6 md:px-8 lg:px-12 xl:px-16";
 const display = { fontFamily: '"Space Grotesk", "Inter", sans-serif' };
 
 function useTheme() {
@@ -233,8 +233,6 @@ function Nav() {
         </nav>
         <div className="flex items-center gap-1.5">
           <ThemeToggle />
-          <a href="#" className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex px-2">Sign in</a>
-          <PrimaryBtn>Get started</PrimaryBtn>
         </div>
       </div>
     </header>
@@ -267,10 +265,6 @@ function Hero() {
           <motion.p variants={leftItem} className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
             DolpStack unifies documentation, trackers, AI agents, and collaborative debuggers into a single command center — no more context switching between fifty tabs.
           </motion.p>
-          <motion.div variants={leftItem} className="flex flex-wrap items-center gap-3 pt-1">
-            <PrimaryBtn>Start free trial <ArrowRight className="h-3.5 w-3.5" /></PrimaryBtn>
-            <GhostBtn>Book a demo</GhostBtn>
-          </motion.div>
           <motion.div variants={leftItem} className="flex items-center gap-6 pt-2 text-xs text-muted-foreground">
             <span>SOC 2 Type II</span>
             <span className="h-3 w-px bg-border" />
@@ -534,13 +528,13 @@ function Walkthrough() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-          className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end w-full"
+          className="mb-12 max-w-xl space-y-3"
         >
           <div className="max-w-xl space-y-3">
             <Eyebrow>Product tour</Eyebrow>
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>Watch it evolve with your work.</h2>
+            <p className="text-sm text-muted-foreground">This dashboard preview is fully interactive. Hover over the metric cards and move your cursor to explore the parallax motion.</p>
           </div>
-          <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">Take the interactive tour <ArrowRight className="h-3.5 w-3.5" /></a>
         </motion.div>
         <ProductTour />
       </div>
@@ -748,21 +742,17 @@ function FAQ() {
 function FinalCTA() {
   return (
     <section className="border-b border-border py-16 md:py-20">
-      <div className={`${container} flex flex-col items-start justify-between gap-8 md:flex-row md:items-center`}>
+      <div className={`${container} flex flex-col items-center text-center max-w-2xl`}>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-          className="max-w-xl space-y-3"
+          className="space-y-3"
         >
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>Ready to reclaim your focus?</h2>
           <p className="text-base leading-relaxed text-muted-foreground">Join 50,000+ engineers who've moved beyond tab chaos. Free for 14 days, no card required.</p>
         </motion.div>
-        <div className="flex flex-wrap items-center gap-3">
-          <PrimaryBtn>Start free trial <ArrowRight className="h-3.5 w-3.5" /></PrimaryBtn>
-          <GhostBtn>Contact sales</GhostBtn>
-        </div>
       </div>
     </section>
   );
@@ -776,12 +766,6 @@ function Footer() {
         <div className="flex items-center gap-2">
           <div className="grid h-6 w-6 place-items-center rounded-md bg-foreground text-background text-[11px] font-bold" style={display}>D</div>
           <span className="text-sm font-semibold tracking-tight" style={display}>DolpStack</span>
-        </div>
-        <div className="flex flex-wrap gap-6 text-xs text-muted-foreground">
-          <a href="#" className="transition-colors hover:text-foreground">Privacy</a>
-          <a href="#" className="transition-colors hover:text-foreground">Terms</a>
-          <a href="#" className="transition-colors hover:text-foreground">Security</a>
-          <a href="#" className="transition-colors hover:text-foreground">Contact</a>
         </div>
         <div className="text-xs text-muted-foreground">© 2026 DolpStack, Inc.</div>
       </div>
