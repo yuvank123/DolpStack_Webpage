@@ -16,7 +16,7 @@ const containerVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
       staggerChildren: 0.06,
     },
   },
@@ -29,7 +29,7 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 };
@@ -80,7 +80,7 @@ const heroLeftItemVariants = (shouldReduce: boolean) => ({
     x: 0,
     transition: {
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 });
@@ -93,7 +93,7 @@ const heroRightVariants = (shouldReduce: boolean) => ({
     transition: {
       delay: 0.1,
       duration: 0.65,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 });
@@ -114,7 +114,7 @@ const missionLeftItemVariants = (shouldReduce: boolean, reverse: boolean) => ({
     x: 0,
     transition: {
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 });
@@ -127,7 +127,7 @@ const missionRightVariants = (shouldReduce: boolean, reverse: boolean) => ({
     transition: {
       delay: 0.1,
       duration: 0.65,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 });
@@ -480,7 +480,7 @@ function Modules() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
           className="mb-14 max-w-2xl space-y-3"
         >
           <Eyebrow>Modules</Eyebrow>
@@ -532,7 +532,7 @@ function Walkthrough() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
           className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end w-full"
         >
           <div className="max-w-xl space-y-3">
@@ -615,7 +615,7 @@ function Comparison() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
           className="mb-12 max-w-2xl space-y-3"
         >
           <Eyebrow>Comparison</Eyebrow>
@@ -664,7 +664,7 @@ function Steps() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
           className="mb-12 max-w-2xl space-y-3"
         >
           <Eyebrow>Workflow</Eyebrow>
@@ -694,7 +694,7 @@ function Precision() {
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
         className="relative z-10 mx-auto max-w-2xl space-y-4 px-6 text-center"
       >
         <Eyebrow>Engineered for scale</Eyebrow>
@@ -718,7 +718,7 @@ function Testimonials() {
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
         className={`${container} mb-12 max-w-2xl space-y-3`}
       >
         <Eyebrow>Customers</Eyebrow>
@@ -770,7 +770,7 @@ function FAQ() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
             className="space-y-3"
           >
             <Eyebrow>FAQ</Eyebrow>
@@ -806,7 +806,7 @@ function FinalCTA() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
           className="max-w-xl space-y-3"
         >
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>Ready to reclaim your focus?</h2>
