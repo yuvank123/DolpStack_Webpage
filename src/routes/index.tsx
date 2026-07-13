@@ -542,61 +542,7 @@ function Walkthrough() {
           </div>
           <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">Take the interactive tour <ArrowRight className="h-3.5 w-3.5" /></a>
         </motion.div>
-        <div className="overflow-hidden rounded-[24px] border border-border bg-card elev-md">
-          <div className="flex items-center gap-2 border-b border-border bg-muted/50 px-4 py-2.5">
-            <div className="h-2.5 w-2.5 rounded-full bg-border" />
-            <div className="h-2.5 w-2.5 rounded-full bg-border" />
-            <div className="h-2.5 w-2.5 rounded-full bg-border" />
-            <div className="ml-4 text-xs text-muted-foreground">devscale.app — Overview</div>
-          </div>
-          <div className="flex min-h-[380px]">
-            <div className="hidden w-56 flex-col border-r border-border bg-muted/30 p-4 text-sm md:flex">
-              <div className="mb-2 text-[11px] uppercase tracking-wider text-muted-foreground">Workspace</div>
-              {["Overview", "Resources", "Debug", "Docs", "Canvas"].map((t, i) => (
-                <div key={t} className={`rounded px-2 py-1.5 text-sm ${i === 0 ? "bg-background text-foreground" : "text-muted-foreground hover:text-foreground"}`}>{t}</div>
-              ))}
-            </div>
-            <div className="flex-1 p-6 md:p-8">
-              <div className="mb-6 flex items-center justify-between">
-                <div>
-                  <div className="text-xs text-muted-foreground">Project</div>
-                  <div className="text-lg font-semibold tracking-tight text-foreground" style={display}>api-gateway</div>
-                </div>
-                <GhostBtn>Deploy</GhostBtn>
-              </div>
-              <div className="grid gap-4 md:grid-cols-3">
-                {[
-                  ["Uptime", "99.98%"],
-                  ["p95 latency", "142ms"],
-                  ["Error rate", "0.02%"],
-                ].map(([k, v]) => {
-                  const { handleMouseMove, handleMouseLeave } = useCardParallax();
-                  return (
-                    <div
-                      key={k}
-                      onMouseMove={handleMouseMove}
-                      onMouseLeave={handleMouseLeave}
-                      className="rounded-[16px] border border-border p-4 card-hover-effects parallax-card"
-                    >
-                      <div className="text-xs text-muted-foreground">{k}</div>
-                      <div className="mt-1 text-2xl font-semibold tracking-tight text-foreground" style={display}>{v}</div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="mt-6 rounded-md border border-border p-4">
-                <div className="mb-3 flex items-center justify-between">
-                  <div className="text-sm font-medium text-foreground">Request volume</div>
-                  <div className="text-xs text-muted-foreground">Last 24h</div>
-                </div>
-                <svg viewBox="0 0 400 80" className="h-20 w-full text-accent">
-                  <path d="M0,60 C40,50 80,30 120,35 C160,40 200,55 240,45 C280,35 320,15 360,25 L400,20 L400,80 L0,80 Z" fill="currentColor" fillOpacity="0.08" />
-                  <path d="M0,60 C40,50 80,30 120,35 C160,40 200,55 240,45 C280,35 320,15 360,25 L400,20" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProductTour />
       </div>
     </section>
   );
