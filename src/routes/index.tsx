@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { PrecisionCanvas } from "@/components/PrecisionCanvas";
 import { NeuralCanvas } from "@/components/NeuralCanvas";
+import { ProductTour } from "@/components/ProductTour";
 import { motion, useReducedMotion } from "framer-motion";
 
 const containerVariants = {
