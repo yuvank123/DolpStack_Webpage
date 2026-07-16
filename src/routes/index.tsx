@@ -152,7 +152,6 @@ function LandingPage() {
         <Comparison />
         <Steps />
         <Precision />
-        <Testimonials />
         <FAQ />
         <FinalCTA />
       </main>
@@ -647,55 +646,6 @@ function Precision() {
   );
 }
 
-function Testimonials() {
-  const items = [
-    { quote: "The context-aware documentation search alone saved me from pulling my hair out. It's a professional's tool through and through.", name: "Marcus Thorne", role: "Staff Engineer @ CloudScale", roleColor: "text-primary", avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuA4wqV6n7FCyIdR_APS0z3io3PccOBfS-VnVg18di6Eq--6wijtkLvxXdlOxv4nc_huMjuzhTTT871463EVj0TiVolkgA4pAh8w65NMZ2fSUXJOqT05IEqgjSo8zwKnjSvwZJ6iejLmDCHu50NsAmMVrn-3dPSSOxk7Mt5nIIB43oBfxjRZdBQYLuIhH-7g-YkNTtWLGWRxflvBu_lllY5bO3gFlb9Z123FsCCtu2jUO3btXXP3Ny1N9AmO10ac5BEby_rXfli2Ms8" },
-    { quote: "Finally, a dashboard that doesn't feel like a toy. The spatial organization changed how I think about my microservices.", name: "Elena Rodriguez", role: "Fullstack Developer @ FinCore", roleColor: "text-tertiary", avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuB8XMwydOzo6RGZhmt03VF_C6eyISSi3A4YoyvAS1_lbGH9Z6wMP0pOZdAhSa9mBtopv84dCvS1DyEfF-kYqc6_WT54Gbbaqfj0UGOBQUULyLclqLnR6BljLkvACY8oJn4mEnfA79uIk7bKP8z4QrZHF--eD0K6XUDtX3m03gSoUtZ0a0qfpUKV1DQ3RiTSYA2OQHyT99fgHoBAqnlie0WfPesP40mDMMEgFqmWgfAf3ecnFng_c7SitUOuZu9dTTerriVVmCJNtj0" },
-    { quote: "Multi-player debugging is the feature I didn't know I needed. We solve production fires in half the time now.", name: "Jordan Wu", role: "CTO @ DataNexus", roleColor: "text-accent", avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCbz_fDjguk-heeufqqhOBYZEsLEEMJBqlzXyS5vbIYHVVyOQmsGTyavhGHdfR2xFP-HP5LATYrfGYqX1y7JEF1EJVg7Xeoi3BfMwvmRItPA7PLgMUM6epNxJ-VpbFsjnBULj2wlggXklkdEyBOOxwYkS6JHLqeq7FPRi_AobFs4uUyr5qPpTaIViVctW5I7arFKGG5NEeRbHmckFNgMYQJaSWE05y2YtnogWdCTakOP0vcB8MaBlSLJhAKMXORz7xlNhXQpk4KTSI" },
-  ];
-  const doubled = [...items, ...items];
-  return (
-    <section className="overflow-hidden border-b border-border py-16 md:py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-        className={`${container} mb-12 max-w-2xl space-y-3`}
-      >
-        <Eyebrow>Customers</Eyebrow>
-        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>Trusted by engineering teams.</h2>
-      </motion.div>
-      <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
-        <div className="flex w-max gap-4 animate-marquee">
-          {doubled.map((t, i) => {
-              const { handleMouseMove, handleMouseLeave } = useCardParallax();
-              return (
-                <figure
-                  key={i}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  className="group w-[380px] shrink-0 rounded-[24px] border border-border bg-card p-6 card-hover-effects parallax-card"
-                >
-                  <blockquote className="text-sm leading-relaxed text-foreground">"{t.quote}"</blockquote>
-                  <figcaption className="mt-5 flex items-center gap-3">
-                    <div className="avatar-preview h-8 w-8 rounded-full border border-border bg-cover bg-center transition-all duration-200" style={{ backgroundImage: `url('${t.avatar}')` }} />
-                    <div className="text-xs">
-                      <div className="font-medium text-foreground">{t.name}</div>
-                      <div className="text-muted-foreground">{t.role}</div>
-                    </div>
-                  </figcaption>
-                </figure>
-              );
-            })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function FAQ() {
   const faqs = [
     { q: "Is DolpStack available for desktop?", a: "Yes. DolpStack ships as a native cross-platform desktop app for macOS, Windows, and Linux, alongside the web workspace." },
@@ -717,7 +667,6 @@ function FAQ() {
           >
             <Eyebrow>FAQ</Eyebrow>
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>Frequently asked.</h2>
-            <p className="text-sm leading-relaxed text-muted-foreground">Can't find what you're looking for? <a href="#" className="text-foreground underline underline-offset-4 hover:no-underline">Talk to sales</a>.</p>
           </motion.div>
           <div className="border-t border-border">
             {faqs.map((f, i) => (
@@ -752,7 +701,6 @@ function FinalCTA() {
           className="space-y-3"
         >
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>Ready to reclaim your focus?</h2>
-          <p className="text-base leading-relaxed text-muted-foreground">Join 50,000+ engineers who've moved beyond tab chaos. Free for 14 days, no card required.</p>
         </motion.div>
       </div>
     </section>
