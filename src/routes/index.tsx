@@ -222,7 +222,8 @@ function Nav() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
       <div className={`${container} flex h-14 items-center justify-between`}>
         <a href="#" className="flex items-center gap-2">
-          <div className="grid h-6 w-6 place-items-center rounded-md bg-foreground text-background text-[11px] font-bold" style={display}>D</div>
+          <img src="/logo-light.png" className="h-6 w-6 object-contain rounded-md dark:hidden" alt="DolpStack Logo" />
+          <img src="/logo-dark.png" className="hidden h-6 w-6 object-contain rounded-md dark:block" alt="DolpStack Logo" />
           <span className="text-[15px] font-semibold tracking-tight" style={display}>DolpStack</span>
         </a>
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
@@ -764,7 +765,8 @@ function Footer() {
     <footer className="py-12">
       <div className={`${container} flex flex-col items-start justify-between gap-6 md:flex-row md:items-center`}>
         <div className="flex items-center gap-2">
-          <div className="grid h-6 w-6 place-items-center rounded-md bg-foreground text-background text-[11px] font-bold" style={display}>D</div>
+          <img src="/logo-light.png" className="h-6 w-6 object-contain rounded-md dark:hidden" alt="DolpStack Logo" />
+          <img src="/logo-dark.png" className="hidden h-6 w-6 object-contain rounded-md dark:block" alt="DolpStack Logo" />
           <span className="text-sm font-semibold tracking-tight" style={display}>DolpStack</span>
         </div>
         <div className="text-xs text-muted-foreground">© 2026 DolpStack, Inc.</div>
