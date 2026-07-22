@@ -6,8 +6,8 @@ import {
   ChevronDown, Sun, Moon, Minus,
 } from "lucide-react";
 import { PrecisionCanvas } from "@/components/PrecisionCanvas";
-import { NeuralCanvas } from "@/components/NeuralCanvas";
 import { ProductTour } from "@/components/ProductTour";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { motion, useReducedMotion } from "framer-motion";
 
 const containerVariants = {
@@ -240,47 +240,33 @@ function Nav() {
 }
 
 function Hero() {
-  const shouldReduce = useReducedMotion();
-  const leftItem = heroLeftItemVariants(!!shouldReduce);
-  const rightItem = heroRightVariants(!!shouldReduce);
-
   return (
     <section className="relative overflow-hidden border-b border-border">
-      <div className="pointer-events-none absolute inset-0 -z-10 hairline-grid opacity-40" />
-      <div className={`${container} grid items-center gap-12 pt-20 pb-24 md:grid-cols-[1.05fr_0.95fr] md:pt-28 md:pb-32`}>
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={heroLeftContainerVariants}
-          className="space-y-7"
-        >
-          <motion.div variants={leftItem} className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-2.5 py-1 text-xs text-muted-foreground">
+      {/* dot grid */}
+      <div className="pointer-events-none absolute inset-0 -z-10 dot-grid-bg [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_80%)]" />
+      {/* floating gradient blobs */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-40 top-10 -z-10 h-[520px] w-[520px] rounded-full opacity-40 blur-3xl animate-blob-a"
+        style={{ background: "radial-gradient(circle at center, color-mix(in oklch, var(--accent) 60%, transparent), transparent 70%)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-40 top-40 -z-10 h-[560px] w-[560px] rounded-full opacity-35 blur-3xl animate-blob-b"
+        style={{ background: "radial-gradient(circle at center, color-mix(in oklch, var(--tertiary) 55%, transparent), transparent 70%)" }}
+      />
+      <div className={`${container} pt-16 pb-20 md:pt-24 md:pb-28`}>
+        <div className="mb-10 max-w-2xl space-y-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-2.5 py-1 text-xs text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             <span>Now in general availability</span>
-          </motion.div>
-          <motion.h1 variants={leftItem} className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl" style={display}>
-            The workspace built for<br />
-            <span className="text-muted-foreground">engineering teams that ship.</span>
-          </motion.h1>
-          <motion.p variants={leftItem} className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            DolpStack unifies documentation, trackers, AI agents, and collaborative debuggers into a single command center — no more context switching between fifty tabs.
-          </motion.p>
-          <motion.div variants={leftItem} className="flex items-center gap-6 pt-2 text-xs text-muted-foreground">
-            <span>SOC 2 Type II</span>
-            <span className="h-3 w-px bg-border" />
-            <span>Self-hosted available</span>
-            <span className="h-3 w-px bg-border" />
-            <span>SSO & SAML</span>
-          </motion.div>
-        </motion.div>
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={rightItem}
-          className="relative h-[440px] w-full md:h-[600px] md:-mr-16 lg:-mr-24 md:w-[115%]"
-        >
-          <NeuralCanvas />
-        </motion.div>
+          </div>
+          <h1 className="text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl" style={display}>
+            One workspace.<br />
+            <span className="text-muted-foreground">Every tool your team needs.</span>
+          </h1>
+        </div>
+        <HeroCarousel />
       </div>
     </section>
   );
