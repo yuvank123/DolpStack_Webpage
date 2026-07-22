@@ -134,6 +134,48 @@
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
 
+@utility dot-grid-bg {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+
+  &:is(.dark *) {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  }
+}
+
+@keyframes float-blob-a {
+  0%, 100% { transform: translate3d(-10%, -10%, 0) scale(1); }
+  50%      { transform: translate3d(10%, 15%, 0) scale(1.15); }
+}
+@keyframes float-blob-b {
+  0%, 100% { transform: translate3d(15%, 10%, 0) scale(1.1); }
+  50%      { transform: translate3d(-10%, -8%, 0) scale(0.95); }
+}
+@utility animate-blob-a { animation: float-blob-a 32s ease-in-out infinite; }
+@utility animate-blob-b { animation: float-blob-b 28s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@utility animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  background-size: 400px 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50%      { transform: scaleY(1); }
+}
+@utility animate-wave { animation: wave-bar 0.9s ease-in-out infinite; }
+
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@utility animate-caret { animation: caret-blink 1s step-end infinite; }
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
