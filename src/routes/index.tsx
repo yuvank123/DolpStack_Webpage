@@ -155,7 +155,6 @@ function LandingPage() {
       <Nav />
       <main className="relative z-10">
         <Hero />
-        <Stats />
         <Mission />
         <Modules />
         <Walkthrough />
@@ -317,78 +316,6 @@ function Hero() {
           </h1>
         </div>
         <HeroCarousel />
-      </div>
-    </section>
-  );
-}
-
-function Counter({ target, suffix }: { target: number; suffix: string }) {
-  const [n, setN] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        const start = performance.now();
-        const dur = 1000;
-        const tick = (t: number) => {
-          const p = Math.min(1, (t - start) / dur);
-          setN(Math.floor(target * (1 - Math.pow(1 - p, 3))));
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        obs.disconnect();
-      }
-    });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [target]);
-  return (
-    <div
-      ref={ref}
-      className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl"
-      style={display}
-    >
-      {n}
-      {suffix}
-    </div>
-  );
-}
-
-function Stats() {
-  const items = [
-    { v: 100, s: "+", l: "Resources" },
-    { v: 99, s: "%", l: "AI Powered" },
-    { v: 250, s: "k", l: "Developers" },
-    { v: 12, s: "", l: "Platforms" },
-  ];
-  return (
-    <section className="py-16 md:py-20">
-      <div className={container}>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-          className="border border-border rounded-[24px] overflow-hidden bg-card grid grid-cols-2 sm:grid-cols-4 shadow-none"
-        >
-          {items.map((i, index) => (
-            <motion.div
-              variants={cardVariants}
-              key={i.l}
-              className={`p-6 md:p-8 flex flex-col justify-center transition-premium border-border
-                ${index % 2 === 0 ? "border-r" : ""}
-                ${index < 2 ? "border-b" : ""}
-                sm:border-b-0
-                sm:border-r
-                sm:last:border-r-0`}
-            >
-              <Counter target={i.v} suffix={i.s} />
-              <div className="mt-1 text-xs text-muted-foreground">{i.l}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
