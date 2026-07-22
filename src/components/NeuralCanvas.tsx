@@ -44,7 +44,11 @@ export function NeuralCanvas() {
       });
       let colors = palette(isDark);
       const nodeGeo = new THREE.SphereGeometry(0.012, 8, 8);
-      const nodeMat = new THREE.MeshBasicMaterial({ color: colors.node, transparent: true, opacity: colors.nodeOpacity });
+      const nodeMat = new THREE.MeshBasicMaterial({
+        color: colors.node,
+        transparent: true,
+        opacity: colors.nodeOpacity,
+      });
       const nodes = new THREE.InstancedMesh(nodeGeo, nodeMat, NODE_COUNT);
 
       const nodePositions: InstanceType<typeof THREE.Vector3>[] = [];
@@ -89,10 +93,19 @@ export function NeuralCanvas() {
       const dustGeo = new THREE.BufferGeometry();
       const dustPos: number[] = [];
       for (let i = 0; i < 2000; i++) {
-        dustPos.push((Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10);
+        dustPos.push(
+          (Math.random() - 0.5) * 10,
+          (Math.random() - 0.5) * 10,
+          (Math.random() - 0.5) * 10,
+        );
       }
       dustGeo.setAttribute("position", new THREE.Float32BufferAttribute(dustPos, 3));
-      const dustMat = new THREE.PointsMaterial({ color: colors.dust, size: 0.005, transparent: true, opacity: colors.dustOpacity });
+      const dustMat = new THREE.PointsMaterial({
+        color: colors.dust,
+        size: 0.005,
+        transparent: true,
+        opacity: colors.dustOpacity,
+      });
       const particles = new THREE.Points(dustGeo, dustMat);
       scene.add(particles);
 
@@ -146,7 +159,8 @@ export function NeuralCanvas() {
 
         const pulseProgress = (t % PULSE_INTERVAL) / PULSE_INTERVAL;
         if (pulseProgress < 0.3) {
-          lineMat.opacity = colors.lineBaseOpacity + Math.sin((pulseProgress * Math.PI) / 0.3) * 0.25;
+          lineMat.opacity =
+            colors.lineBaseOpacity + Math.sin((pulseProgress * Math.PI) / 0.3) * 0.25;
         } else {
           lineMat.opacity = colors.lineBaseOpacity;
         }

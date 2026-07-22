@@ -1,10 +1,31 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowRight, ChevronLeft, ChevronRight, Search, Bookmark, StickyNote,
-  FileText, Rocket, Bug, MessageSquare, GitBranch, CheckCircle2,
-  LayoutGrid, TrendingUp, Activity, Calendar, Languages, Globe,
-  PenTool, Plus, Share2, ListChecks, CheckSquare, Mic, Sparkles,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  Bookmark,
+  StickyNote,
+  FileText,
+  Rocket,
+  Bug,
+  MessageSquare,
+  GitBranch,
+  CheckCircle2,
+  LayoutGrid,
+  TrendingUp,
+  Activity,
+  Calendar,
+  Languages,
+  Globe,
+  PenTool,
+  Plus,
+  Share2,
+  ListChecks,
+  CheckSquare,
+  Mic,
+  Sparkles,
 } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -40,7 +61,9 @@ export function HeroCarousel() {
     } catch {}
   }, []);
   useEffect(() => {
-    try { localStorage.setItem(STORAGE_KEY, String(index)); } catch {}
+    try {
+      localStorage.setItem(STORAGE_KEY, String(index));
+    } catch {}
   }, [index]);
 
   const next = useCallback(() => setIndex((i) => (i + 1) % SLIDES.length), []);
@@ -48,7 +71,10 @@ export function HeroCarousel() {
 
   // autoplay + progress
   useEffect(() => {
-    if (paused || reduce) { setProgress(0); return; }
+    if (paused || reduce) {
+      setProgress(0);
+      return;
+    }
     let raf = 0;
     const start = performance.now();
     const tick = (now: number) => {
@@ -68,8 +94,14 @@ export function HeroCarousel() {
       const active = document.activeElement;
       const inside = rootRef.current.contains(active);
       if (!inside) return;
-      if (e.key === "ArrowRight") { e.preventDefault(); next(); }
-      if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        next();
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        prev();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -86,7 +118,9 @@ export function HeroCarousel() {
     else prev();
   };
   const touchStart = useRef<number | null>(null);
-  const onTouchStart = (e: React.TouchEvent) => { touchStart.current = e.touches[0].clientX; };
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
   const onTouchEnd = (e: React.TouchEvent) => {
     if (touchStart.current == null) return;
     const dx = e.changedTouches[0].clientX - touchStart.current;
@@ -175,9 +209,7 @@ export function HeroCarousel() {
                 onClick={() => setIndex(i)}
                 aria-label={`Go to slide ${i + 1}: ${s.title}`}
                 className={`h-1 rounded-full transition-all ${
-                  i === index
-                    ? "w-8 bg-foreground"
-                    : "w-4 bg-border hover:bg-muted-foreground/50"
+                  i === index ? "w-8 bg-foreground" : "w-4 bg-border hover:bg-muted-foreground/50"
                 }`}
               />
             ))}
@@ -209,7 +241,7 @@ export function HeroCarousel() {
 /* -------------------------- window chrome ---------------------------- */
 function MockWindow({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="group/window overflow-hidden rounded-[20px] border border-border bg-card shadow-[0_20px_60px_-20px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+    <div className="group/window overflow-hidden rounded-[20px] border border-border bg-card shadow-[0_20px_60px_-20px_rgba(99,102,241,0.12),_0_0_100px_-10px_rgba(99,102,241,0.06)] backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_30px_80px_-20px_rgba(99,102,241,0.18),_0_0_120px_-10px_rgba(99,102,241,0.1)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6),_0_0_120px_-10px_rgba(99,102,241,0.15)] dark:hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),_0_0_140px_-5px_rgba(99,102,241,0.2)]">
       {/* title bar */}
       <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-2.5">
         <div className="flex gap-1.5">
@@ -239,7 +271,10 @@ function useCount(target: number, active: boolean, dur = 900) {
   const reduce = useReducedMotion();
   const [n, setN] = useState(reduce ? target : 0);
   useEffect(() => {
-    if (!active || reduce) { setN(target); return; }
+    if (!active || reduce) {
+      setN(target);
+      return;
+    }
     let raf = 0;
     const start = performance.now();
     const tick = (t: number) => {
@@ -255,7 +290,9 @@ function useCount(target: number, active: boolean, dur = 900) {
 
 function Panel({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`rounded-[12px] border border-border bg-card p-3 transition-all hover:-translate-y-[2px] hover:border-foreground/20 ${className}`}>
+    <div
+      className={`rounded-[12px] border border-border bg-card p-3 transition-all hover:-translate-y-[2px] hover:border-foreground/20 ${className}`}
+    >
       {children}
     </div>
   );
@@ -278,7 +315,9 @@ function DashboardSlide({ active }: { active: boolean }) {
         </button>
       </div>
       <Panel className="col-span-4 !p-3">
-        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Sticky notes</div>
+        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+          Sticky notes
+        </div>
         <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{notes}</div>
       </Panel>
       <Panel className="col-span-4 !p-3">
@@ -296,10 +335,26 @@ function DashboardSlide({ active }: { active: boolean }) {
         </div>
         <div className="grid grid-cols-2 gap-2">
           {[
-            { c: "bg-[oklch(0.94_0.08_85)] text-[oklch(0.3_0.05_85)]", t: "Refactor auth store", s: "Personal" },
-            { c: "bg-[oklch(0.92_0.08_180)] text-[oklch(0.3_0.05_200)]", t: "Ship voice beta by Fri", s: "Work" },
-            { c: "bg-[oklch(0.93_0.08_320)] text-[oklch(0.3_0.05_320)]", t: "Read TanStack RFC", s: "Learning" },
-            { c: "bg-[oklch(0.93_0.08_140)] text-[oklch(0.3_0.05_140)]", t: "Pair on realtime sync", s: "Team" },
+            {
+              c: "bg-[oklch(0.94_0.08_85)] text-[oklch(0.3_0.05_85)]",
+              t: "Refactor auth store",
+              s: "Personal",
+            },
+            {
+              c: "bg-[oklch(0.92_0.08_180)] text-[oklch(0.3_0.05_200)]",
+              t: "Ship voice beta by Fri",
+              s: "Work",
+            },
+            {
+              c: "bg-[oklch(0.93_0.08_320)] text-[oklch(0.3_0.05_320)]",
+              t: "Read TanStack RFC",
+              s: "Learning",
+            },
+            {
+              c: "bg-[oklch(0.93_0.08_140)] text-[oklch(0.3_0.05_140)]",
+              t: "Pair on realtime sync",
+              s: "Team",
+            },
           ].map((n, i) => (
             <motion.div
               key={n.t}
@@ -320,7 +375,12 @@ function DashboardSlide({ active }: { active: boolean }) {
           <Bookmark className="h-3 w-3" /> Recent bookmarks
         </div>
         <ul className="space-y-1.5 text-[11px]">
-          {["tanstack.com/router", "supabase.com/auth", "vercel.com/edge", "react.dev/suspense"].map((r, i) => (
+          {[
+            "tanstack.com/router",
+            "supabase.com/auth",
+            "vercel.com/edge",
+            "react.dev/suspense",
+          ].map((r, i) => (
             <motion.li
               key={r}
               initial={{ opacity: 0, x: -6 }}
@@ -361,8 +421,22 @@ function DebugSlide() {
         <div className="text-[11px] font-medium text-foreground">Active bugs</div>
         {[
           { id: "BUG-482", t: "Memory leak in Dashboard", s: "Open", u: "amelia", m: 12, on: true },
-          { id: "BUG-471", t: "JWT refresh loop on expiry", s: "In review", u: "kenji", m: 8, on: false },
-          { id: "BUG-465", t: "Docker build failing arm64", s: "Resolved", u: "priya", m: 5, on: false },
+          {
+            id: "BUG-471",
+            t: "JWT refresh loop on expiry",
+            s: "In review",
+            u: "kenji",
+            m: 8,
+            on: false,
+          },
+          {
+            id: "BUG-465",
+            t: "Docker build failing arm64",
+            s: "Resolved",
+            u: "priya",
+            m: 5,
+            on: false,
+          },
         ].map((b, i) => (
           <motion.div
             key={b.id}
@@ -373,12 +447,20 @@ function DebugSlide() {
           >
             <div className="flex items-center justify-between text-[10px] text-muted-foreground">
               <span>{b.id}</span>
-              <span className={`rounded-full border px-1.5 py-0.5 ${b.s === "Resolved" ? "border-[var(--success)]/40 text-[var(--success)]" : b.s === "In review" ? "border-[var(--warning)]/40 text-[var(--warning)]" : "border-border"}`}>{b.s}</span>
+              <span
+                className={`rounded-full border px-1.5 py-0.5 ${b.s === "Resolved" ? "border-[var(--success)]/40 text-[var(--success)]" : b.s === "In review" ? "border-[var(--warning)]/40 text-[var(--warning)]" : "border-border"}`}
+              >
+                {b.s}
+              </span>
             </div>
             <div className="mt-1 font-medium text-foreground">{b.t}</div>
             <div className="mt-1.5 flex items-center gap-2 text-[10px] text-muted-foreground">
-              <span className="inline-flex items-center gap-1"><MessageSquare className="h-2.5 w-2.5" /> {b.m}</span>
-              <span className="inline-flex items-center gap-1"><GitBranch className="h-2.5 w-2.5" /> @{b.u}</span>
+              <span className="inline-flex items-center gap-1">
+                <MessageSquare className="h-2.5 w-2.5" /> {b.m}
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <GitBranch className="h-2.5 w-2.5" /> @{b.u}
+              </span>
             </div>
           </motion.div>
         ))}
@@ -403,8 +485,12 @@ function DebugSlide() {
                   transition={{ delay: 0.2 + i * 0.08, duration: 0.3, ease: EASE }}
                   className="flex gap-2"
                 >
-                  <div className="h-5 w-5 shrink-0 rounded-full bg-muted text-center text-[9px] leading-5 text-foreground">{r.u[0]}</div>
-                  <div className="text-muted-foreground"><span className="text-foreground">@{r.u}</span> {r.t}</div>
+                  <div className="h-5 w-5 shrink-0 rounded-full bg-muted text-center text-[9px] leading-5 text-foreground">
+                    {r.u[0]}
+                  </div>
+                  <div className="text-muted-foreground">
+                    <span className="text-foreground">@{r.u}</span> {r.t}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -412,9 +498,11 @@ function DebugSlide() {
           <div className="mt-2 flex items-center gap-1.5 rounded-md border border-[var(--success)]/30 bg-[var(--success)]/5 px-2 py-1.5 text-[var(--success)]">
             <CheckCircle2 className="h-3 w-3" /> Accepted: return cleanup from effect
           </div>
-          <pre className="mt-2 overflow-x-auto rounded bg-muted/60 p-2 text-[10px] leading-relaxed text-foreground/80"><code>{`at Dashboard.tsx:42
+          <pre className="mt-2 overflow-x-auto rounded bg-muted/60 p-2 text-[10px] leading-relaxed text-foreground/80">
+            <code>{`at Dashboard.tsx:42
 at ChartWidget.tsx:118
-at socket.subscribe()`}</code></pre>
+at socket.subscribe()`}</code>
+          </pre>
         </div>
       </Panel>
     </div>
@@ -426,9 +514,14 @@ function ResourcesSlide() {
   const [filter, setFilter] = useState("All");
   const chips = ["All", "Frontend", "Backend", "DevOps", "AI"];
   const cats = [
-    { n: "Frontend", c: 128 }, { n: "Backend", c: 96 }, { n: "DevOps", c: 74 },
-    { n: "AI", c: 152 }, { n: "Cloud", c: 89 }, { n: "Security", c: 41 },
-    { n: "Database", c: 58 }, { n: "Testing", c: 63 },
+    { n: "Frontend", c: 128 },
+    { n: "Backend", c: 96 },
+    { n: "DevOps", c: 74 },
+    { n: "AI", c: 152 },
+    { n: "Cloud", c: 89 },
+    { n: "Security", c: 41 },
+    { n: "Database", c: 58 },
+    { n: "Testing", c: 63 },
   ];
   const visible = cats.filter((c) => filter === "All" || c.n === filter);
   return (
@@ -444,7 +537,9 @@ function ResourcesSlide() {
             key={c}
             onClick={() => setFilter(c)}
             className={`rounded-full border px-2.5 py-1 text-[11px] transition-all ${
-              c === filter ? "border-foreground bg-foreground text-background" : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+              c === filter
+                ? "border-foreground bg-foreground text-background"
+                : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
             }`}
           >
             {c}
@@ -468,7 +563,9 @@ function ResourcesSlide() {
                 <div className="text-[11px] font-medium text-foreground">{c.n}</div>
                 <LayoutGrid className="h-3 w-3 text-muted-foreground" />
               </div>
-              <div className="mt-2 text-[10px] tabular-nums text-muted-foreground">{c.c} resources</div>
+              <div className="mt-2 text-[10px] tabular-nums text-muted-foreground">
+                {c.c} resources
+              </div>
               <div className="mt-1.5 inline-flex items-center gap-1 rounded-full border border-border px-1.5 py-0.5 text-[9px] text-muted-foreground">
                 <TrendingUp className="h-2 w-2" /> Trending
               </div>
@@ -490,29 +587,48 @@ function StudySlide({ active }: { active: boolean }) {
     <div className="grid h-full grid-cols-12 gap-3 overflow-auto p-5">
       <div className="col-span-12 flex items-center justify-between">
         <div>
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Study analyzer</div>
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            Study analyzer
+          </div>
           <div className="text-base font-semibold text-foreground">Weekly report</div>
         </div>
-        <span className="rounded-full border border-border px-2 py-0.5 text-[10px] text-muted-foreground">Sep 15 – Sep 21</span>
+        <span className="rounded-full border border-border px-2 py-0.5 text-[10px] text-muted-foreground">
+          Sep 15 – Sep 21
+        </span>
       </div>
 
       <Panel className="col-span-4">
-        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Study score</div>
+        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+          Study score
+        </div>
         <div className="mt-1 flex items-baseline gap-1">
           <span className="text-2xl font-semibold tabular-nums text-foreground">{score}</span>
           <span className="text-[10px] text-muted-foreground">/ 100</span>
         </div>
         <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-muted">
-          <motion.div initial={{ width: 0 }} animate={{ width: `${score}%` }} transition={{ duration: 1, ease: EASE }} className="h-full bg-accent" />
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${score}%` }}
+            transition={{ duration: 1, ease: EASE }}
+            className="h-full bg-accent"
+          />
         </div>
       </Panel>
       <Panel className="col-span-4">
-        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Consistency</div>
-        <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{consistency}%</div>
+        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+          Consistency
+        </div>
+        <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">
+          {consistency}%
+        </div>
       </Panel>
       <Panel className="col-span-4">
-        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Active time</div>
-        <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{hoursActive}h</div>
+        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+          Active time
+        </div>
+        <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">
+          {hoursActive}h
+        </div>
       </Panel>
 
       <Panel className="col-span-7">
@@ -532,7 +648,9 @@ function StudySlide({ active }: { active: boolean }) {
           ))}
         </div>
         <div className="mt-1 flex justify-between text-[9px] text-muted-foreground">
-          {["M","T","W","T","F","S","S"].map((d, i) => <span key={i}>{d}</span>)}
+          {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
+            <span key={i}>{d}</span>
+          ))}
         </div>
       </Panel>
 
@@ -540,7 +658,10 @@ function StudySlide({ active }: { active: boolean }) {
         <div className="mb-2 flex items-center gap-1.5 text-[11px] font-medium text-foreground">
           <Calendar className="h-3 w-3" /> Heatmap
         </div>
-        <div className="grid grid-cols-14 gap-1" style={{ gridTemplateColumns: "repeat(14, minmax(0,1fr))" }}>
+        <div
+          className="grid grid-cols-14 gap-1"
+          style={{ gridTemplateColumns: "repeat(14, minmax(0,1fr))" }}
+        >
           {Array.from({ length: 14 * 5 }).map((_, i) => {
             const v = (Math.sin(i * 1.37) + 1) / 2;
             return (
@@ -550,7 +671,9 @@ function StudySlide({ active }: { active: boolean }) {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: (i % 14) * 0.015 + 0.1, duration: 0.25 }}
                 className="aspect-square rounded-[2px]"
-                style={{ backgroundColor: `color-mix(in oklch, var(--accent) ${Math.round(v * 90 + 10)}%, transparent)` }}
+                style={{
+                  backgroundColor: `color-mix(in oklch, var(--accent) ${Math.round(v * 90 + 10)}%, transparent)`,
+                }}
               />
             );
           })}
@@ -565,11 +688,26 @@ function DocsSlide() {
   const [lang, setLang] = useState("ES");
   const langs = ["EN", "ES", "JA", "FR", "DE"];
   const translations: Record<string, { title: string; body: string }> = {
-    EN: { title: "Realtime sync", body: "Channels multiplex over a single websocket. Subscribers reconcile missed events on reconnect." },
-    ES: { title: "Sincronización en tiempo real", body: "Los canales se multiplexan sobre un único websocket. Los suscriptores reconcilian eventos perdidos al reconectarse." },
-    JA: { title: "リアルタイム同期", body: "チャンネルは単一の WebSocket で多重化されます。購読者は再接続時に失われたイベントを調整します。" },
-    FR: { title: "Synchronisation en temps réel", body: "Les canaux sont multiplexés sur un seul websocket. Les abonnés réconcilient les événements manqués à la reconnexion." },
-    DE: { title: "Echtzeit-Synchronisation", body: "Kanäle werden über einen einzigen Websocket gemultiplext. Abonnenten gleichen verpasste Ereignisse beim Wiederverbinden ab." },
+    EN: {
+      title: "Realtime sync",
+      body: "Channels multiplex over a single websocket. Subscribers reconcile missed events on reconnect.",
+    },
+    ES: {
+      title: "Sincronización en tiempo real",
+      body: "Los canales se multiplexan sobre un único websocket. Los suscriptores reconcilian eventos perdidos al reconectarse.",
+    },
+    JA: {
+      title: "リアルタイム同期",
+      body: "チャンネルは単一の WebSocket で多重化されます。購読者は再接続時に失われたイベントを調整します。",
+    },
+    FR: {
+      title: "Synchronisation en temps réel",
+      body: "Les canaux sont multiplexés sur un seul websocket. Les abonnés réconcilient les événements manqués à la reconnexion.",
+    },
+    DE: {
+      title: "Echtzeit-Synchronisation",
+      body: "Kanäle werden über einen einzigen Websocket gemultiplext. Abonnenten gleichen verpasste Ereignisse beim Wiederverbinden ab.",
+    },
   };
   const t = translations[lang];
   return (
@@ -584,7 +722,11 @@ function DocsSlide() {
               className={`relative rounded px-2 py-1 text-[10px] font-medium transition-colors ${l === lang ? "text-background" : "text-muted-foreground hover:text-foreground"}`}
             >
               {l === lang && (
-                <motion.span layoutId="lang-pill" transition={{ duration: 0.3, ease: EASE }} className="absolute inset-0 rounded bg-foreground" />
+                <motion.span
+                  layoutId="lang-pill"
+                  transition={{ duration: 0.3, ease: EASE }}
+                  className="absolute inset-0 rounded bg-foreground"
+                />
               )}
               <span className="relative">{l}</span>
             </button>
@@ -594,13 +736,18 @@ function DocsSlide() {
       </div>
       <div className="grid flex-1 grid-cols-2 gap-3 overflow-hidden">
         <Panel className="flex flex-col overflow-hidden">
-          <div className="mb-1 text-[10px] uppercase tracking-wider text-muted-foreground">Original · EN</div>
+          <div className="mb-1 text-[10px] uppercase tracking-wider text-muted-foreground">
+            Original · EN
+          </div>
           <div className="text-sm font-semibold text-foreground">Realtime sync</div>
           <div className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
-            Channels multiplex over a single websocket. Subscribers reconcile missed events on reconnect.
+            Channels multiplex over a single websocket. Subscribers reconcile missed events on
+            reconnect.
           </div>
-          <pre className="mt-2 overflow-x-auto rounded bg-muted/60 p-2 text-[10px] text-foreground/80"><code>{`sync.channel("ws:42")
-  .on("update", handle);`}</code></pre>
+          <pre className="mt-2 overflow-x-auto rounded bg-muted/60 p-2 text-[10px] text-foreground/80">
+            <code>{`sync.channel("ws:42")
+  .on("update", handle);`}</code>
+          </pre>
         </Panel>
         <AnimatePresence mode="wait">
           <motion.div
@@ -611,11 +758,17 @@ function DocsSlide() {
             transition={{ duration: 0.25, ease: EASE }}
           >
             <Panel className="flex flex-col overflow-hidden">
-              <div className="mb-1 text-[10px] uppercase tracking-wider text-muted-foreground">Translated · {lang}</div>
+              <div className="mb-1 text-[10px] uppercase tracking-wider text-muted-foreground">
+                Translated · {lang}
+              </div>
               <div className="text-sm font-semibold text-foreground">{t.title}</div>
-              <div className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">{t.body}</div>
-              <pre className="mt-2 overflow-x-auto rounded bg-muted/60 p-2 text-[10px] text-foreground/80"><code>{`sync.channel("ws:42")
-  .on("update", handle);`}</code></pre>
+              <div className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+                {t.body}
+              </div>
+              <pre className="mt-2 overflow-x-auto rounded bg-muted/60 p-2 text-[10px] text-foreground/80">
+                <code>{`sync.channel("ws:42")
+  .on("update", handle);`}</code>
+              </pre>
             </Panel>
           </motion.div>
         </AnimatePresence>
@@ -628,21 +781,41 @@ function DocsSlide() {
 function GlassboardSlide() {
   const notes = [
     { x: 6, y: 12, c: "bg-[oklch(0.94_0.08_85)] text-[oklch(0.3_0.05_85)]", t: "Client → /api" },
-    { x: 42, y: 22, c: "bg-[oklch(0.92_0.08_180)] text-[oklch(0.3_0.05_200)]", t: "Edge gateway auth" },
-    { x: 72, y: 14, c: "bg-[oklch(0.93_0.08_320)] text-[oklch(0.3_0.05_320)]", t: "Fan-out workers" },
-    { x: 18, y: 62, c: "bg-[oklch(0.93_0.08_140)] text-[oklch(0.3_0.05_140)]", t: "Postgres primary" },
+    {
+      x: 42,
+      y: 22,
+      c: "bg-[oklch(0.92_0.08_180)] text-[oklch(0.3_0.05_200)]",
+      t: "Edge gateway auth",
+    },
+    {
+      x: 72,
+      y: 14,
+      c: "bg-[oklch(0.93_0.08_320)] text-[oklch(0.3_0.05_320)]",
+      t: "Fan-out workers",
+    },
+    {
+      x: 18,
+      y: 62,
+      c: "bg-[oklch(0.93_0.08_140)] text-[oklch(0.3_0.05_140)]",
+      t: "Postgres primary",
+    },
     { x: 62, y: 65, c: "bg-[oklch(0.94_0.09_60)] text-[oklch(0.3_0.05_60)]", t: "Redis cache" },
   ];
   return (
     <div className="flex h-full flex-col p-5">
       <div className="mb-3 flex items-center justify-between">
         <div>
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Glassboard</div>
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            Glassboard
+          </div>
           <div className="text-sm font-semibold text-foreground">Realtime pipeline — v0.3</div>
         </div>
         <div className="flex items-center gap-1 rounded-md border border-border bg-background p-1">
           {[PenTool, StickyNote, Plus, Share2].map((I, i) => (
-            <button key={i} className="rounded p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+            <button
+              key={i}
+              className="rounded p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
               <I className="h-3 w-3" />
             </button>
           ))}
@@ -655,18 +828,29 @@ function GlassboardSlide() {
           backgroundSize: "18px 18px",
         }}
       >
-        <svg className="absolute inset-0 h-full w-full text-muted-foreground/60" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <svg
+          className="absolute inset-0 h-full w-full text-muted-foreground/60"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
           {[
-            ["16","18","46","28"], ["56","28","76","20"],
-            ["50","32","28","64"], ["52","32","66","66"],
+            ["16", "18", "46", "28"],
+            ["56", "28", "76", "20"],
+            ["50", "32", "28", "64"],
+            ["52", "32", "66", "66"],
           ].map(([x1, y1, x2, y2], i) => (
             <motion.line
               key={i}
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: EASE }}
-              x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke="currentColor" strokeWidth="0.3" strokeDasharray="1 1"
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke="currentColor"
+              strokeWidth="0.3"
+              strokeDasharray="1 1"
             />
           ))}
         </svg>
@@ -701,15 +885,31 @@ function DsaSlide({ active }: { active: boolean }) {
     { n: "Binary Tree Zigzag", d: "Medium", ok: true },
   ];
   const diffColor = (d: string) =>
-    d === "Easy" ? "text-[var(--success)]" : d === "Medium" ? "text-[var(--warning)]" : "text-destructive";
+    d === "Easy"
+      ? "text-[var(--success)]"
+      : d === "Medium"
+        ? "text-[var(--warning)]"
+        : "text-destructive";
   return (
     <div className="grid h-full grid-cols-12 gap-3 overflow-auto p-5">
       <Panel className="col-span-5 flex flex-col items-center justify-center">
         <div className="relative h-24 w-24">
           <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" stroke="var(--color-border)" strokeWidth="8" fill="none" />
+            <circle
+              cx="50"
+              cy="50"
+              r="42"
+              stroke="var(--color-border)"
+              strokeWidth="8"
+              fill="none"
+            />
             <motion.circle
-              cx="50" cy="50" r="42" stroke="var(--accent)" strokeWidth="8" fill="none"
+              cx="50"
+              cy="50"
+              r="42"
+              stroke="var(--accent)"
+              strokeWidth="8"
+              fill="none"
               strokeLinecap="round"
               strokeDasharray={2 * Math.PI * 42}
               initial={{ strokeDashoffset: 2 * Math.PI * 42 }}
@@ -727,7 +927,12 @@ function DsaSlide({ active }: { active: boolean }) {
       <Panel className="col-span-7">
         <div className="mb-2 flex items-center gap-1">
           {["All", "Easy", "Medium", "Hard"].map((c, i) => (
-            <button key={c} className={`rounded-full border px-2 py-0.5 text-[10px] ${i === 0 ? "border-foreground bg-foreground text-background" : "border-border text-muted-foreground hover:text-foreground"}`}>{c}</button>
+            <button
+              key={c}
+              className={`rounded-full border px-2 py-0.5 text-[10px] ${i === 0 ? "border-foreground bg-foreground text-background" : "border-border text-muted-foreground hover:text-foreground"}`}
+            >
+              {c}
+            </button>
           ))}
           <div className="ml-auto flex items-center gap-1 rounded-md border border-border px-2 py-0.5 text-[10px] text-muted-foreground">
             <Search className="h-2.5 w-2.5" /> problems
@@ -743,7 +948,9 @@ function DsaSlide({ active }: { active: boolean }) {
               className="flex items-center justify-between py-1.5 text-[11px]"
             >
               <div className="flex items-center gap-2">
-                <CheckSquare className={`h-3 w-3 ${p.ok ? "text-[var(--success)]" : "text-muted-foreground/40"}`} />
+                <CheckSquare
+                  className={`h-3 w-3 ${p.ok ? "text-[var(--success)]" : "text-muted-foreground/40"}`}
+                />
                 <span className={p.ok ? "text-foreground" : "text-muted-foreground"}>{p.n}</span>
               </div>
               <span className={`text-[10px] font-medium ${diffColor(p.d)}`}>{p.d}</span>
@@ -761,7 +968,9 @@ function VoiceSlide() {
     <div className="flex h-full flex-col p-5">
       <div className="mb-3 flex items-center justify-between">
         <div>
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Voice assistant</div>
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            Voice assistant
+          </div>
           <div className="text-sm font-semibold text-foreground">Listening…</div>
         </div>
         <div className="flex items-center gap-1.5 rounded-full border border-border bg-background px-2 py-1 text-[10px]">
@@ -787,29 +996,46 @@ function VoiceSlide() {
 
       <div className="flex-1 space-y-2 overflow-auto">
         <motion.div
-          initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, ease: EASE }}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: EASE }}
           className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm border border-border bg-muted/60 px-3 py-2 text-[11px] text-foreground"
         >
           "Explain the useEffect cleanup pattern"
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.3, ease: EASE }}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.3, ease: EASE }}
           className="max-w-[85%] space-y-2 rounded-2xl rounded-tl-sm border border-border bg-card px-3 py-2 text-[11px] text-foreground/90"
         >
-          <div>Return a function from your effect. React invokes it on unmount to clean up subscriptions.</div>
-          <pre className="overflow-x-auto rounded bg-muted/60 p-2 text-[10px] text-foreground/85"><code>{`useEffect(() => {
+          <div>
+            Return a function from your effect. React invokes it on unmount to clean up
+            subscriptions.
+          </div>
+          <pre className="overflow-x-auto rounded bg-muted/60 p-2 text-[10px] text-foreground/85">
+            <code>{`useEffect(() => {
   const s = socket.subscribe();
   return () => s.unsubscribe();
-}, []);`}</code></pre>
+}, []);`}</code>
+          </pre>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9 }}
           className="flex items-center gap-1.5 text-[10px] text-muted-foreground"
         >
           <span className="inline-flex gap-0.5">
             <span className="h-1 w-1 animate-bounce rounded-full bg-muted-foreground" />
-            <span className="h-1 w-1 animate-bounce rounded-full bg-muted-foreground" style={{ animationDelay: "0.15s" }} />
-            <span className="h-1 w-1 animate-bounce rounded-full bg-muted-foreground" style={{ animationDelay: "0.3s" }} />
+            <span
+              className="h-1 w-1 animate-bounce rounded-full bg-muted-foreground"
+              style={{ animationDelay: "0.15s" }}
+            />
+            <span
+              className="h-1 w-1 animate-bounce rounded-full bg-muted-foreground"
+              style={{ animationDelay: "0.3s" }}
+            />
           </span>
           thinking
         </motion.div>
@@ -824,8 +1050,13 @@ const SLIDES: Slide[] = [
     id: "dashboard",
     category: "Developer Dashboard",
     title: "Your entire workspace, at a glance.",
-    description: "Sticky notes, bookmarks, recent documents, and progress widgets — all synced to a single home screen.",
-    bullets: ["Persistent sticky notes across devices", "Bookmarks with smart categorization", "Weekly progress and streak tracking"],
+    description:
+      "Sticky notes, bookmarks, recent documents, and progress widgets — all synced to a single home screen.",
+    bullets: [
+      "Persistent sticky notes across devices",
+      "Bookmarks with smart categorization",
+      "Weekly progress and streak tracking",
+    ],
     cta: "Open dashboard",
     render: (a) => <DashboardSlide active={a} />,
   },
@@ -833,8 +1064,13 @@ const SLIDES: Slide[] = [
     id: "debug",
     category: "Collaborative Debugging",
     title: "Debug together, in one thread.",
-    description: "Shared bug threads with hypotheses, stack traces, and accepted solutions. No more scattered Slack messages.",
-    bullets: ["Hypothesis tracking with @mentions", "Live stack trace and repro logs", "One-click accepted solutions"],
+    description:
+      "Shared bug threads with hypotheses, stack traces, and accepted solutions. No more scattered Slack messages.",
+    bullets: [
+      "Hypothesis tracking with @mentions",
+      "Live stack trace and repro logs",
+      "One-click accepted solutions",
+    ],
     cta: "Open debug space",
     render: () => <DebugSlide />,
   },
@@ -842,8 +1078,13 @@ const SLIDES: Slide[] = [
     id: "resources",
     category: "Website Grid",
     title: "Every resource, one search away.",
-    description: "Frontend, backend, DevOps, AI, cloud, security — curated and filterable in a single grid.",
-    bullets: ["Filter by category with instant chips", "Full-text search across 731+ resources", "Trending signals from the community"],
+    description:
+      "Frontend, backend, DevOps, AI, cloud, security — curated and filterable in a single grid.",
+    bullets: [
+      "Filter by category with instant chips",
+      "Full-text search across 731+ resources",
+      "Trending signals from the community",
+    ],
     cta: "Browse resources",
     render: () => <ResourcesSlide />,
   },
@@ -851,8 +1092,13 @@ const SLIDES: Slide[] = [
     id: "study",
     category: "Study Behaviour Analyzer",
     title: "Understand how you learn.",
-    description: "Charts, heatmaps, and consistency scores turn hours of practice into a clear signal.",
-    bullets: ["Study score with weekly breakdown", "Consistency and active-time metrics", "GitHub-style contribution heatmap"],
+    description:
+      "Charts, heatmaps, and consistency scores turn hours of practice into a clear signal.",
+    bullets: [
+      "Study score with weekly breakdown",
+      "Consistency and active-time metrics",
+      "GitHub-style contribution heatmap",
+    ],
     cta: "See your report",
     render: (a) => <StudySlide active={a} />,
   },
@@ -860,8 +1106,13 @@ const SLIDES: Slide[] = [
     id: "docs",
     category: "Multilingual Docs",
     title: "Read documentation in your language.",
-    description: "AI-translated docs with side-by-side view. Code snippets stay identical — only prose translates.",
-    bullets: ["12+ supported languages", "Side-by-side original + translated", "Code blocks preserved verbatim"],
+    description:
+      "AI-translated docs with side-by-side view. Code snippets stay identical — only prose translates.",
+    bullets: [
+      "12+ supported languages",
+      "Side-by-side original + translated",
+      "Code blocks preserved verbatim",
+    ],
     cta: "Open docs",
     render: () => <DocsSlide />,
   },
@@ -869,8 +1120,13 @@ const SLIDES: Slide[] = [
     id: "canvas",
     category: "Glassboard",
     title: "Diagram anything, together.",
-    description: "A floating whiteboard with sticky notes, arrows, and realtime multiplayer cursors.",
-    bullets: ["Sticky notes and flowchart arrows", "Sketching + realtime collaboration", "Floating toolbar and infinite canvas"],
+    description:
+      "A floating whiteboard with sticky notes, arrows, and realtime multiplayer cursors.",
+    bullets: [
+      "Sticky notes and flowchart arrows",
+      "Sketching + realtime collaboration",
+      "Floating toolbar and infinite canvas",
+    ],
     cta: "Open glassboard",
     render: () => <GlassboardSlide />,
   },
@@ -878,8 +1134,13 @@ const SLIDES: Slide[] = [
     id: "dsa",
     category: "DSA Tracker",
     title: "Practice with intent.",
-    description: "LeetCode-style problem grid with difficulty, completion, and a progress ring you'll actually watch.",
-    bullets: ["Filter by Easy / Medium / Hard", "Completion streaks and totals", "Search across 512 tracked problems"],
+    description:
+      "LeetCode-style problem grid with difficulty, completion, and a progress ring you'll actually watch.",
+    bullets: [
+      "Filter by Easy / Medium / Hard",
+      "Completion streaks and totals",
+      "Search across 512 tracked problems",
+    ],
     cta: "Start practicing",
     render: (a) => <DsaSlide active={a} />,
   },
@@ -887,8 +1148,13 @@ const SLIDES: Slide[] = [
     id: "voice",
     category: "AI Voice Assistant",
     title: "Ask, out loud.",
-    description: "Push-to-talk voice with animated waveform, thinking indicator, and code responses inline.",
-    bullets: ["Sub-second speech recognition", "Streaming code + prose replies", "Hands-free — never leave your editor"],
+    description:
+      "Push-to-talk voice with animated waveform, thinking indicator, and code responses inline.",
+    bullets: [
+      "Sub-second speech recognition",
+      "Streaming code + prose replies",
+      "Hands-free — never leave your editor",
+    ],
     cta: "Try voice",
     render: () => <VoiceSlide />,
   },

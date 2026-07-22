@@ -5,6 +5,7 @@ Build a single-route marketing landing page based on the provided HTML. It's a d
 ## Scope
 
 One page at `/` composed of these sections (in order):
+
 1. Top nav bar (logo, links: Features, Modules, How it Works, CTA button)
 2. Hero — badge, headline "One Workspace. Every Tool. Infinite Productivity.", subtitle, two CTAs, animated visual + floating stat card
 3. Stats strip — 4 counters (100+ Resources, 99% AI Powered, 250k Developers, 12 Platforms)
