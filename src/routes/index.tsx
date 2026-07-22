@@ -150,7 +150,7 @@ export const Route = createFileRoute("/")({
 
 function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
+    <div className="relative min-h-screen bg-transparent text-foreground antialiased overflow-x-hidden">
       <AmbientBackground />
       <Nav />
       <main className="relative z-10">

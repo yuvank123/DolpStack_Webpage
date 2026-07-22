@@ -823,10 +823,6 @@ function GlassboardSlide() {
       </div>
       <div
         className="relative flex-1 overflow-hidden rounded-[12px] border border-border"
-        style={{
-          backgroundImage: "radial-gradient(circle, var(--color-border) 1px, transparent 1px)",
-          backgroundSize: "18px 18px",
-        }}
       >
         <svg
           className="absolute inset-0 h-full w-full text-muted-foreground/60"

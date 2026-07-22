@@ -118,6 +118,7 @@
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "cv11", "ss01", "ss03";
     letter-spacing: -0.011em;
+    isolation: isolate;
   }
 }
 

@@ -623,10 +623,6 @@ function CanvasPage() {
 
       <div
         className="relative h-[380px] w-full overflow-hidden rounded-[14px] border border-border"
-        style={{
-          backgroundImage: "radial-gradient(circle, var(--color-border) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
-        }}
       >
         <svg
           className="absolute inset-0 h-full w-full text-muted-foreground/50"
