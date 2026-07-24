@@ -301,13 +301,13 @@ function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border">
       <div className={`${container} pt-16 pb-20 md:pt-24 md:pb-28`}>
-        <div className="mb-10 max-w-2xl space-y-4">
+        <div className="mx-auto mb-10 max-w-[900px] space-y-5 px-4 text-center sm:px-6">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-2.5 py-1 text-xs text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             <span>Now in general availability</span>
           </div>
           <h1
-            className="text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
+            className="text-3xl font-semibold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl"
             style={display}
           >
             One workspace.
