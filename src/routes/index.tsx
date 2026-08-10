@@ -19,6 +19,7 @@ import {
 import { PrecisionCanvas } from "@/components/PrecisionCanvas";
 import { ProductTour } from "@/components/ProductTour";
 import { HeroCarousel } from "@/components/HeroCarousel";
+import { HeroProductVisual } from "@/components/HeroProductVisual";
 import { motion, useReducedMotion } from "framer-motion";
 
 const containerVariants = {
@@ -155,6 +156,7 @@ function LandingPage() {
       <Nav />
       <main className="relative z-10">
         <Hero />
+        <CarouselSection />
         <Mission />
         <Modules />
         <Walkthrough />
