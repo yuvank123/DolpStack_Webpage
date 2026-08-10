@@ -52,10 +52,10 @@ export function HeroProductVisual() {
       {/* soft glow underneath */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-x-10 -bottom-10 top-10 -z-10 rounded-[48px] opacity-70 blur-3xl"
+        className="pointer-events-none absolute -inset-x-14 -bottom-14 top-6 -z-10 rounded-[48px] opacity-80 blur-3xl"
         style={{
           background:
-            "radial-gradient(60% 60% at 50% 40%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 70%)",
+            "radial-gradient(ellipse at center, rgba(99, 102, 241, 0.28), rgba(236, 72, 153, 0.2), rgba(56, 189, 248, 0.18), transparent 70%)",
         }}
       />
 

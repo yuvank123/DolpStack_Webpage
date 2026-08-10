@@ -240,7 +240,7 @@ function GhostBtn({ children, className = "" }: { children: React.ReactNode; cla
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+    <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-cyan-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-blue-700 dark:border-indigo-500/20 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 dark:text-indigo-400 backdrop-blur-sm">
       {children}
     </div>
   );
@@ -313,8 +313,8 @@ function Hero() {
           className="mx-auto max-w-[980px] space-y-6 text-center md:space-y-7"
         >
           <motion.div variants={heroLeftItemVariants(false)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-cyan-500/10 px-3.5 py-1 text-xs font-medium text-foreground backdrop-blur-md dark:border-indigo-500/25 dark:from-indigo-500/10 dark:to-pink-500/10">
+              <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-indigo-500 dark:to-pink-500 animate-pulse" />
               Now in general availability
             </span>
           </motion.div>
@@ -325,7 +325,9 @@ function Hero() {
           >
             One workspace.
             <br />
-            <span className="text-muted-foreground">Every tool your team needs.</span>
+            <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400">
+              Every tool your team needs.
+            </span>
           </motion.h1>
           <motion.p
             variants={heroLeftItemVariants(false)}
@@ -340,7 +342,7 @@ function Hero() {
           >
             <a
               href="#features"
-              className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-md sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-blue-500/25 transition-all duration-300 hover:from-blue-500 hover:via-indigo-500 hover:to-blue-600 hover:shadow-blue-500/40 hover:-translate-y-0.5 sm:w-auto dark:from-indigo-600 dark:via-purple-600 dark:to-indigo-600 dark:shadow-indigo-500/25"
             >
               Start building <ArrowRight className="h-4 w-4" />
             </a>
@@ -851,18 +853,34 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="border-b border-border py-16 md:py-20">
+    <section className="relative overflow-hidden border-b border-border py-20 md:py-24">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-indigo-500/10 via-purple-500/5 to-transparent" />
       <div className={`${container} flex flex-col items-center text-center max-w-2xl`}>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-          className="space-y-3"
+          className="space-y-5"
         >
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={display}>
-            Ready to reclaim your focus?
+          <Eyebrow>Get Started</Eyebrow>
+          <h2 className="text-3xl font-semibold tracking-tight md:text-5xl" style={display}>
+            Ready to reclaim your{" "}
+            <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400">
+              focus?
+            </span>
           </h2>
+          <p className="text-muted-foreground text-base max-w-md mx-auto">
+            Join thousands of engineering teams building faster together in one unified surface.
+          </p>
+          <div className="pt-2">
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:from-blue-500 hover:via-indigo-500 hover:to-blue-600 hover:shadow-blue-500/40 hover:-translate-y-0.5 dark:from-indigo-600 dark:via-purple-600 dark:to-indigo-600 dark:shadow-indigo-500/30"
+            >
+              Get started for free <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>
