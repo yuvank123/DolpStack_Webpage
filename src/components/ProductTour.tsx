@@ -100,9 +100,31 @@ export function ProductTour() {
         <div className="ml-4 text-xs text-muted-foreground">dolpstack.app — {activeLabel}</div>
       </div>
 
-      <div className="flex min-h-[520px]">
+      {/* Mobile nav bar */}
+      <div className="flex items-center gap-1 border-b border-border bg-muted/20 p-2 overflow-x-auto md:hidden">
+        {TABS.map((t) => {
+          const isActive = t.id === active;
+          const Icon = t.icon;
+          return (
+            <button
+              key={t.id}
+              onClick={() => setActive(t.id)}
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium shrink-0 transition-all ${
+                isActive
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Icon className="h-3.5 w-3.5" />
+              <span>{t.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex h-[520px] md:h-[540px]">
         {/* Sidebar */}
-        <nav className="hidden w-56 shrink-0 flex-col border-r border-border bg-muted/30 p-3 md:flex">
+        <nav className="hidden w-56 shrink-0 flex-col border-r border-border bg-muted/30 p-3 md:flex h-full">
           <div className="mb-2 px-2 text-[11px] uppercase tracking-wider text-muted-foreground">
             Workspace
           </div>
@@ -147,7 +169,7 @@ export function ProductTour() {
         </nav>
 
         {/* Content */}
-        <div className="relative flex-1 overflow-hidden">
+        <div className="relative flex-1 overflow-hidden h-full">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={active}
@@ -155,7 +177,7 @@ export function ProductTour() {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="p-5 md:p-7"
+              className="h-full overflow-y-auto p-4 sm:p-5 md:p-6"
             >
               {active === "overview" && <OverviewPage />}
               {active === "resources" && <ResourcesPage />}
@@ -313,7 +335,7 @@ function ResourcesPage() {
         </button>
       </motion.div>
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-2.5 grid-cols-2 sm:grid-cols-4">
         {cats.map((c) => (
           <Card key={c.name}>
             <div className="flex items-start justify-between">

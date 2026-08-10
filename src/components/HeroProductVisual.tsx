@@ -186,38 +186,6 @@ export function HeroProductVisual() {
         </div>
       </motion.div>
 
-      {/* floating cards */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={reduce ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -10, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-        className="absolute -left-3 top-1/3 hidden w-[190px] rounded-xl border border-border bg-card/80 p-3 backdrop-blur-md shadow-md md:block lg:-left-10"
-      >
-        <div className="flex items-center gap-2 text-[11px] font-medium text-foreground">
-          <Bug className="h-3.5 w-3.5 text-accent" /> Debug session
-        </div>
-        <div className="mt-2 space-y-1.5">
-          {[70, 45, 88].map((w, i) => (
-            <div key={i} className="h-1.5 rounded-full bg-muted">
-              <div className="h-full rounded-full bg-accent/70" style={{ width: `${w}%` }} />
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={reduce ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, 10, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-        className="absolute -right-3 bottom-16 hidden w-[200px] rounded-xl border border-border bg-card/80 p-3 backdrop-blur-md shadow-md md:block lg:-right-10"
-      >
-        <div className="flex items-center gap-2 text-[11px] font-medium text-foreground">
-          <Languages className="h-3.5 w-3.5 text-accent" /> Docs, any language
-        </div>
-        <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
-          Context-aware search across every indexed document.
-        </p>
-      </motion.div>
     </motion.div>
   );
 }
