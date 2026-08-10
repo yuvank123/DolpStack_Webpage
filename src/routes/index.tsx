@@ -305,12 +305,12 @@ function Nav() {
 function Hero() {
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-border">
-      <div className={`${container} pb-16 pt-28 md:pb-24 md:pt-36`}>
+      <div className="w-full pb-6 pt-24 md:pb-10 md:pt-32">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={heroLeftContainerVariants}
-          className="mx-auto max-w-[980px] space-y-6 text-center md:space-y-7"
+          className="mx-auto max-w-[980px] px-6 md:px-8 space-y-6 text-center md:space-y-7"
         >
           <motion.div variants={heroLeftItemVariants(false)}>
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-cyan-500/10 px-3.5 py-1 text-xs font-medium text-foreground backdrop-blur-md dark:border-indigo-500/25 dark:from-indigo-500/10 dark:to-pink-500/10">
@@ -355,7 +355,7 @@ function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="mt-16 md:mt-20">
+        <div className="mt-12 md:mt-16">
           <HeroProductVisual />
         </div>
       </div>
