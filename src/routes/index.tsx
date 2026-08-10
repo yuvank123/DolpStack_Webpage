@@ -172,7 +172,10 @@ function LandingPage() {
 /* ---------- primitives ---------- */
 
 const container = "mx-auto w-full max-w-[1440px] px-6 md:px-8 lg:px-12 xl:px-16";
-const display = { fontFamily: '"Space Grotesk", "Inter", sans-serif' };
+const display = {
+  fontFamily:
+    'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+};
 
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -299,22 +302,67 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border">
-      <div className={`${container} pt-16 pb-20 md:pt-24 md:pb-28`}>
-        <div className="mx-auto mb-10 max-w-[900px] space-y-5 px-4 text-center sm:px-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-2.5 py-1 text-xs text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            <span>Now in general availability</span>
-          </div>
-          <h1
-            className="text-3xl font-semibold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl"
+    <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-border">
+      <div className={`${container} pb-16 pt-28 md:pb-24 md:pt-36`}>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={heroLeftContainerVariants}
+          className="mx-auto max-w-[980px] space-y-6 text-center md:space-y-7"
+        >
+          <motion.div variants={heroLeftItemVariants(false)}>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              Now in general availability
+            </span>
+          </motion.div>
+          <motion.h1
+            variants={heroLeftItemVariants(false)}
+            className="text-[2.5rem] font-bold leading-[1.05] tracking-[-0.03em] sm:text-6xl md:text-7xl lg:text-[5.25rem]"
             style={display}
           >
             One workspace.
             <br />
             <span className="text-muted-foreground">Every tool your team needs.</span>
-          </h1>
+          </motion.h1>
+          <motion.p
+            variants={heroLeftItemVariants(false)}
+            className="mx-auto max-w-[640px] text-base leading-relaxed text-muted-foreground md:text-lg"
+          >
+            Resources, debugging, documentation, and collaboration in one persistent environment —
+            so engineering teams stop switching context and start shipping.
+          </motion.p>
+          <motion.div
+            variants={heroLeftItemVariants(false)}
+            className="flex flex-col items-center justify-center gap-3 pt-1 sm:flex-row"
+          >
+            <a
+              href="#features"
+              className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-md sm:w-auto"
+            >
+              Start building <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#how"
+              className="inline-flex w-full items-center justify-center rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:bg-muted/60 sm:w-auto"
+            >
+              See how it works
+            </a>
+          </motion.div>
+        </motion.div>
+
+        <div className="mt-16 md:mt-20">
+          <HeroProductVisual />
         </div>
+      </div>
+    </section>
+  );
+}
+
+function CarouselSection() {
+  return (
+    <section className="relative overflow-hidden border-b border-border">
+      <div className={`${container} py-16 md:py-24`}>
         <HeroCarousel />
       </div>
     </section>
