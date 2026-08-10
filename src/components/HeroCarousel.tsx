@@ -47,7 +47,6 @@ export function HeroCarousel() {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
 
   // load persisted slide
@@ -69,22 +68,11 @@ export function HeroCarousel() {
   const next = useCallback(() => setIndex((i) => (i + 1) % SLIDES.length), []);
   const prev = useCallback(() => setIndex((i) => (i - 1 + SLIDES.length) % SLIDES.length), []);
 
-  // autoplay + progress
+  // autoplay
   useEffect(() => {
-    if (paused || reduce) {
-      setProgress(0);
-      return;
-    }
-    let raf = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / AUTO_MS);
-      setProgress(p);
-      if (p >= 1) next();
-      else raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    if (paused || reduce) return;
+    const id = window.setTimeout(next, AUTO_MS);
+    return () => window.clearTimeout(id);
   }, [index, paused, reduce, next]);
 
   // keyboard
@@ -142,14 +130,6 @@ export function HeroCarousel() {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* progress bar */}
-      <div className="absolute left-0 right-0 top-0 z-20 h-[2px] bg-transparent">
-        <div
-          className="h-full bg-accent transition-[width] duration-150 ease-linear"
-          style={{ width: `${progress * 100}%` }}
-        />
-      </div>
-
       <div className="grid gap-8 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] lg:gap-10">
         {/* LEFT — text */}
         <div className="flex flex-col justify-center">
@@ -165,9 +145,9 @@ export function HeroCarousel() {
               <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-accent">
                 {slide.category}
               </div>
-              <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground md:text-[44px]">
+              <h2 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground md:text-[44px]">
                 {slide.title}
-              </h1>
+              </h2>
               <p className="text-sm leading-relaxed text-muted-foreground md:text-[15px]">
                 {slide.description}
               </p>
