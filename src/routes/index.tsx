@@ -670,7 +670,38 @@ function Comparison() {
             The old way, and the DolpStack way.
           </h2>
         </motion.div>
-        <div className="overflow-hidden rounded-[24px] border border-border">
+        {/* Mobile: stacked cards */}
+        <div className="space-y-4 md:hidden">
+          {rows.map(([k, a, b]) => (
+            <div key={k} className="overflow-hidden rounded-[20px] border border-border">
+              <div className="border-b border-border bg-muted/40 px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                {k}
+              </div>
+              <div className="space-y-3 p-4 text-sm">
+                <div>
+                  <div className="mb-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                    Before
+                  </div>
+                  <div className="flex items-start gap-2 text-muted-foreground">
+                    <Minus className="mt-1 h-3.5 w-3.5 shrink-0" />
+                    <span className="min-w-0">{a}</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="mb-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                    With DolpStack
+                  </div>
+                  <div className="flex items-start gap-2 text-foreground">
+                    <Check className="mt-1 h-3.5 w-3.5 shrink-0 text-accent" strokeWidth={2.5} />
+                    <span className="min-w-0">{b}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Desktop / tablet: table */}
+        <div className="hidden overflow-hidden rounded-[24px] border border-border md:block">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/40 text-left">
