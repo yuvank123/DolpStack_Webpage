@@ -122,7 +122,7 @@ export function ProductTour() {
         })}
       </div>
 
-      <div className="flex h-[520px] md:h-[540px]">
+      <div className="flex h-auto md:h-[540px]">
         {/* Sidebar */}
         <nav className="hidden w-56 shrink-0 flex-col border-r border-border bg-muted/30 p-3 md:flex h-full">
           <div className="mb-2 px-2 text-[11px] uppercase tracking-wider text-muted-foreground">
@@ -169,7 +169,7 @@ export function ProductTour() {
         </nav>
 
         {/* Content */}
-        <div className="relative flex-1 overflow-hidden h-full">
+        <div className="relative min-w-0 flex-1 overflow-hidden md:h-full">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={active}
@@ -177,7 +177,7 @@ export function ProductTour() {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="h-full overflow-y-auto p-4 sm:p-5 md:p-6"
+              className="p-4 sm:p-5 md:h-full md:overflow-y-auto md:p-6"
             >
               {active === "overview" && <OverviewPage />}
               {active === "resources" && <ResourcesPage />}
