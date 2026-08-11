@@ -91,38 +91,31 @@ export function ProductTour() {
   const activeLabel = TABS.find((t) => t.id === active)?.label ?? "Overview";
 
   return (
-    <div className="overflow-hidden rounded-[24px] border border-border bg-card elev-md">
+    <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[38px] border-[10px] border-foreground/80 bg-card elev-md md:max-w-none md:rounded-[24px] md:border md:border-border">
+      {/* Mobile status bar */}
+      <div className="relative flex items-center justify-between border-b border-border bg-muted/50 px-5 py-2 text-[10px] font-medium tabular-nums text-muted-foreground md:hidden">
+        <span>9:41</span>
+        <span className="absolute left-1/2 top-1.5 h-4 w-20 -translate-x-1/2 rounded-full bg-foreground/80" />
+        <span className="flex items-center gap-1">
+          <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" />
+          <span>5G</span>
+          <span className="inline-block h-2 w-4 rounded-[3px] border border-current" />
+        </span>
+      </div>
+      {/* Mobile app header */}
+      <div className="flex items-center justify-between border-b border-border bg-muted/20 px-4 py-2.5 md:hidden">
+        <span className="text-sm font-semibold text-foreground">{activeLabel}</span>
+        <span className="text-[10px] text-muted-foreground">dolpstack.app</span>
+      </div>
       {/* Browser chrome */}
-      <div className="flex items-center gap-2 border-b border-border bg-muted/50 px-4 py-2.5">
+      <div className="hidden items-center gap-2 border-b border-border bg-muted/50 px-4 py-2.5 md:flex">
         <div className="h-2.5 w-2.5 rounded-full bg-border" />
         <div className="h-2.5 w-2.5 rounded-full bg-border" />
         <div className="h-2.5 w-2.5 rounded-full bg-border" />
         <div className="ml-4 text-xs text-muted-foreground">dolpstack.app — {activeLabel}</div>
       </div>
 
-      {/* Mobile nav bar */}
-      <div className="flex items-center gap-1 border-b border-border bg-muted/20 p-2 overflow-x-auto md:hidden">
-        {TABS.map((t) => {
-          const isActive = t.id === active;
-          const Icon = t.icon;
-          return (
-            <button
-              key={t.id}
-              onClick={() => setActive(t.id)}
-              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium shrink-0 transition-all ${
-                isActive
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              <Icon className="h-3.5 w-3.5" />
-              <span>{t.label}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="flex h-auto md:h-[540px]">
+      <div className="flex h-[520px] md:h-[540px]">
         {/* Sidebar */}
         <nav className="hidden w-56 shrink-0 flex-col border-r border-border bg-muted/30 p-3 md:flex h-full">
           <div className="mb-2 px-2 text-[11px] uppercase tracking-wider text-muted-foreground">
@@ -169,7 +162,7 @@ export function ProductTour() {
         </nav>
 
         {/* Content */}
-        <div className="relative min-w-0 flex-1 overflow-hidden md:h-full">
+        <div className="relative min-w-0 flex-1 overflow-y-auto md:h-full md:overflow-hidden">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={active}
@@ -187,6 +180,29 @@ export function ProductTour() {
             </motion.div>
           </AnimatePresence>
         </div>
+      </div>
+
+      {/* Mobile bottom tab bar */}
+      <div className="grid grid-cols-5 border-t border-border bg-muted/30 md:hidden">
+        {TABS.map((t) => {
+          const isActive = t.id === active;
+          const Icon = t.icon;
+          return (
+            <button
+              key={t.id}
+              onClick={() => setActive(t.id)}
+              className={`flex min-w-0 flex-col items-center gap-1 py-2 text-[10px] font-medium transition-colors ${
+                isActive ? "text-foreground" : "text-muted-foreground"
+              }`}
+            >
+              <Icon className="h-4 w-4 shrink-0" />
+              <span className="truncate">{t.label}</span>
+            </button>
+          );
+        })}
+      </div>
+      <div className="flex justify-center bg-muted/30 pb-2 md:hidden">
+        <span className="h-1 w-24 rounded-full bg-foreground/30" />
       </div>
     </div>
   );
