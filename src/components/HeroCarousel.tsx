@@ -221,9 +221,19 @@ export function HeroCarousel() {
 /* -------------------------- window chrome ---------------------------- */
 function MockWindow({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="group/window overflow-hidden rounded-[20px] border border-border bg-card shadow-[0_20px_60px_-20px_rgba(99,102,241,0.12),_0_0_100px_-10px_rgba(99,102,241,0.06)] backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_30px_80px_-20px_rgba(99,102,241,0.18),_0_0_120px_-10px_rgba(99,102,241,0.1)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6),_0_0_120px_-10px_rgba(99,102,241,0.15)] dark:hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),_0_0_140px_-5px_rgba(99,102,241,0.2)]">
+    <div className="group/window mx-auto w-full max-w-[340px] overflow-hidden rounded-[38px] border-[10px] border-foreground/80 bg-card shadow-[0_20px_60px_-20px_rgba(99,102,241,0.12),_0_0_100px_-10px_rgba(99,102,241,0.06)] backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_30px_80px_-20px_rgba(99,102,241,0.18),_0_0_120px_-10px_rgba(99,102,241,0.1)] md:max-w-none md:rounded-[20px] md:border md:border-border dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6),_0_0_120px_-10px_rgba(99,102,241,0.15)] dark:hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),_0_0_140px_-5px_rgba(99,102,241,0.2)]">
+      {/* mobile status bar */}
+      <div className="relative flex items-center justify-between border-b border-border bg-muted/40 px-5 py-2 text-[10px] font-medium tabular-nums text-muted-foreground md:hidden">
+        <span>9:41</span>
+        <span className="absolute left-1/2 top-1.5 h-4 w-20 -translate-x-1/2 rounded-full bg-foreground/80" />
+        <span className="flex items-center gap-1">
+          <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" />
+          <span>5G</span>
+          <span className="inline-block h-2 w-4 rounded-[3px] border border-current" />
+        </span>
+      </div>
       {/* title bar */}
-      <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-2.5">
+      <div className="hidden items-center gap-2 border-b border-border bg-muted/40 px-4 py-2.5 md:flex">
         <div className="flex gap-1.5">
           <span className="h-2.5 w-2.5 rounded-full bg-border" />
           <span className="h-2.5 w-2.5 rounded-full bg-border" />
@@ -235,9 +245,15 @@ function MockWindow({ title, children }: { title: string; children: React.ReactN
         </div>
       </div>
       {/* body */}
-      <div className="h-[440px] overflow-hidden bg-background md:h-[480px]">{children}</div>
+      <div className="h-[500px] overflow-y-auto overflow-x-hidden bg-background md:h-[480px] md:overflow-hidden">
+        {children}
+      </div>
+      {/* home indicator (mobile) */}
+      <div className="flex justify-center border-t border-border bg-muted/30 py-2 md:hidden">
+        <span className="h-1 w-24 rounded-full bg-foreground/30" />
+      </div>
       {/* status bar */}
-      <div className="flex items-center justify-between border-t border-border bg-muted/30 px-4 py-1.5 text-[10px] text-muted-foreground">
+      <div className="hidden items-center justify-between border-t border-border bg-muted/30 px-4 py-1.5 text-[10px] text-muted-foreground md:flex">
         <span>workspace / main</span>
         <span className="tabular-nums">v4.2.1 · synced</span>
       </div>
