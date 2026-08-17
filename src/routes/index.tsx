@@ -240,7 +240,7 @@ function GhostBtn({ children, className = "" }: { children: React.ReactNode; cla
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-cyan-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-blue-700 dark:border-indigo-500/20 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 dark:text-indigo-400 backdrop-blur-sm">
+    <div className="text-xs font-semibold uppercase tracking-[0.14em] text-blue-700 dark:text-indigo-400">
       {children}
     </div>
   );
@@ -312,12 +312,6 @@ function Hero() {
           variants={heroLeftContainerVariants}
           className="mx-auto max-w-[980px] px-6 md:px-8 space-y-6 text-center md:space-y-7"
         >
-          <motion.div variants={heroLeftItemVariants(false)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-cyan-500/10 px-3.5 py-1 text-xs font-medium text-foreground backdrop-blur-md dark:border-indigo-500/25 dark:from-indigo-500/10 dark:to-pink-500/10">
-              <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-indigo-500 dark:to-pink-500 animate-pulse" />
-              Now in general availability
-            </span>
-          </motion.div>
           <motion.h1
             variants={heroLeftItemVariants(false)}
             className="text-[2.5rem] font-bold leading-[1.05] tracking-[-0.03em] sm:text-6xl md:text-7xl lg:text-[5.25rem]"

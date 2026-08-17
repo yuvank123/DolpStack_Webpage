@@ -91,11 +91,11 @@ export function ProductTour() {
   const activeLabel = TABS.find((t) => t.id === active)?.label ?? "Overview";
 
   return (
-    <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[38px] border-[10px] border-foreground/80 bg-card elev-md md:max-w-none md:rounded-[24px] md:border md:border-border">
+    <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[38px] border-[10px] border-zinc-900 dark:border-black bg-card elev-md md:max-w-none md:rounded-[24px] md:border md:border-border">
       {/* Mobile status bar */}
       <div className="relative flex items-center justify-between border-b border-border bg-muted/50 px-5 py-2 text-[10px] font-medium tabular-nums text-muted-foreground md:hidden">
         <span>9:41</span>
-        <span className="absolute left-1/2 top-1.5 h-4 w-20 -translate-x-1/2 rounded-full bg-foreground/80" />
+        <span className="absolute left-1/2 top-1.5 h-4 w-20 -translate-x-1/2 rounded-full bg-zinc-900 dark:bg-black" />
         <span className="flex items-center gap-1">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" />
           <span>5G</span>
