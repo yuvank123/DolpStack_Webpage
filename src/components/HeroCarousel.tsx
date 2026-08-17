@@ -310,17 +310,17 @@ function DashboardSlide({ active }: { active: boolean }) {
           <Plus className="h-3 w-3" /> Quick add
         </button>
       </div>
-      <Panel className="col-span-4 !p-3">
+      <Panel className="col-span-6 !p-3 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
           Sticky notes
         </div>
         <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{notes}</div>
       </Panel>
-      <Panel className="col-span-4 !p-3">
+      <Panel className="col-span-6 !p-3 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Bookmarks</div>
         <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{bookmarks}</div>
       </Panel>
-      <Panel className="col-span-4 !p-3">
+      <Panel className="col-span-6 !p-3 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Day streak</div>
         <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{streak}</div>
       </Panel>
