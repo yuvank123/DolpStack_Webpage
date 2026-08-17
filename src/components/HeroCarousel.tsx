@@ -310,22 +310,22 @@ function DashboardSlide({ active }: { active: boolean }) {
           <Plus className="h-3 w-3" /> Quick add
         </button>
       </div>
-      <Panel className="col-span-4 !p-3">
+      <Panel className="col-span-6 !p-3 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
           Sticky notes
         </div>
         <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{notes}</div>
       </Panel>
-      <Panel className="col-span-4 !p-3">
+      <Panel className="col-span-6 !p-3 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Bookmarks</div>
         <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{bookmarks}</div>
       </Panel>
-      <Panel className="col-span-4 !p-3">
+      <Panel className="col-span-6 !p-3 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Day streak</div>
         <div className="mt-1 text-2xl font-semibold tabular-nums text-foreground">{streak}</div>
       </Panel>
 
-      <Panel className="col-span-7">
+      <Panel className="col-span-12 md:col-span-7">
         <div className="mb-2 flex items-center gap-1.5 text-[11px] font-medium text-foreground">
           <StickyNote className="h-3 w-3" /> Sticky notes
         </div>
@@ -366,7 +366,7 @@ function DashboardSlide({ active }: { active: boolean }) {
         </div>
       </Panel>
 
-      <Panel className="col-span-5">
+      <Panel className="col-span-12 md:col-span-5">
         <div className="mb-2 flex items-center gap-1.5 text-[11px] font-medium text-foreground">
           <Bookmark className="h-3 w-3" /> Recent bookmarks
         </div>
@@ -412,7 +412,7 @@ function DashboardSlide({ active }: { active: boolean }) {
 /* ------------- 2. Debug ------------- */
 function DebugSlide() {
   return (
-    <div className="grid h-full grid-cols-[1fr_1.2fr] gap-3 overflow-auto p-5">
+    <div className="grid h-full grid-cols-1 gap-3 overflow-auto p-5 md:grid-cols-[1fr_1.2fr]">
       <div className="space-y-2">
         <div className="text-[11px] font-medium text-foreground">Active bugs</div>
         {[
@@ -593,7 +593,7 @@ function StudySlide({ active }: { active: boolean }) {
         </span>
       </div>
 
-      <Panel className="col-span-4">
+      <Panel className="col-span-12 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
           Study score
         </div>
@@ -610,7 +610,7 @@ function StudySlide({ active }: { active: boolean }) {
           />
         </div>
       </Panel>
-      <Panel className="col-span-4">
+      <Panel className="col-span-12 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
           Consistency
         </div>
@@ -618,7 +618,7 @@ function StudySlide({ active }: { active: boolean }) {
           {consistency}%
         </div>
       </Panel>
-      <Panel className="col-span-4">
+      <Panel className="col-span-12 sm:col-span-4">
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
           Active time
         </div>
@@ -627,7 +627,7 @@ function StudySlide({ active }: { active: boolean }) {
         </div>
       </Panel>
 
-      <Panel className="col-span-7">
+      <Panel className="col-span-12 md:col-span-7">
         <div className="mb-2 flex items-center justify-between">
           <div className="text-[11px] font-medium text-foreground">Weekly focus</div>
           <div className="text-[10px] text-muted-foreground">hrs / day</div>
@@ -650,7 +650,7 @@ function StudySlide({ active }: { active: boolean }) {
         </div>
       </Panel>
 
-      <Panel className="col-span-5">
+      <Panel className="col-span-12 md:col-span-5">
         <div className="mb-2 flex items-center gap-1.5 text-[11px] font-medium text-foreground">
           <Calendar className="h-3 w-3" /> Heatmap
         </div>
@@ -884,7 +884,7 @@ function DsaSlide({ active }: { active: boolean }) {
         : "text-destructive";
   return (
     <div className="grid h-full grid-cols-12 gap-3 overflow-auto p-5">
-      <Panel className="col-span-5 flex flex-col items-center justify-center">
+      <Panel className="col-span-12 flex flex-col items-center justify-center md:col-span-5">
         <div className="relative h-24 w-24">
           <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
             <circle
@@ -916,7 +916,7 @@ function DsaSlide({ active }: { active: boolean }) {
         </div>
         <div className="mt-2 text-[10px] text-muted-foreground">of 512 tracked</div>
       </Panel>
-      <Panel className="col-span-7">
+      <Panel className="col-span-12 md:col-span-7">
         <div className="mb-2 flex items-center gap-1">
           {["All", "Easy", "Medium", "Hard"].map((c, i) => (
             <button

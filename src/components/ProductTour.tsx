@@ -543,14 +543,14 @@ function DocsPage() {
           <span className="text-foreground">English</span>
           <span className="ml-auto text-[10px] text-muted-foreground">+12</span>
         </div>
-        <ul className="space-y-1 text-sm">
+        <ul className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1 text-sm md:mx-0 md:block md:space-y-1 md:overflow-visible md:px-0">
           {["Getting started", "Authentication", "Realtime sync", "Voice API", "Deployments"].map(
             (d, i) => (
               <li
                 key={d}
-                className={`flex items-center gap-2 rounded px-2 py-1 ${i === 2 ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+                className={`flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full border px-2.5 py-1 text-xs md:w-full md:rounded md:border-0 md:px-2 md:text-sm ${i === 2 ? "border-foreground/20 bg-muted text-foreground" : "border-border text-muted-foreground hover:text-foreground"}`}
               >
-                <FileText className="h-3 w-3" /> {d}
+                <FileText className="h-3 w-3 shrink-0" /> {d}
               </li>
             ),
           )}
@@ -558,21 +558,21 @@ function DocsPage() {
       </motion.div>
 
       <motion.div variants={staggerChild} className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="text-lg font-semibold tracking-tight text-foreground">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <div className="text-base font-semibold tracking-tight text-foreground sm:text-lg">
               Realtime sync
             </div>
             <div className="text-[11px] text-muted-foreground">
               Updated 2 days ago · Translated from English
             </div>
           </div>
-          <span className="rounded-full border border-border px-2 py-0.5 text-[10px] text-muted-foreground">
+          <span className="w-fit shrink-0 rounded-full border border-border px-2 py-0.5 text-[10px] text-muted-foreground">
             AI-translated
           </span>
         </div>
         <Card className="!p-4">
-          <pre className="overflow-x-auto text-[12px] leading-relaxed text-foreground/85">
+          <pre className="overflow-x-auto whitespace-pre-wrap break-words text-[11px] leading-relaxed text-foreground/85 sm:whitespace-pre sm:text-[12px]">
             <code>{`import { sync } from "@dolpstack/realtime";
 
 sync.channel("workspace:42").on("update", (msg) => {
@@ -584,7 +584,7 @@ sync.channel("workspace:42").on("update", (msg) => {
           Channels multiplex over a single websocket. Subscribers automatically reconcile missed
           events on reconnect, ensuring every collaborator sees the same state within ~40ms.
         </div>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           <Card>
             <div className="mb-2 text-[11px] uppercase tracking-wider text-muted-foreground">
               Recently opened
