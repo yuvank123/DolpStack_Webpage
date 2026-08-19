@@ -531,9 +531,9 @@ function DocsPage() {
       variants={staggerParent}
       initial="initial"
       animate="animate"
-      className="grid gap-4 md:grid-cols-[200px_1fr]"
+      className="grid w-full min-w-0 max-w-full gap-4 md:grid-cols-[200px_1fr]"
     >
-      <motion.div variants={staggerChild} className="space-y-3">
+      <motion.div variants={staggerChild} className="min-w-0 space-y-3">
         <div className="flex items-center gap-2 rounded-md border border-border bg-background px-2.5 py-1.5">
           <Search className="h-3.5 w-3.5 text-muted-foreground" />
           <span className="text-xs text-muted-foreground">Search docs</span>
@@ -557,7 +557,7 @@ function DocsPage() {
         </ul>
       </motion.div>
 
-      <motion.div variants={staggerChild} className="space-y-4">
+      <motion.div variants={staggerChild} className="min-w-0 space-y-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
             <div className="text-base font-semibold tracking-tight text-foreground sm:text-lg">
@@ -571,8 +571,8 @@ function DocsPage() {
             AI-translated
           </span>
         </div>
-        <Card className="!p-4">
-          <pre className="overflow-x-auto whitespace-pre-wrap break-words text-[11px] leading-relaxed text-foreground/85 sm:whitespace-pre sm:text-[12px]">
+        <Card className="min-w-0 !p-4">
+          <pre className="w-full min-w-0 max-w-full overflow-x-auto whitespace-pre-wrap break-all text-[11px] leading-relaxed text-foreground/85 md:whitespace-pre md:break-normal md:text-[12px]">
             <code>{`import { sync } from "@dolpstack/realtime";
 
 sync.channel("workspace:42").on("update", (msg) => {
