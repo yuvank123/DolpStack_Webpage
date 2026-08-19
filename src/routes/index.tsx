@@ -319,7 +319,7 @@ function Hero() {
           >
             One workspace.
             <br />
-            <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400">
+            <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 bg-clip-text text-transparent dark:from-sky-400 dark:via-blue-400 dark:to-cyan-400">
               Every tool your team needs.
             </span>
           </motion.h1>
@@ -336,7 +336,7 @@ function Hero() {
           >
             <a
               href="#features"
-              className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-blue-500/25 transition-all duration-300 hover:from-blue-500 hover:via-indigo-500 hover:to-blue-600 hover:shadow-blue-500/40 hover:-translate-y-0.5 sm:w-auto dark:from-indigo-600 dark:via-purple-600 dark:to-indigo-600 dark:shadow-indigo-500/25"
+              className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-blue-500/25 transition-all duration-300 hover:from-blue-500 hover:via-indigo-500 hover:to-blue-600 hover:shadow-blue-500/40 hover:-translate-y-0.5 sm:w-auto dark:from-blue-600 dark:via-sky-600 dark:to-blue-600 dark:shadow-indigo-500/25"
             >
               Start building <ArrowRight className="h-4 w-4" />
             </a>
@@ -879,7 +879,7 @@ function FAQ() {
 function FinalCTA() {
   return (
     <section className="relative overflow-hidden border-b border-border py-20 md:py-24">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-indigo-500/10 via-purple-500/5 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-blue-500/10 via-sky-500/5 to-transparent" />
       <div className={`${container} flex flex-col items-center text-center max-w-2xl`}>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -891,7 +891,7 @@ function FinalCTA() {
           <Eyebrow>Get Started</Eyebrow>
           <h2 className="text-3xl font-semibold tracking-tight md:text-5xl" style={display}>
             Ready to reclaim your{" "}
-            <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400">
+            <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 bg-clip-text text-transparent dark:from-sky-400 dark:via-blue-400 dark:to-cyan-400">
               focus?
             </span>
           </h2>
@@ -901,7 +901,7 @@ function FinalCTA() {
           <div className="pt-2">
             <a
               href="#"
-              className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:from-blue-500 hover:via-indigo-500 hover:to-blue-600 hover:shadow-blue-500/40 hover:-translate-y-0.5 dark:from-indigo-600 dark:via-purple-600 dark:to-indigo-600 dark:shadow-indigo-500/30"
+              className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:from-blue-500 hover:via-indigo-500 hover:to-blue-600 hover:shadow-blue-500/40 hover:-translate-y-0.5 dark:from-blue-600 dark:via-sky-600 dark:to-blue-600 dark:shadow-indigo-500/30"
             >
               Get started for free <ArrowRight className="h-4 w-4" />
             </a>
