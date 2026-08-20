@@ -221,7 +221,7 @@ export function HeroCarousel() {
 /* -------------------------- window chrome ---------------------------- */
 function MockWindow({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="group/window mx-auto flex h-[550px] w-full max-w-[340px] flex-col overflow-hidden md:block md:h-auto rounded-[38px] border-[10px] border-black dark:border-zinc-600 bg-card shadow-[0_20px_60px_-20px_rgba(99,102,241,0.12),_0_0_100px_-10px_rgba(99,102,241,0.06)] backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_30px_80px_-20px_rgba(99,102,241,0.18),_0_0_120px_-10px_rgba(99,102,241,0.1)] md:max-w-none md:rounded-[20px] md:border md:border-border dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6),_0_0_120px_-10px_rgba(99,102,241,0.15)] dark:hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),_0_0_140px_-5px_rgba(99,102,241,0.2)]">
+    <div className="group/window mx-auto flex h-[620px] w-full max-w-[340px] flex-col overflow-hidden md:block md:h-auto rounded-[38px] border-[10px] border-black dark:border-zinc-600 bg-card shadow-[0_20px_60px_-20px_rgba(99,102,241,0.12),_0_0_100px_-10px_rgba(99,102,241,0.06)] backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_30px_80px_-20px_rgba(99,102,241,0.18),_0_0_120px_-10px_rgba(99,102,241,0.1)] md:max-w-none md:rounded-[20px] md:border md:border-border dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6),_0_0_120px_-10px_rgba(99,102,241,0.15)] dark:hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),_0_0_140px_-5px_rgba(99,102,241,0.2)]">
       {/* mobile status bar */}
       <div className="relative flex items-center justify-between border-b border-border bg-muted/40 px-5 py-2 text-[10px] font-medium tabular-nums text-muted-foreground md:hidden">
         <span>9:41</span>
