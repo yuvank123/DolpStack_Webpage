@@ -91,11 +91,12 @@ export function ProductTour() {
   const activeLabel = TABS.find((t) => t.id === active)?.label ?? "Overview";
 
   return (
-    <div className="mx-auto flex h-[620px] w-full max-w-[340px] flex-col overflow-hidden md:block md:h-auto rounded-[38px] border-[10px] border-black dark:border-zinc-600 bg-card elev-md md:max-w-none md:rounded-[24px] md:border md:border-border">
+    <div className="mx-auto w-full max-w-[362px] max-md:phone-frame md:max-w-none">
+    <div className="mx-auto flex h-[620px] w-full max-w-[340px] flex-col overflow-hidden max-md:phone-screen md:block md:h-auto md:rounded-[24px] bg-card elev-md md:max-w-none md:border md:border-border">
       {/* Mobile status bar */}
       <div className="relative flex items-center justify-between border-b border-border bg-muted/50 px-5 py-2 text-[10px] font-medium tabular-nums text-muted-foreground md:hidden">
         <span>9:41</span>
-        <span className="absolute left-1/2 top-1.5 h-4 w-20 -translate-x-1/2 rounded-full bg-black dark:bg-zinc-600" />
+        <span className="absolute left-1/2 top-1.5 h-4 w-20 -translate-x-1/2 rounded-full bg-black" />
         <span className="flex items-center gap-1">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" />
           <span>5G</span>
@@ -204,6 +205,7 @@ export function ProductTour() {
       <div className="flex justify-center bg-muted/30 pb-2 md:hidden">
         <span className="h-1 w-24 rounded-full bg-foreground/30" />
       </div>
+    </div>
     </div>
   );
 }
