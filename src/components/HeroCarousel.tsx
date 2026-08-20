@@ -259,7 +259,8 @@ function MockWindow({ title, children }: { title: string; children: React.ReactN
         <span className="tabular-nums">v4.2.1 · synced</span>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 /* ============================ SLIDES ============================ */

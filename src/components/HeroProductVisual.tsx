@@ -55,7 +55,7 @@ export function HeroProductVisual() {
       initial={{ opacity: 0, y: 70, rotateX: 18 }}
       animate={{ opacity: 1, y: 0, rotateX: 10 }}
       transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
-      className="relative mx-auto w-[96vw] max-w-[1380px] pt-1"
+      className="relative mx-auto w-full max-w-[1380px] px-2 sm:px-4 pt-1"
       style={{ perspective: "2400px" }}
     >
       {/* Ambient background glow using theme accent */}
@@ -80,7 +80,7 @@ export function HeroProductVisual() {
           rotateY: { duration: 0.6, ease: EASE },
           y: { duration: 9, repeat: Infinity, ease: "easeInOut" },
         }}
-        className="relative overflow-hidden rounded-t-[24px] sm:rounded-t-[32px] border-t border-x border-slate-300/80 dark:border-white/15 bg-slate-200 dark:bg-[#0B0F17] p-2.5 sm:p-4 shadow-[0_50px_140px_-25px_rgba(0,0,0,0.4)] dark:shadow-[0_50px_140px_-25px_rgba(0,0,0,0.8)] transition-all duration-300"
+        className="relative overflow-hidden rounded-t-[20px] sm:rounded-t-[32px] border-t border-x border-slate-300/80 dark:border-white/15 bg-slate-200 dark:bg-[#0B0F17] p-2 sm:p-4 shadow-[0_50px_140px_-25px_rgba(0,0,0,0.4)] dark:shadow-[0_50px_140px_-25px_rgba(0,0,0,0.8)] transition-all duration-300"
         style={{
           transformStyle: "preserve-3d",
           maskImage: "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
@@ -88,9 +88,9 @@ export function HeroProductVisual() {
         }}
       >
         {/* Top MacBook Status Bar & Notch */}
-        <div className="relative flex items-center justify-between rounded-t-[18px] sm:rounded-t-[24px] border-b border-slate-300/60 dark:border-white/10 bg-slate-300/70 dark:bg-[#080B10] px-3.5 py-1.5 text-[11px] text-slate-700 dark:text-zinc-400">
+        <div className="relative flex items-center justify-between rounded-t-[14px] sm:rounded-t-[24px] border-b border-slate-300/60 dark:border-white/10 bg-slate-300/70 dark:bg-[#080B10] px-3.5 py-1.5 text-[11px] text-slate-700 dark:text-zinc-400">
           {/* Top Camera Notch */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 w-32 sm:w-40 rounded-b-xl border-b border-x border-slate-400/40 dark:border-white/10 bg-slate-300 dark:bg-[#080B10] flex items-center justify-center gap-2 z-30 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 w-28 sm:w-40 rounded-b-xl border-b border-x border-slate-400/40 dark:border-white/10 bg-slate-300 dark:bg-[#080B10] flex items-center justify-center gap-2 z-30 pointer-events-none">
             <span className="h-1.5 w-1.5 rounded-full bg-slate-600 dark:bg-zinc-800" />
             <span className="h-1 w-1 rounded-full bg-emerald-500/80" />
           </div>
@@ -118,14 +118,14 @@ export function HeroProductVisual() {
         </div>
 
         {/* MacBook Display Screen Area */}
-        <div className="relative bg-slate-100 dark:bg-[#0e131d] p-3 sm:p-6 rounded-t-none rounded-b-none overflow-hidden min-h-[480px] flex items-center justify-center">
+        <div className="relative bg-slate-100 dark:bg-[#0e131d] p-2 sm:p-6 rounded-t-none rounded-b-none overflow-hidden min-h-[380px] sm:min-h-[480px] flex items-center justify-center">
 
           {/* INNER FLOATING APPLICATION WINDOW */}
-          <div className="relative w-full rounded-xl sm:rounded-2xl border border-slate-300/80 dark:border-white/15 bg-card text-card-foreground shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-300">
+          <div className="relative w-full rounded-lg sm:rounded-2xl border border-slate-300/80 dark:border-white/15 bg-card text-card-foreground shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-300">
 
             {/* Inner Application Window Header */}
-            <div className="flex items-center justify-between border-b border-border bg-muted/60 px-4 py-2.5">
-              <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between border-b border-border bg-muted/60 px-3 sm:px-4 py-2 sm:py-2.5">
+              <div className="flex items-center gap-2 sm:gap-3">
                 {/* Traffic lights inside app window */}
                 <div className="flex items-center gap-1.5">
                   <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
@@ -140,10 +140,10 @@ export function HeroProductVisual() {
               </div>
 
               {/* Inner App Search Bar */}
-              <div className="flex flex-1 max-w-md items-center gap-2 rounded-md border border-border bg-background px-3 py-1 text-xs text-muted-foreground mx-3">
+              <div className="flex flex-1 max-w-md items-center gap-2 rounded-md border border-border bg-background px-2.5 sm:px-3 py-1 text-xs text-muted-foreground mx-1.5 sm:mx-3 min-w-0">
                 <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                <span className="truncate">Search dolpstack.app / workspace</span>
-                <span className="ml-auto rounded border border-border px-1.5 py-0.2 text-[10px] font-mono text-muted-foreground">
+                <span className="truncate text-[11px] sm:text-xs">Search dolpstack.app / workspace</span>
+                <span className="ml-auto rounded border border-border px-1.5 py-0.2 text-[10px] font-mono text-muted-foreground hidden sm:inline">
                   ⌘K
                 </span>
               </div>
@@ -156,7 +156,7 @@ export function HeroProductVisual() {
             </div>
 
             {/* Inner Application Content Surface */}
-            <div className="grid grid-cols-[52px_1fr] sm:grid-cols-[210px_1fr] min-h-[420px]">
+            <div className="grid grid-cols-1 sm:grid-cols-[210px_1fr] min-h-[380px] sm:min-h-[420px]">
               {/* Sidebar Navigation */}
               <div className="border-r border-border bg-muted/30 p-3.5 hidden sm:block">
                 <div className="mb-3 px-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
@@ -193,36 +193,41 @@ export function HeroProductVisual() {
                 </div>
               </div>
 
-              {/* Mobile Sidebar icons */}
-              <div className="flex flex-col items-center gap-3 border-r border-border bg-muted/30 py-4 sm:hidden">
+              {/* Mobile Sidebar icons bar */}
+              <div className="flex items-center justify-around border-b border-border bg-muted/30 px-3 py-2 sm:hidden">
                 {NAV.map((n) => (
-                  <n.icon
+                  <div
                     key={n.label}
-                    className={`h-4 w-4 ${n.active ? "text-foreground" : "text-muted-foreground"}`}
-                  />
+                    className={`flex items-center gap-1 rounded-md px-2 py-1 text-[11px] font-medium ${
+                      n.active ? "bg-background text-foreground shadow-xs border border-border" : "text-muted-foreground"
+                    }`}
+                  >
+                    <n.icon className="h-3.5 w-3.5" />
+                    <span className="text-[10px]">{n.label}</span>
+                  </div>
                 ))}
               </div>
 
               {/* Main Application Interface */}
-              <div className="p-4 sm:p-6 space-y-5">
+              <div className="p-3.5 sm:p-6 space-y-4 sm:space-y-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                    <div className="text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground">
                       Project Surface
                     </div>
-                    <div className="text-lg font-semibold tracking-tight text-foreground">
+                    <div className="text-base sm:text-lg font-semibold tracking-tight text-foreground">
                       Team Overview & Analytics
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2.5 py-1 text-[11px] text-muted-foreground">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] text-muted-foreground">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Synced 2s ago
                     </span>
                   </div>
                 </div>
 
                 {/* Stat Cards Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
                   {[
                     ["Resources", "128", "+12 this week"],
                     ["Open bugs", "6", "3 in review"],
@@ -231,32 +236,32 @@ export function HeroProductVisual() {
                   ].map(([label, value, sub]) => (
                     <div
                       key={label}
-                      className="rounded-xl border border-border bg-background p-3.5 shadow-xs"
+                      className="rounded-xl border border-border bg-background p-3 sm:p-3.5 shadow-xs"
                     >
-                      <div className="text-[11px] uppercase tracking-wider text-muted-foreground">
+                      <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-muted-foreground">
                         {label}
                       </div>
-                      <div className="mt-1 text-2xl font-bold tracking-tight text-foreground tabular-nums">
+                      <div className="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-foreground tabular-nums">
                         {value}
                       </div>
-                      <div className="mt-1 text-[11px] text-muted-foreground">{sub}</div>
+                      <div className="mt-1 text-[10px] sm:text-[11px] text-muted-foreground">{sub}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Analytics Chart & Activity Grid */}
-                <div className="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
-                  <div className="rounded-xl border border-border bg-background p-4 space-y-3">
+                <div className="grid gap-3 sm:gap-4 lg:grid-cols-[1.6fr_1fr]">
+                  <div className="rounded-xl border border-border bg-background p-3.5 sm:p-4 space-y-3">
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-xs font-semibold text-foreground">Weekly Activity</div>
-                        <div className="text-[11px] text-muted-foreground">
+                        <div className="text-[10px] sm:text-[11px] text-muted-foreground">
                           Realtime event throughput
                         </div>
                       </div>
                       <TrendingUp className="h-4 w-4 text-accent" />
                     </div>
-                    <div className="flex h-32 items-end gap-2 pt-2">
+                    <div className="flex h-28 sm:h-32 items-end gap-1.5 sm:gap-2 pt-2">
                       {BARS.map((h, i) => (
                         <motion.div
                           key={i}
@@ -270,7 +275,7 @@ export function HeroProductVisual() {
                   </div>
 
                   {/* Recent Activity Card */}
-                  <div className="rounded-xl border border-border bg-background p-4 space-y-3">
+                  <div className="rounded-xl border border-border bg-background p-3.5 sm:p-4 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="text-xs font-semibold text-foreground">Recent Activity</div>
                       <Zap className="h-3.5 w-3.5 text-accent" />
@@ -283,11 +288,11 @@ export function HeroProductVisual() {
                         ["Glassboard pipeline synced", "2h ago"],
                       ].map(([title, time]) => (
                         <div key={title} className="flex items-center justify-between py-2">
-                          <div className="flex items-center gap-2 text-foreground/90">
+                          <div className="flex items-center gap-2 text-foreground/90 min-w-0">
                             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
-                            <span className="truncate">{title}</span>
+                            <span className="truncate text-[11px] sm:text-xs">{title}</span>
                           </div>
-                          <span className="text-[10px] text-muted-foreground shrink-0">{time}</span>
+                          <span className="text-[10px] text-muted-foreground shrink-0 ml-1">{time}</span>
                         </div>
                       ))}
                     </div>
