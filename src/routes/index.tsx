@@ -304,7 +304,7 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-border">
+    <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
       <div className="w-full pb-6 pt-24 md:pb-10 md:pt-32">
         <motion.div
           initial="hidden"
@@ -359,7 +359,7 @@ function Hero() {
 
 function CarouselSection() {
   return (
-    <section className="relative overflow-hidden border-b border-border">
+    <section className="relative overflow-hidden">
       <div className={`${container} py-16 md:py-24`}>
         <HeroCarousel />
       </div>
@@ -369,7 +369,7 @@ function CarouselSection() {
 
 function Mission() {
   return (
-    <section id="features" className="border-b border-border py-16 md:py-20">
+    <section id="features" className="py-16 md:py-20">
       <div className={`${container} space-y-16 md:space-y-20`}>
         <MissionRow
           eyebrow="Persistent context"
@@ -552,7 +552,7 @@ function Modules() {
     },
   ];
   return (
-    <section id="modules" className="border-b border-border py-16 md:py-20">
+    <section id="modules" className="py-16 md:py-20">
       <div className={container}>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -612,7 +612,7 @@ function Modules() {
 
 function Walkthrough() {
   return (
-    <section className="border-b border-border py-16 md:py-20">
+    <section className="py-16 md:py-20">
       <div className={container}>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -650,7 +650,7 @@ function Comparison() {
     ["Debug workflow", "Screen-share, describe, repeat", "Shared breakpoints and cursors"],
   ];
   return (
-    <section className="border-b border-border py-16 md:py-20">
+    <section className="py-16 md:py-20">
       <div className={container}>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -753,7 +753,7 @@ function Steps() {
     },
   ];
   return (
-    <section id="how-it-works" className="border-b border-border py-16 md:py-20">
+    <section id="how-it-works" className="py-16 md:py-20">
       <div className={container}>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -788,7 +788,7 @@ function Steps() {
 
 function Precision() {
   return (
-    <section className="relative flex min-h-[520px] items-center justify-center overflow-hidden border-b border-border py-16 md:py-20">
+    <section className="relative flex min-h-[520px] items-center justify-center overflow-hidden py-16 md:py-20">
       <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-70">
         <PrecisionCanvas />
       </div>
@@ -833,7 +833,7 @@ function FAQ() {
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="border-b border-border py-16 md:py-20">
+    <section id="faq" className="py-16 md:py-20">
       <div className={container}>
         <div className="grid gap-12 md:grid-cols-[1fr_1.6fr]">
           <motion.div
@@ -878,7 +878,7 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden border-b border-border py-20 md:py-24">
+    <section className="relative overflow-hidden py-20 md:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-blue-500/10 via-sky-500/5 to-transparent" />
       <div className={`${container} flex flex-col items-center text-center max-w-2xl`}>
         <motion.div
