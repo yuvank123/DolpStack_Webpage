@@ -356,17 +356,21 @@ function ResourcesPage() {
       <div className="grid gap-2.5 grid-cols-2 sm:grid-cols-4">
         {cats.map((c) => (
           <Card key={c.name}>
-            <div className="flex items-start justify-between">
-              <div className="text-sm font-medium text-foreground">{c.name}</div>
-              <Bookmark className="h-3.5 w-3.5 text-muted-foreground" />
-            </div>
-            <div className="mt-2 flex items-center gap-2 text-[11px] text-muted-foreground">
-              <span className="tabular-nums">{c.count} resources</span>
-              {c.trending && (
-                <span className="inline-flex items-center gap-1 rounded-full border border-border px-1.5 py-0.5">
-                  <TrendingUp className="h-2.5 w-2.5" /> Trending
-                </span>
-              )}
+            <div className="flex items-start justify-between gap-1">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-sm font-medium text-foreground">{c.name}</span>
+                  {c.trending && (
+                    <span className="inline-flex items-center gap-0.5 rounded-full border border-accent/30 bg-accent/10 px-1.5 py-0.2 text-[9px] font-medium text-accent">
+                      <TrendingUp className="h-2.5 w-2.5" /> Trending
+                    </span>
+                  )}
+                </div>
+                <div className="mt-1.5 text-[11px] text-muted-foreground tabular-nums">
+                  {c.count} resources
+                </div>
+              </div>
+              <Bookmark className="h-3.5 w-3.5 text-muted-foreground shrink-0 mt-0.5" />
             </div>
           </Card>
         ))}

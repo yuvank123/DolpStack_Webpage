@@ -557,15 +557,16 @@ function ResourcesSlide() {
               whileHover={{ y: -3 }}
               className="rounded-[12px] border border-border bg-card p-3 transition-colors hover:border-foreground/20"
             >
-              <div className="flex items-start justify-between">
-                <div className="text-[11px] font-medium text-foreground">{c.n}</div>
-                <LayoutGrid className="h-3 w-3 text-muted-foreground" />
-              </div>
-              <div className="mt-2 text-[10px] tabular-nums text-muted-foreground">
-                {c.c} resources
-              </div>
-              <div className="mt-1.5 inline-flex items-center gap-1 rounded-full border border-border px-1.5 py-0.5 text-[9px] text-muted-foreground">
-                <TrendingUp className="h-2 w-2" /> Trending
+              <div className="flex items-start justify-between gap-1">
+                <div className="min-w-0">
+                  <div className="text-[11px] font-medium text-foreground">{c.n}</div>
+                  <div className="mt-1 text-[10px] tabular-nums text-muted-foreground">
+                    {c.c} resources
+                  </div>
+                </div>
+                <div className="inline-flex items-center gap-0.5 rounded-full border border-accent/30 bg-accent/10 px-1.5 py-0.2 text-[9px] font-medium text-accent shrink-0">
+                  <TrendingUp className="h-2 w-2" /> Trending
+                </div>
               </div>
             </motion.div>
           ))}
