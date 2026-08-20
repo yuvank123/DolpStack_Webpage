@@ -206,6 +206,7 @@ export function ProductTour() {
         <span className="h-1 w-24 rounded-full bg-foreground/30" />
       </div>
     </div>
+    </div>
   );
 }
 
