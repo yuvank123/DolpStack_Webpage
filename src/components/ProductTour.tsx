@@ -91,121 +91,169 @@ export function ProductTour() {
   const activeLabel = TABS.find((t) => t.id === active)?.label ?? "Overview";
 
   return (
-    <div className="mx-auto w-full max-w-[362px] max-md:phone-frame md:max-w-none">
-    <div className="mx-auto flex h-[620px] w-full max-w-[340px] flex-col overflow-hidden max-md:phone-screen md:block md:h-auto md:rounded-[24px] bg-card elev-md md:max-w-none md:border md:border-border">
-      {/* Mobile status bar */}
-      <div className="relative flex items-center justify-between border-b border-border bg-muted/50 px-5 py-2 text-[10px] font-medium tabular-nums text-muted-foreground md:hidden">
-        <span>9:41</span>
-        <span className="absolute left-1/2 top-1.5 h-4 w-20 -translate-x-1/2 rounded-full bg-black" />
-        <span className="flex items-center gap-1">
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" />
-          <span>5G</span>
-          <span className="inline-block h-2 w-4 rounded-[3px] border border-current" />
-        </span>
-      </div>
-      {/* Mobile app header */}
-      <div className="flex items-center justify-between border-b border-border bg-muted/20 px-4 py-2.5 md:hidden">
-        <span className="text-sm font-semibold text-foreground">{activeLabel}</span>
-        <span className="text-[10px] text-muted-foreground">dolpstack.app</span>
-      </div>
-      {/* Browser chrome */}
-      <div className="hidden items-center gap-2 border-b border-border bg-muted/50 px-4 py-2.5 md:flex">
-        <div className="h-2.5 w-2.5 rounded-full bg-border" />
-        <div className="h-2.5 w-2.5 rounded-full bg-border" />
-        <div className="h-2.5 w-2.5 rounded-full bg-border" />
-        <div className="ml-4 text-xs text-muted-foreground">dolpstack.app — {activeLabel}</div>
-      </div>
+    <div className="mx-auto w-full max-w-[360px] md:max-w-none">
+      {/* MOBILE: Realistic iPhone 16 Pro Chassis (< md) */}
+      <div className="relative mx-auto max-w-[350px] md:hidden">
+        {/* Hardware Buttons */}
+        <span className="absolute -left-[3px] top-[74px] h-3.5 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -left-[3px] top-[110px] h-7 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -left-[3px] top-[150px] h-7 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -right-[3px] top-[102px] h-11 w-[3px] rounded-r-[1px] bg-slate-400 dark:bg-zinc-600" />
 
-      <div className="flex min-h-0 flex-1 md:h-[540px] md:flex-none">
-        {/* Sidebar */}
-        <nav className="hidden w-56 shrink-0 flex-col border-r border-border bg-muted/30 p-3 md:flex h-full">
-          <div className="mb-2 px-2 text-[11px] uppercase tracking-wider text-muted-foreground">
-            Workspace
-          </div>
-          {TABS.map((t) => {
-            const isActive = t.id === active;
-            const Icon = t.icon;
-            return (
-              <button
-                key={t.id}
-                onClick={() => setActive(t.id)}
-                className={`group relative flex items-center gap-2.5 rounded-md px-2 py-2 text-sm transition-all duration-200 ${
-                  isActive
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:translate-x-[4px] hover:text-foreground"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="tour-active-bg"
-                    className="absolute inset-0 rounded-md bg-background"
-                    transition={{ duration: 0.25, ease: EASE }}
-                  />
-                )}
-                {isActive && (
-                  <motion.div
-                    layoutId="tour-active-bar"
-                    className="absolute left-0 top-1/2 h-5 w-[2px] -translate-y-1/2 rounded-full bg-foreground"
-                    transition={{ duration: 0.25, ease: EASE }}
-                  />
-                )}
-                <Icon
-                  className={`relative h-4 w-4 transition-opacity ${isActive ? "opacity-100" : "opacity-60 group-hover:opacity-100"}`}
-                />
-                <span className="relative">{t.label}</span>
-              </button>
-            );
-          })}
-          <div className="mt-auto rounded-md border border-border bg-background/50 p-3">
-            <div className="text-[11px] text-muted-foreground">Workspace</div>
-            <div className="mt-0.5 text-sm font-medium text-foreground">Developer</div>
-          </div>
-        </nav>
+        {/* Outer Titanium Rim */}
+        <div className="relative rounded-[48px] p-[3px] bg-gradient-to-b from-slate-300 via-slate-400 to-slate-300 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-700 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]">
+          {/* Inner Black Display Bezel */}
+          <div className="rounded-[45px] p-[2px] bg-black">
+            {/* Screen Area */}
+            <div className="flex h-[600px] w-full flex-col overflow-hidden rounded-[43px] bg-card text-card-foreground">
+              {/* iPhone Status Bar with Dynamic Island */}
+              <div className="relative flex items-center justify-between border-b border-border bg-muted/50 px-6 pt-3 pb-2 text-[11px] font-semibold tabular-nums text-foreground z-20">
+                <span>9:41</span>
+                {/* Dynamic Island */}
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 h-[24px] w-[90px] rounded-full bg-black flex items-center justify-between px-2.5 shadow-inner">
+                  <span className="h-2 w-2 rounded-full bg-[#080d16] ring-1 ring-slate-800" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/90 animate-pulse" />
+                </div>
+                <div className="flex items-center gap-1.5 text-foreground">
+                  <span className="text-[10px] font-bold">5G</span>
+                  <div className="h-2.5 w-4 rounded-[3px] border border-foreground/60 p-0.5 flex items-center">
+                    <div className="h-full w-full rounded-[1px] bg-emerald-500" />
+                  </div>
+                </div>
+              </div>
 
-        {/* Content */}
-        <div className="relative min-w-0 flex-1 overflow-y-auto md:h-full md:overflow-hidden">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={active}
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="p-4 sm:p-5 md:h-full md:overflow-y-auto md:p-6"
-            >
-              {active === "overview" && <OverviewPage />}
-              {active === "resources" && <ResourcesPage />}
-              {active === "debug" && <DebugPage />}
-              {active === "docs" && <DocsPage />}
-              {active === "canvas" && <CanvasPage />}
-            </motion.div>
-          </AnimatePresence>
+              {/* Mobile App Header */}
+              <div className="flex items-center justify-between border-b border-border bg-muted/20 px-4 py-2">
+                <span className="text-xs font-semibold text-foreground">{activeLabel}</span>
+                <span className="text-[10px] text-muted-foreground">dolpstack.app</span>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="relative min-w-0 flex-1 overflow-y-auto">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={active}
+                    variants={pageVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="p-3.5 space-y-3"
+                  >
+                    {active === "overview" && <OverviewPage />}
+                    {active === "resources" && <ResourcesPage />}
+                    {active === "debug" && <DebugPage />}
+                    {active === "docs" && <DocsPage />}
+                    {active === "canvas" && <CanvasPage />}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Mobile Bottom Tab Bar */}
+              <div className="grid grid-cols-5 border-t border-border bg-card px-1 py-1 shadow-md z-20">
+                {TABS.map((t) => {
+                  const isActive = t.id === active;
+                  const Icon = t.icon;
+                  return (
+                    <button
+                      key={t.id}
+                      onClick={() => setActive(t.id)}
+                      className={`flex min-w-0 flex-col items-center gap-0.5 py-1 text-[9px] font-medium transition-colors ${
+                        isActive ? "text-accent" : "text-muted-foreground"
+                      }`}
+                    >
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span className="truncate">{t.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* iPhone Home Indicator */}
+              <div className="flex justify-center bg-card py-1.5 z-20">
+                <span className="h-1 w-28 rounded-full bg-foreground/35" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Mobile bottom tab bar */}
-      <div className="grid grid-cols-5 border-t border-border bg-muted/30 md:hidden">
-        {TABS.map((t) => {
-          const isActive = t.id === active;
-          const Icon = t.icon;
-          return (
-            <button
-              key={t.id}
-              onClick={() => setActive(t.id)}
-              className={`flex min-w-0 flex-col items-center gap-1 py-2 text-[10px] font-medium transition-colors ${
-                isActive ? "text-foreground" : "text-muted-foreground"
-              }`}
-            >
-              <Icon className="h-4 w-4 shrink-0" />
-              <span className="truncate">{t.label}</span>
-            </button>
-          );
-        })}
+      {/* DESKTOP / TABLET: Desktop Window Frame (>= md) */}
+      <div className="hidden md:block overflow-hidden rounded-[24px] bg-card elev-md border border-border">
+        {/* Browser chrome */}
+        <div className="flex items-center gap-2 border-b border-border bg-muted/50 px-4 py-2.5">
+          <div className="h-2.5 w-2.5 rounded-full bg-[#FF5F56]" />
+          <div className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]" />
+          <div className="h-2.5 w-2.5 rounded-full bg-[#27C93F]" />
+          <div className="ml-4 text-xs text-muted-foreground">dolpstack.app — {activeLabel}</div>
+        </div>
+
+        <div className="flex min-h-0 flex-1 md:h-[540px]">
+          {/* Sidebar */}
+          <nav className="w-56 shrink-0 flex-col border-r border-border bg-muted/30 p-3 flex h-full">
+            <div className="mb-2 px-2 text-[11px] uppercase tracking-wider text-muted-foreground">
+              Workspace
+            </div>
+            {TABS.map((t) => {
+              const isActive = t.id === active;
+              const Icon = t.icon;
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => setActive(t.id)}
+                  className={`group relative flex items-center gap-2.5 rounded-md px-2 py-2 text-sm transition-all duration-200 ${
+                    isActive
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:translate-x-[4px] hover:text-foreground"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="tour-active-bg"
+                      className="absolute inset-0 rounded-md bg-background"
+                      transition={{ duration: 0.25, ease: EASE }}
+                    />
+                  )}
+                  {isActive && (
+                    <motion.div
+                      layoutId="tour-active-bar"
+                      className="absolute left-0 top-1/2 h-5 w-[2px] -translate-y-1/2 rounded-full bg-foreground"
+                      transition={{ duration: 0.25, ease: EASE }}
+                    />
+                  )}
+                  <Icon
+                    className={`relative h-4 w-4 transition-opacity ${isActive ? "opacity-100" : "opacity-60 group-hover:opacity-100"}`}
+                  />
+                  <span className="relative">{t.label}</span>
+                </button>
+              );
+            })}
+            <div className="mt-auto rounded-md border border-border bg-background/50 p-3">
+              <div className="text-[11px] text-muted-foreground">Workspace</div>
+              <div className="mt-0.5 text-sm font-medium text-foreground">Developer</div>
+            </div>
+          </nav>
+
+          {/* Desktop Content */}
+          <div className="relative min-w-0 flex-1 h-full overflow-hidden">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={active}
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="p-4 sm:p-5 h-full overflow-y-auto md:p-6"
+              >
+                {active === "overview" && <OverviewPage />}
+                {active === "resources" && <ResourcesPage />}
+                {active === "debug" && <DebugPage />}
+                {active === "docs" && <DocsPage />}
+                {active === "canvas" && <CanvasPage />}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
-      <div className="flex justify-center bg-muted/30 pb-2 md:hidden">
-        <span className="h-1 w-24 rounded-full bg-foreground/30" />
-      </div>
-    </div>
     </div>
   );
 }

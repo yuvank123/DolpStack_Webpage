@@ -221,40 +221,80 @@ export function HeroCarousel() {
 /* -------------------------- window chrome ---------------------------- */
 function MockWindow({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-[560px] max-lg:device-frame lg:max-w-none">
-      <div className="group/window mx-auto flex h-[620px] w-full max-w-[340px] flex-col overflow-hidden max-lg:device-screen md:max-w-[520px] lg:block lg:h-auto bg-card backdrop-blur-sm transition-shadow duration-300 lg:max-w-none lg:rounded-[20px] lg:border lg:border-border lg:shadow-[0_20px_60px_-20px_rgba(99,102,241,0.12),_0_0_100px_-10px_rgba(99,102,241,0.06)] lg:hover:shadow-[0_30px_80px_-20px_rgba(99,102,241,0.18),_0_0_120px_-10px_rgba(99,102,241,0.1)] dark:lg:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6),_0_0_120px_-10px_rgba(99,102,241,0.15)] dark:lg:hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),_0_0_140px_-5px_rgba(99,102,241,0.2)]">
-        {/* mobile status bar */}
-        <div className="relative flex items-center justify-between border-b border-border bg-muted/40 px-5 py-2 text-[10px] font-medium tabular-nums text-muted-foreground lg:hidden">
-          <span>9:41</span>
-          <span className="absolute left-1/2 top-1.5 h-4 w-20 -translate-x-1/2 rounded-full bg-black" />
-          <span className="flex items-center gap-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" />
-            <span>5G</span>
-            <span className="inline-block h-2 w-4 rounded-[3px] border border-current" />
-          </span>
+    <div className="mx-auto w-full max-w-[360px] lg:max-w-none">
+      {/* MOBILE / TABLET: Authentic iPhone 16 Pro Device Mockup (< lg) */}
+      <div className="relative mx-auto max-w-[350px] lg:hidden">
+        {/* Hardware Side Buttons */}
+        <span className="absolute -left-[3px] top-[74px] h-3.5 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -left-[3px] top-[110px] h-7 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -left-[3px] top-[150px] h-7 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -right-[3px] top-[102px] h-11 w-[3px] rounded-r-[1px] bg-slate-400 dark:bg-zinc-600" />
+
+        {/* Outer Titanium Chassis */}
+        <div className="relative rounded-[48px] p-[3px] bg-gradient-to-b from-slate-300 via-slate-400 to-slate-300 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-700 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]">
+          {/* Inner Black Bezel */}
+          <div className="rounded-[45px] p-[2px] bg-black">
+            {/* Screen Surface */}
+            <div className="relative flex h-[580px] w-full flex-col overflow-hidden rounded-[43px] bg-background text-foreground">
+              {/* iPhone Status Bar with Dynamic Island */}
+              <div className="relative flex items-center justify-between bg-card/90 backdrop-blur-md px-6 pt-3 pb-2 text-[12px] font-semibold tracking-tight tabular-nums text-foreground z-20">
+                <span>9:41</span>
+                {/* Dynamic Island */}
+                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 h-[26px] w-[92px] rounded-full bg-black flex items-center justify-between px-2.5 shadow-inner">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#080d16] ring-1 ring-slate-800 flex items-center justify-center">
+                    <span className="h-1 w-1 rounded-full bg-indigo-950/80" />
+                  </span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/90 animate-pulse" />
+                </div>
+                {/* Right Status Icons */}
+                <div className="flex items-center gap-1.5 text-foreground">
+                  <span className="text-[10px] font-bold">5G</span>
+                  <div className="flex items-center gap-0.5">
+                    <span className="h-1 w-[2.5px] rounded-xs bg-foreground" />
+                    <span className="h-1.5 w-[2.5px] rounded-xs bg-foreground" />
+                    <span className="h-2 w-[2.5px] rounded-xs bg-foreground" />
+                    <span className="h-2.5 w-[2.5px] rounded-xs bg-foreground" />
+                  </div>
+                  <div className="h-3 w-5 rounded-[4px] border border-foreground/60 p-0.5 flex items-center">
+                    <div className="h-full w-full rounded-[2px] bg-emerald-500" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile Slide Content (Scrollable) */}
+              <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden bg-background">
+                {children}
+              </div>
+
+              {/* iPhone Bottom Home Indicator */}
+              <div className="flex justify-center bg-card/80 backdrop-blur-sm py-2 z-20">
+                <span className="h-1 w-28 rounded-full bg-foreground/40" />
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* DESKTOP: macOS Window Chrome (>= lg) */}
+      <div className="hidden lg:block group/window h-auto bg-card rounded-[20px] border border-border shadow-[0_20px_60px_-20px_rgba(99,102,241,0.12),_0_0_100px_-10px_rgba(99,102,241,0.06)] hover:shadow-[0_30px_80px_-20px_rgba(99,102,241,0.18),_0_0_120px_-10px_rgba(99,102,241,0.1)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6),_0_0_120px_-10px_rgba(99,102,241,0.15)] dark:hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),_0_0_140px_-5px_rgba(99,102,241,0.2)] overflow-hidden transition-shadow duration-300">
         {/* title bar */}
-        <div className="hidden items-center gap-2 border-b border-border bg-muted/40 px-4 py-2.5 lg:flex">
+        <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-2.5">
           <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
-            <span className="h-2.5 w-2.5 rounded-full bg-border" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
           </div>
           <div className="ml-3 truncate text-[11px] text-muted-foreground">{title}</div>
-          <div className="ml-auto hidden items-center gap-1 text-[10px] text-muted-foreground sm:flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" /> Live
+          <div className="ml-auto flex items-center gap-1.5 text-[10px] text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live
           </div>
         </div>
         {/* body */}
-        <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden bg-background lg:h-[480px] lg:flex-none lg:overflow-hidden">
+        <div className="h-[480px] overflow-hidden bg-background">
           {children}
         </div>
-        {/* home indicator (mobile) */}
-        <div className="flex justify-center border-t border-border bg-muted/30 py-2 lg:hidden">
-          <span className="h-1 w-24 rounded-full bg-foreground/30" />
-        </div>
         {/* status bar */}
-        <div className="hidden items-center justify-between border-t border-border bg-muted/30 px-4 py-1.5 text-[10px] text-muted-foreground lg:flex">
+        <div className="flex items-center justify-between border-t border-border bg-muted/30 px-4 py-1.5 text-[10px] text-muted-foreground">
           <span>workspace / main</span>
           <span className="tabular-nums">v4.2.1 · synced</span>
         </div>
