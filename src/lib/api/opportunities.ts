@@ -377,42 +377,50 @@ export const submitApplicationFn = createServerFn({ method: "POST" })
     }
 
     // E. Insert application record
-    const { data: inserted, error: insertError } = await supabase
-      .from("applications")
-      .insert({
-        opportunity_id,
-        name: name.trim(),
-        email: normalizedEmail,
-        phone: phone.trim(),
-        college_university: college_university.trim(),
-        degree: degree.trim(),
-        branch: branch.trim(),
-        current_year: current_year.trim(),
-        current_semester: current_semester ? current_semester.trim() : null,
-        cgpa_cpi,
-        linkedin_url: linkedin_url && linkedin_url.trim() ? linkedin_url.trim() : null,
-        github_url: github_url && github_url.trim() ? github_url.trim() : null,
-        portfolio_url: portfolio_url && portfolio_url.trim() ? portfolio_url.trim() : null,
-        skills,
-        status: "submitted",
-        custom_answers: custom_answers || {},
-      })
-      .select("id")
-      .single();
+    const applicationId = crypto.randomUUID();
+    const { error: insertError } = await supabase.from("applications").insert({
+      id: applicationId,
+      opportunity_id,
+      name: name.trim(),
+      email: normalizedEmail,
+      phone: phone.trim(),
+      college_university: college_university.trim(),
+      degree: degree.trim(),
+      branch: branch.trim(),
+      current_year: current_year.trim(),
+      current_semester: current_semester ? current_semester.trim() : null,
+      cgpa_cpi,
+      linkedin_url: linkedin_url && linkedin_url.trim() ? linkedin_url.trim() : null,
+      github_url: github_url && github_url.trim() ? github_url.trim() : null,
+      portfolio_url: portfolio_url && portfolio_url.trim() ? portfolio_url.trim() : null,
+      skills,
+      status: "submitted",
+      custom_answers: custom_answers || {},
+    });
 
     if (insertError) {
       console.error("Supabase insert application error:", insertError);
       if (insertError.code === "23505") {
         throw new Error("You have already submitted an application for this opportunity.");
       }
+      if (
+        insertError.message &&
+        insertError.message.includes("relation") &&
+        insertError.message.includes("does not exist")
+      ) {
+        throw new Error(
+          "Database tables not found. Please run the SQL migration in your Supabase SQL Editor.",
+        );
+      }
       throw new Error(
-        "An unexpected error occurred while saving your application. Please try again.",
+        insertError.message ||
+          "An unexpected error occurred while saving your application. Please try again.",
       );
     }
 
     return {
       success: true,
-      application_id: inserted.id,
+      application_id: applicationId,
       message: "Application submitted successfully!",
     };
   });
