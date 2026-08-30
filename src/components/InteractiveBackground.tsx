@@ -122,7 +122,7 @@ export function InteractiveBackground() {
     // Query card coordinates relative to the viewport
     const updateCardRects = () => {
       const elements = document.querySelectorAll(
-        ".parallax-card, .surface-panel, header, footer, .bg-background, .bg-background\\/50, .bg-background\\/85, [data-card]"
+        ".parallax-card, .surface-panel, header, footer, .bg-background, .bg-background\\/50, .bg-background\\/85, [data-card]",
       );
       const rects = [];
       const viewportWidth = window.innerWidth;

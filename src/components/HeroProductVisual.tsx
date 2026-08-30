@@ -89,8 +89,10 @@ export function HeroProductVisual() {
         <div
           className="relative overflow-hidden rounded-t-[48px] p-[3px] bg-gradient-to-b from-slate-300 via-slate-400 to-slate-300 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-700 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.35)] dark:shadow-[0_30px_90px_-20px_rgba(0,0,0,0.8)] transition-all duration-300"
           style={{
-            maskImage: "linear-gradient(to bottom, black 40%, rgba(0,0,0,0.85) 70%, transparent 95%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 40%, rgba(0,0,0,0.85) 70%, transparent 95%)",
+            maskImage:
+              "linear-gradient(to bottom, black 40%, rgba(0,0,0,0.85) 70%, transparent 95%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 40%, rgba(0,0,0,0.85) 70%, transparent 95%)",
           }}
         >
           {/* Inner Black Display Bezel */}
@@ -111,185 +113,193 @@ export function HeroProductVisual() {
                 </div>
               </div>
 
-            {/* Mobile App Header */}
-            <div className="flex items-center justify-between border-b border-border bg-muted/40 px-3.5 py-2.5">
-              <div className="flex items-center gap-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground shadow-xs">
-                  <Sparkles className="h-4 w-4" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-bold tracking-tight text-foreground">DolpStack</span>
-                    <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.2 text-[9px] font-medium text-emerald-600 dark:text-emerald-400">
-                      Live
-                    </span>
+              {/* Mobile App Header */}
+              <div className="flex items-center justify-between border-b border-border bg-muted/40 px-3.5 py-2.5">
+                <div className="flex items-center gap-2">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground shadow-xs">
+                    <Sparkles className="h-4 w-4" />
                   </div>
-                  <div className="text-[10px] text-muted-foreground">Workspace / Team</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-1">
-                <button className="flex h-7 w-7 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground">
-                  <Bell className="h-3.5 w-3.5" />
-                </button>
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/20 text-[10px] font-bold text-accent">
-                  JD
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile App Search Bar */}
-            <div className="p-3 bg-muted/20 border-b border-border">
-              <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-2.5 py-1.5 text-xs text-muted-foreground shadow-xs">
-                <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                <span className="truncate text-[11px]">Search workspace & resources...</span>
-                <SlidersHorizontal className="h-3 w-3 ml-auto text-muted-foreground shrink-0" />
-              </div>
-            </div>
-
-            {/* Mobile Scrollable App Body */}
-            <div className="p-3 space-y-3.5 max-h-[460px] overflow-y-auto bg-background/50">
-              {/* Project Surface Title */}
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-[10px] uppercase tracking-wider font-semibold text-accent">
-                    Project Surface
-                  </div>
-                  <div className="text-sm font-bold tracking-tight text-foreground">
-                    Team Overview & Analytics
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs font-bold tracking-tight text-foreground">
+                        DolpStack
+                      </span>
+                      <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.2 text-[9px] font-medium text-emerald-600 dark:text-emerald-400">
+                        Live
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-muted-foreground">Workspace / Team</div>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2 py-0.5 text-[9px] text-muted-foreground shadow-xs">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  Synced 2s ago
-                </span>
-              </div>
-
-              {/* Mobile Stat Cards Grid (2x2) */}
-              <div className="grid grid-cols-2 gap-2">
-                <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                    <span>Resources</span>
-                    <Layers className="h-3 w-3 text-accent" />
+                <div className="flex items-center gap-1">
+                  <button className="flex h-7 w-7 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground">
+                    <Bell className="h-3.5 w-3.5" />
+                  </button>
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/20 text-[10px] font-bold text-accent">
+                    JD
                   </div>
-                  <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                    128
-                  </div>
-                  <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">+12 this week</div>
-                </div>
-
-                <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                    <span>Open Bugs</span>
-                    <Bug className="h-3 w-3 text-amber-500" />
-                  </div>
-                  <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                    6
-                  </div>
-                  <div className="text-[10px] text-amber-600 dark:text-amber-400 font-medium">3 in review</div>
-                </div>
-
-                <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                    <span>Docs</span>
-                    <Languages className="h-3 w-3 text-blue-500" />
-                  </div>
-                  <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                    1.2k
-                  </div>
-                  <div className="text-[10px] text-muted-foreground">Instant search</div>
-                </div>
-
-                <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                    <span>AI Speedup</span>
-                    <Zap className="h-3 w-3 text-accent" />
-                  </div>
-                  <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                    99%
-                  </div>
-                  <div className="text-[10px] text-muted-foreground">Auto-context</div>
                 </div>
               </div>
 
-              {/* Mobile Weekly Activity Chart */}
-              <div className="rounded-xl border border-border bg-card p-3 shadow-xs space-y-2">
+              {/* Mobile App Search Bar */}
+              <div className="p-3 bg-muted/20 border-b border-border">
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-2.5 py-1.5 text-xs text-muted-foreground shadow-xs">
+                  <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                  <span className="truncate text-[11px]">Search workspace & resources...</span>
+                  <SlidersHorizontal className="h-3 w-3 ml-auto text-muted-foreground shrink-0" />
+                </div>
+              </div>
+
+              {/* Mobile Scrollable App Body */}
+              <div className="p-3 space-y-3.5 max-h-[460px] overflow-y-auto bg-background/50">
+                {/* Project Surface Title */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-xs font-semibold text-foreground">Weekly Activity</div>
-                    <div className="text-[10px] text-muted-foreground">Realtime throughput</div>
+                    <div className="text-[10px] uppercase tracking-wider font-semibold text-accent">
+                      Project Surface
+                    </div>
+                    <div className="text-sm font-bold tracking-tight text-foreground">
+                      Team Overview & Analytics
+                    </div>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
-                    <TrendingUp className="h-3 w-3" /> +24%
+                  <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2 py-0.5 text-[9px] text-muted-foreground shadow-xs">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
+                    Synced 2s ago
                   </span>
                 </div>
-                <div className="flex h-20 items-end gap-1.5 pt-1">
-                  {BARS_MOBILE.map((h, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ height: 0 }}
-                      animate={{ height: `${h}%` }}
-                      transition={{ duration: 0.6, delay: 0.2 + i * 0.03, ease: EASE }}
-                      className="flex-1 rounded-xs bg-gradient-to-t from-accent to-accent/70"
-                    />
-                  ))}
-                </div>
-              </div>
 
-              {/* Mobile Recent Activity */}
-              <div className="rounded-xl border border-border bg-card p-3 shadow-xs space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="text-xs font-semibold text-foreground">Recent Activity</div>
-                  <Zap className="h-3 w-3 text-accent" />
-                </div>
-                <div className="divide-y divide-border text-[11px]">
-                  {[
-                    ["api-gateway deployed", "2m ago"],
-                    ["3 docs auto-indexed", "15m ago"],
-                    ["Bug #204 resolved", "1h ago"],
-                  ].map(([title, time]) => (
-                    <div key={title} className="flex items-center justify-between py-1.5">
-                      <div className="flex items-center gap-1.5 text-foreground/90 truncate min-w-0">
-                        <CheckCircle2 className="h-3 w-3 text-emerald-500 shrink-0" />
-                        <span className="truncate">{title}</span>
-                      </div>
-                      <span className="text-[9px] text-muted-foreground shrink-0 ml-1">{time}</span>
+                {/* Mobile Stat Cards Grid (2x2) */}
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
+                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
+                      <span>Resources</span>
+                      <Layers className="h-3 w-3 text-accent" />
                     </div>
-                  ))}
+                    <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
+                      128
+                    </div>
+                    <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+                      +12 this week
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
+                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
+                      <span>Open Bugs</span>
+                      <Bug className="h-3 w-3 text-amber-500" />
+                    </div>
+                    <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
+                      6
+                    </div>
+                    <div className="text-[10px] text-amber-600 dark:text-amber-400 font-medium">
+                      3 in review
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
+                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
+                      <span>Docs</span>
+                      <Languages className="h-3 w-3 text-blue-500" />
+                    </div>
+                    <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
+                      1.2k
+                    </div>
+                    <div className="text-[10px] text-muted-foreground">Instant search</div>
+                  </div>
+
+                  <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
+                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
+                      <span>AI Speedup</span>
+                      <Zap className="h-3 w-3 text-accent" />
+                    </div>
+                    <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
+                      99%
+                    </div>
+                    <div className="text-[10px] text-muted-foreground">Auto-context</div>
+                  </div>
+                </div>
+
+                {/* Mobile Weekly Activity Chart */}
+                <div className="rounded-xl border border-border bg-card p-3 shadow-xs space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-semibold text-foreground">Weekly Activity</div>
+                      <div className="text-[10px] text-muted-foreground">Realtime throughput</div>
+                    </div>
+                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+                      <TrendingUp className="h-3 w-3" /> +24%
+                    </span>
+                  </div>
+                  <div className="flex h-20 items-end gap-1.5 pt-1">
+                    {BARS_MOBILE.map((h, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${h}%` }}
+                        transition={{ duration: 0.6, delay: 0.2 + i * 0.03, ease: EASE }}
+                        className="flex-1 rounded-xs bg-gradient-to-t from-accent to-accent/70"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mobile Recent Activity */}
+                <div className="rounded-xl border border-border bg-card p-3 shadow-xs space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs font-semibold text-foreground">Recent Activity</div>
+                    <Zap className="h-3 w-3 text-accent" />
+                  </div>
+                  <div className="divide-y divide-border text-[11px]">
+                    {[
+                      ["api-gateway deployed", "2m ago"],
+                      ["3 docs auto-indexed", "15m ago"],
+                      ["Bug #204 resolved", "1h ago"],
+                    ].map(([title, time]) => (
+                      <div key={title} className="flex items-center justify-between py-1.5">
+                        <div className="flex items-center gap-1.5 text-foreground/90 truncate min-w-0">
+                          <CheckCircle2 className="h-3 w-3 text-emerald-500 shrink-0" />
+                          <span className="truncate">{title}</span>
+                        </div>
+                        <span className="text-[9px] text-muted-foreground shrink-0 ml-1">
+                          {time}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Mobile Bottom Tab Navigation */}
-            <div className="grid grid-cols-5 border-t border-border bg-card px-1 py-1.5 shadow-lg">
-              <button className="flex flex-col items-center gap-0.5 text-accent py-0.5">
-                <LayoutDashboard className="h-4 w-4" />
-                <span className="text-[9px] font-semibold">Home</span>
-              </button>
-              <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground relative">
-                <LayoutGrid className="h-4 w-4" />
-                <span className="text-[9px]">Resources</span>
-                <span className="absolute top-0 right-3.5 h-1.5 w-1.5 rounded-full bg-accent" />
-              </button>
-              <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground relative">
-                <Bug className="h-4 w-4" />
-                <span className="text-[9px]">Debug</span>
-                <span className="absolute top-0 right-3.5 h-1.5 w-1.5 rounded-full bg-amber-500" />
-              </button>
-              <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground">
-                <Languages className="h-4 w-4" />
-                <span className="text-[9px]">Docs</span>
-              </button>
-              <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground">
-                <MoreHorizontal className="h-4 w-4" />
-                <span className="text-[9px]">More</span>
-              </button>
-            </div>
+              {/* Mobile Bottom Tab Navigation */}
+              <div className="grid grid-cols-5 border-t border-border bg-card px-1 py-1.5 shadow-lg">
+                <button className="flex flex-col items-center gap-0.5 text-accent py-0.5">
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span className="text-[9px] font-semibold">Home</span>
+                </button>
+                <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground relative">
+                  <LayoutGrid className="h-4 w-4" />
+                  <span className="text-[9px]">Resources</span>
+                  <span className="absolute top-0 right-3.5 h-1.5 w-1.5 rounded-full bg-accent" />
+                </button>
+                <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground relative">
+                  <Bug className="h-4 w-4" />
+                  <span className="text-[9px]">Debug</span>
+                  <span className="absolute top-0 right-3.5 h-1.5 w-1.5 rounded-full bg-amber-500" />
+                </button>
+                <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground">
+                  <Languages className="h-4 w-4" />
+                  <span className="text-[9px]">Docs</span>
+                </button>
+                <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground">
+                  <MoreHorizontal className="h-4 w-4" />
+                  <span className="text-[9px]">More</span>
+                </button>
+              </div>
 
-            {/* Mobile Home Indicator */}
-            <div className="flex justify-center bg-card pb-1.5 pt-0.5">
-              <span className="h-1 w-24 rounded-full bg-foreground/30" />
+              {/* Mobile Home Indicator */}
+              <div className="flex justify-center bg-card pb-1.5 pt-0.5">
+                <span className="h-1 w-24 rounded-full bg-foreground/30" />
+              </div>
             </div>
-          </div>
           </div>
 
           {/* Deep Bottom Fade Mask Overlay for Mobile */}
@@ -309,13 +319,17 @@ export function HeroProductVisual() {
         <div
           className="relative overflow-hidden rounded-t-[28px] sm:rounded-t-[32px] border-t border-x border-slate-300/80 dark:border-white/15 bg-slate-200 dark:bg-[#0B0F17] p-3 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.35)] dark:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] transition-all duration-300"
           style={{
-            maskImage: "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
+            maskImage:
+              "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
           }}
         >
           {/* iPad Top Status Bar */}
           <div className="relative flex items-center justify-between rounded-t-[20px] border-b border-slate-300/60 dark:border-white/10 bg-slate-300/70 dark:bg-[#080B10] px-4 py-1.5 text-[11px] text-slate-700 dark:text-zinc-400">
-            <span className="font-semibold text-slate-900 dark:text-foreground">9:41 AM · Tue Sep 24</span>
+            <span className="font-semibold text-slate-900 dark:text-foreground">
+              9:41 AM · Tue Sep 24
+            </span>
             {/* Centered Front Camera */}
             <div className="h-2 w-2 rounded-full bg-slate-600 dark:bg-zinc-800 ring-1 ring-slate-400/30" />
             <div className="flex items-center gap-2.5">
@@ -330,7 +344,9 @@ export function HeroProductVisual() {
             {/* Tablet Window Header */}
             <div className="flex items-center justify-between border-b border-border bg-muted/50 px-4 py-2.5">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-xs text-foreground tracking-tight">DolpStack Workspace</span>
+                <span className="font-bold text-xs text-foreground tracking-tight">
+                  DolpStack Workspace
+                </span>
                 <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
                   Tablet View
                 </span>
@@ -340,7 +356,9 @@ export function HeroProductVisual() {
               <div className="flex flex-1 max-w-xs items-center gap-2 rounded-md border border-border bg-background px-3 py-1 text-xs text-muted-foreground mx-3">
                 <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
                 <span className="truncate text-[11px]">Search dolpstack.app...</span>
-                <span className="ml-auto rounded border border-border px-1 text-[9px] font-mono">⌘K</span>
+                <span className="ml-auto rounded border border-border px-1 text-[9px] font-mono">
+                  ⌘K
+                </span>
               </div>
 
               <div className="flex items-center gap-2">
@@ -409,7 +427,10 @@ export function HeroProductVisual() {
                     ["Docs indexed", "1.2k", "Instant search"],
                     ["AI Speedup", "99%", "Auto-context"],
                   ].map(([label, value, sub]) => (
-                    <div key={label} className="rounded-lg border border-border bg-card p-2.5 shadow-xs">
+                    <div
+                      key={label}
+                      className="rounded-lg border border-border bg-card p-2.5 shadow-xs"
+                    >
                       <div className="text-[10px] uppercase tracking-wider text-muted-foreground truncate">
                         {label}
                       </div>
@@ -457,7 +478,9 @@ export function HeroProductVisual() {
                             <CheckCircle2 className="h-3 w-3 text-emerald-500 shrink-0" />
                             <span className="truncate">{title}</span>
                           </div>
-                          <span className="text-[10px] text-muted-foreground shrink-0 ml-1">{time}</span>
+                          <span className="text-[10px] text-muted-foreground shrink-0 ml-1">
+                            {time}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -487,11 +510,7 @@ export function HeroProductVisual() {
           ========================================================================= */}
       <div className="hidden lg:block">
         <motion.div
-          animate={
-            reduce
-              ? undefined
-              : { rotateX: 8 + tilt.x, rotateY: tilt.y, y: [0, -7, 0] }
-          }
+          animate={reduce ? undefined : { rotateX: 8 + tilt.x, rotateY: tilt.y, y: [0, -7, 0] }}
           transition={{
             rotateX: { duration: 0.6, ease: EASE },
             rotateY: { duration: 0.6, ease: EASE },
@@ -500,8 +519,10 @@ export function HeroProductVisual() {
           className="relative overflow-hidden rounded-t-[32px] border-t border-x border-slate-300/80 dark:border-white/15 bg-slate-200 dark:bg-[#0B0F17] p-4 shadow-[0_50px_140px_-25px_rgba(0,0,0,0.4)] dark:shadow-[0_50px_140px_-25px_rgba(0,0,0,0.8)] transition-all duration-300"
           style={{
             transformStyle: "preserve-3d",
-            maskImage: "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
+            maskImage:
+              "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
           }}
         >
           {/* Top MacBook Status Bar & Notch */}
@@ -517,12 +538,24 @@ export function HeroProductVisual() {
               <div className="flex items-center gap-2 font-medium text-slate-700 dark:text-zinc-300">
                 <Apple className="h-3.5 w-3.5 fill-current" />
                 <span className="font-semibold text-slate-900 dark:text-foreground">DolpStack</span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">File</span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">Edit</span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">View</span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">Go</span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">Window</span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">Help</span>
+                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
+                  File
+                </span>
+                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
+                  Edit
+                </span>
+                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
+                  View
+                </span>
+                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
+                  Go
+                </span>
+                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
+                  Window
+                </span>
+                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
+                  Help
+                </span>
               </div>
             </div>
 
@@ -536,10 +569,8 @@ export function HeroProductVisual() {
 
           {/* MacBook Display Screen Area */}
           <div className="relative bg-slate-100 dark:bg-[#0e131d] p-6 rounded-t-none rounded-b-none overflow-hidden min-h-[480px] flex items-center justify-center">
-
             {/* INNER FLOATING APPLICATION WINDOW */}
             <div className="relative w-full rounded-2xl border border-slate-300/80 dark:border-white/15 bg-card text-card-foreground shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-300">
-
               {/* Inner Application Window Header */}
               <div className="flex items-center justify-between border-b border-border bg-muted/60 px-4 py-2.5">
                 <div className="flex items-center gap-3">
@@ -656,7 +687,9 @@ export function HeroProductVisual() {
                     <div className="rounded-xl border border-border bg-background p-4 space-y-3 shadow-xs">
                       <div className="flex items-center justify-between">
                         <div>
-                          <div className="text-xs font-semibold text-foreground">Weekly Activity</div>
+                          <div className="text-xs font-semibold text-foreground">
+                            Weekly Activity
+                          </div>
                           <div className="text-[11px] text-muted-foreground">
                             Realtime event throughput
                           </div>
@@ -694,7 +727,9 @@ export function HeroProductVisual() {
                               <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
                               <span className="truncate text-xs">{title}</span>
                             </div>
-                            <span className="text-[10px] text-muted-foreground shrink-0 ml-1">{time}</span>
+                            <span className="text-[10px] text-muted-foreground shrink-0 ml-1">
+                              {time}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -702,7 +737,6 @@ export function HeroProductVisual() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 

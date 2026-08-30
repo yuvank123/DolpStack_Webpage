@@ -713,9 +713,7 @@ function CanvasPage() {
         </div>
       </motion.div>
 
-      <div
-        className="relative h-[380px] w-full overflow-hidden rounded-[14px] border border-border"
-      >
+      <div className="relative h-[380px] w-full overflow-hidden rounded-[14px] border border-border">
         <svg
           className="absolute inset-0 h-full w-full text-muted-foreground/50"
           viewBox="0 0 100 100"

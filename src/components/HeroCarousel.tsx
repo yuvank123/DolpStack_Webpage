@@ -57,12 +57,16 @@ export function HeroCarousel() {
         const n = parseInt(raw, 10);
         if (!Number.isNaN(n) && n >= 0 && n < SLIDES.length) setIndex(n);
       }
-    } catch {}
+    } catch {
+      // ignore localStorage errors
+    }
   }, []);
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, String(index));
-    } catch {}
+    } catch {
+      // ignore localStorage errors
+    }
   }, [index]);
 
   const next = useCallback(() => setIndex((i) => (i + 1) % SLIDES.length), []);
@@ -290,9 +294,7 @@ function MockWindow({ title, children }: { title: string; children: React.ReactN
           </div>
         </div>
         {/* body */}
-        <div className="h-[480px] overflow-hidden bg-background">
-          {children}
-        </div>
+        <div className="h-[480px] overflow-hidden bg-background">{children}</div>
         {/* status bar */}
         <div className="flex items-center justify-between border-t border-border bg-muted/30 px-4 py-1.5 text-[10px] text-muted-foreground">
           <span>workspace / main</span>
@@ -860,9 +862,7 @@ function GlassboardSlide() {
           ))}
         </div>
       </div>
-      <div
-        className="relative flex-1 overflow-hidden rounded-[12px] border border-border"
-      >
+      <div className="relative flex-1 overflow-hidden rounded-[12px] border border-border">
         <svg
           className="absolute inset-0 h-full w-full text-muted-foreground/60"
           viewBox="0 0 100 100"

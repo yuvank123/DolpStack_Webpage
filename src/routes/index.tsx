@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -293,8 +293,20 @@ function Nav() {
           <a href="#faq" className="transition-colors hover:text-foreground">
             FAQ
           </a>
+          <Link
+            to="/opportunities"
+            className="inline-flex items-center gap-1 font-semibold text-primary transition-colors hover:text-primary/80"
+          >
+            Opportunities
+          </Link>
         </nav>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2.5">
+          <Link
+            to="/opportunities"
+            className="hidden sm:inline-flex items-center justify-center rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-xs transition-all hover:bg-primary/90"
+          >
+            Apply Now
+          </Link>
           <ThemeToggle />
         </div>
       </div>
@@ -334,14 +346,14 @@ function Hero() {
             variants={heroLeftItemVariants(false)}
             className="flex flex-col items-center justify-center gap-3 pt-1 sm:flex-row"
           >
-            <a
-              href="#features"
+            <Link
+              to="/opportunities"
               className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-blue-500/25 transition-all duration-300 hover:from-blue-500 hover:via-indigo-500 hover:to-blue-600 hover:shadow-blue-500/40 hover:-translate-y-0.5 sm:w-auto dark:from-blue-600 dark:via-sky-600 dark:to-blue-600 dark:shadow-indigo-500/25"
             >
-              Start building <ArrowRight className="h-4 w-4" />
-            </a>
+              Explore Opportunities <ArrowRight className="h-4 w-4" />
+            </Link>
             <a
-              href="#how"
+              href="#features"
               className="inline-flex w-full items-center justify-center rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:bg-muted/60 sm:w-auto"
             >
               See how it works
@@ -576,37 +588,40 @@ function Modules() {
           variants={containerVariants}
           className="border border-border rounded-[24px] overflow-hidden bg-card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 shadow-none"
         >
-          {mods.map((m, i) => {
-            const { handleMouseMove, handleMouseLeave } = useCardParallax();
-            return (
-              <motion.div
-                variants={cardVariants}
-                key={m.name}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                className={`group p-6 bg-card border-border flex flex-col justify-between card-hover-effects parallax-card
-                  ${i % 4 !== 3 ? "lg:border-r" : ""}
-                  ${i < 4 ? "lg:border-b" : "lg:border-b-0"}
-                  ${i % 2 !== 1 ? "sm:border-r" : "sm:border-r-0"}
-                  ${i < 6 ? "sm:border-b" : "sm:border-b-0"}
-                  ${i < 7 ? "border-b" : "border-b-0"}`}
-              >
-                <div>
-                  <m.icon
-                    className="h-4 w-4 text-muted-foreground opacity-70 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:-translate-y-[2px] group-hover:rotate-3"
-                    strokeWidth={1.75}
-                  />
-                  <h3 className="mt-4 text-sm font-semibold text-foreground/85 transition-premium group-hover:text-foreground">
-                    {m.name}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{m.desc}</p>
-                </div>
-              </motion.div>
-            );
-          })}
+          {mods.map((m, i) => (
+            <ModuleCard key={m.name} m={m} i={i} />
+          ))}
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function ModuleCard({ m, i }: { m: (typeof mods)[number]; i: number }) {
+  const { handleMouseMove, handleMouseLeave } = useCardParallax();
+  return (
+    <motion.div
+      variants={cardVariants}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group p-6 bg-card border-border flex flex-col justify-between card-hover-effects parallax-card
+        ${i % 4 !== 3 ? "lg:border-r" : ""}
+        ${i < 4 ? "lg:border-b" : "lg:border-b-0"}
+        ${i % 2 !== 1 ? "sm:border-r" : "sm:border-r-0"}
+        ${i < 6 ? "sm:border-b" : "sm:border-b-0"}
+        ${i < 7 ? "border-b" : "border-b-0"}`}
+    >
+      <div>
+        <m.icon
+          className="h-4 w-4 text-muted-foreground opacity-70 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:-translate-y-[2px] group-hover:rotate-3"
+          strokeWidth={1.75}
+        />
+        <h3 className="mt-4 text-sm font-semibold text-foreground/85 transition-premium group-hover:text-foreground">
+          {m.name}
+        </h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{m.desc}</p>
+      </div>
+    </motion.div>
   );
 }
 
@@ -914,7 +929,7 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="py-12">
+    <footer className="py-12 border-t border-border/40">
       <div
         className={`${container} flex flex-col items-start justify-between gap-6 md:flex-row md:items-center`}
       >
@@ -933,7 +948,14 @@ function Footer() {
             DolpStack
           </span>
         </div>
-        <div className="text-xs text-muted-foreground">© 2026 DolpStack, Inc.</div>
+
+        <div className="flex items-center gap-6 text-xs text-muted-foreground">
+          <Link to="/opportunities" className="hover:text-foreground transition-colors font-medium">
+            Internships & Hackathons
+          </Link>
+          <span>•</span>
+          <span>© 2026 DolpStack, Inc.</span>
+        </div>
       </div>
     </footer>
   );
