@@ -516,7 +516,7 @@ export function HeroProductVisual() {
             rotateY: { duration: 0.6, ease: EASE },
             y: { duration: 9, repeat: Infinity, ease: "easeInOut" },
           }}
-          className="relative overflow-hidden rounded-t-[32px] border-t border-x border-slate-300/80 dark:border-white/15 bg-slate-200 dark:bg-[#0B0F17] p-4 shadow-[0_50px_140px_-25px_rgba(0,0,0,0.4)] dark:shadow-[0_50px_140px_-25px_rgba(0,0,0,0.8)] transition-all duration-300"
+          className="relative overflow-hidden rounded-t-[20px] border-t border-x border-slate-300/80 dark:border-white/15 bg-gradient-to-t from-700 via-slate-400 to-slate-700 dark:bg-gradient-to-t dark:from-slate-800 dark:via-slate-500 dark:to-slate-700 dark:bg-[#0B0F17] p-1 shadow-[0_50px_140px_-25px_rgba(0,0,0,0.4)] dark:shadow-[0_50px_140px_-25px_rgba(0,0,0,0.8)] transition-all duration-300"
           style={{
             transformStyle: "preserve-3d",
             maskImage:
@@ -526,18 +526,19 @@ export function HeroProductVisual() {
           }}
         >
           {/* Top MacBook Status Bar & Notch */}
-          <div className="relative flex items-center justify-between rounded-t-[24px] border-b border-slate-300/60 dark:border-white/10 bg-slate-300/70 dark:bg-[#080B10] px-3.5 py-1.5 text-[11px] text-slate-700 dark:text-zinc-400">
+          <div className="relative flex items-center justify-between rounded-t-[15px] border-b border-slate-300/60 dark:border-white/10 bg-slate-300 dark:bg-[#080B10] px-3.5 py-1.5 text-[11px] text-slate-700 dark:text-zinc-400">
             {/* Top Camera Notch */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 w-40 rounded-b-xl border-b border-x border-slate-400/40 dark:border-white/10 bg-slate-300 dark:bg-[#080B10] flex items-center justify-center gap-2 z-30 pointer-events-none">
-              <span className="h-1.5 w-1.5 rounded-full bg-slate-600 dark:bg-zinc-800" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 w-40 rounded-b-xl dark:border-white/10 bg-slate-800 dark:bg-[#080B10] flex items-center justify-center gap-2 z-30 pointer-events-none">
+              <span className="h-1.5 w-1.5 rounded-full bg-slate-700 dark:bg-zinc-800" />
               <span className="h-1 w-1 rounded-full bg-emerald-500/80" />
             </div>
 
             {/* Left status items: Apple icon + Menu links */}
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 font-medium text-slate-700 dark:text-zinc-300">
-                <Apple className="h-3.5 w-3.5 fill-current" />
-                <span className="font-semibold text-slate-900 dark:text-foreground">DolpStack</span>
+                <img src="./public/dolpstack_logo_dark.png" alt="Dolpstack_logo" className="w-15 hidden dark:block" />
+                <img src="./public/dolpstack_logo_light.png" alt="Dolpstack_logo" className="w-15 block dark:hidden" />
+
                 <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
                   File
                 </span>
