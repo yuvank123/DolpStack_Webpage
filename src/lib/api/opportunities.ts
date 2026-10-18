@@ -1,11 +1,33 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getServerSupabaseClient, isSupabaseConfigured } from "../supabase";
+import { getServerSupabaseClient, isSupabaseConfigured, getEnv } from "../supabase";
 import {
   Opportunity,
   OpportunityField,
   OpportunityWithFields,
   baseApplicationSchema,
 } from "../types/portal";
+
+// Helper to sync application submissions to Google Sheet via Webhook
+async function syncToGoogleSheet(payload: Record<string, unknown>) {
+  const webhookUrl =
+    getEnv("GOOGLE_SHEET_WEBHOOK_URL") ||
+    "https://script.google.com/macros/s/AKfycbx02GM8lBeQ7KPLyqOxzz9kxLGwfkTHWBtKk-rE71nve_MebhPCxP132KEpulJI3B6y/exec";
+
+  if (!webhookUrl) return;
+
+  try {
+    const res = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      console.warn("Google Sheet webhook returned status:", res.status);
+    }
+  } catch (err) {
+    console.error("Failed to sync application to Google Sheets:", err);
+  }
+}
 
 // Fallback mock opportunities for development / testing when DB is not yet populated
 const FALLBACK_OPPORTUNITIES: OpportunityWithFields[] = [
@@ -306,6 +328,27 @@ export const submitApplicationFn = createServerFn({ method: "POST" })
         throw new Error("You have already submitted an application for this opportunity.");
       }
 
+      // Sync to Google Sheet in background
+      syncToGoogleSheet({
+        submitted_at: new Date().toISOString(),
+        opportunity_title: opp.title,
+        opportunity_id,
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        college_university: college_university.trim(),
+        degree: degree.trim(),
+        branch: branch.trim(),
+        current_year: current_year.trim(),
+        current_semester: current_semester ? current_semester.trim() : "",
+        cgpa_cpi,
+        linkedin_url: linkedin_url && linkedin_url.trim() ? linkedin_url.trim() : "",
+        github_url: github_url && github_url.trim() ? github_url.trim() : "",
+        portfolio_url: portfolio_url && portfolio_url.trim() ? portfolio_url.trim() : "",
+        skills,
+        custom_answers: custom_answers || {},
+      }).catch((e) => console.error("Async Google Sheet sync error:", e));
+
       return {
         success: true,
         application_id: `mock-app-${Date.now()}`,
@@ -417,6 +460,27 @@ export const submitApplicationFn = createServerFn({ method: "POST" })
           "An unexpected error occurred while saving your application. Please try again.",
       );
     }
+
+    // Sync to Google Sheet in background
+    syncToGoogleSheet({
+      submitted_at: new Date().toISOString(),
+      opportunity_title: opp.title,
+      opportunity_id,
+      name: name.trim(),
+      email: normalizedEmail,
+      phone: phone.trim(),
+      college_university: college_university.trim(),
+      degree: degree.trim(),
+      branch: branch.trim(),
+      current_year: current_year.trim(),
+      current_semester: current_semester ? current_semester.trim() : "",
+      cgpa_cpi,
+      linkedin_url: linkedin_url && linkedin_url.trim() ? linkedin_url.trim() : "",
+      github_url: github_url && github_url.trim() ? github_url.trim() : "",
+      portfolio_url: portfolio_url && portfolio_url.trim() ? portfolio_url.trim() : "",
+      skills,
+      custom_answers: custom_answers || {},
+    }).catch((e) => console.error("Async Google Sheet sync error:", e));
 
     return {
       success: true,
