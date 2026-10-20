@@ -1,6 +1,5 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-// Helper to safely get environment variables across client and server
 export function getEnv(key: string): string | undefined {
   if (typeof process !== "undefined" && process.env && process.env[key]) {
     return process.env[key];
@@ -12,47 +11,58 @@ export function getEnv(key: string): string | undefined {
   return undefined;
 }
 
-const supabaseUrl =
-  getEnv("VITE_SUPABASE_URL") ||
-  getEnv("SUPABASE_URL") ||
-  "https://placeholder-project.supabase.co";
+const PLACEHOLDER_PATTERNS = ["placeholder", "your-project-id", "your-anon-key", "your_"];
 
-const supabaseAnonKey =
-  getEnv("VITE_SUPABASE_ANON_KEY") || getEnv("SUPABASE_ANON_KEY") || "placeholder-anon-key";
+function looksLikePlaceholder(value: string): boolean {
+  const v = value.toLowerCase();
+  return PLACEHOLDER_PATTERNS.some((p) => v.includes(p));
+}
 
-// Public / Browser-safe Supabase client (only uses Anon key)
+function resolveUrl(): string | undefined {
+  return getEnv("VITE_SUPABASE_URL") || getEnv("SUPABASE_URL");
+}
+
+function resolveAnonKey(): string | undefined {
+  return getEnv("VITE_SUPABASE_ANON_KEY") || getEnv("SUPABASE_ANON_KEY");
+}
+
+export function isSupabaseConfigured(): boolean {
+  const url = resolveUrl();
+  const key = resolveAnonKey();
+  if (!url || !key) return false;
+  if (looksLikePlaceholder(url) || looksLikePlaceholder(key)) return false;
+  try {
+    new URL(url);
+  } catch {
+    return false;
+  }
+  return true;
+}
+
 let browserClient: SupabaseClient | null = null;
 
 export function getSupabaseClient(): SupabaseClient {
+  if (!isSupabaseConfigured()) {
+    throw new Error("Supabase is not configured (missing or placeholder env vars).");
+  }
   if (!browserClient) {
-    browserClient = createClient(supabaseUrl, supabaseAnonKey, {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false,
-      },
+    browserClient = createClient(resolveUrl()!, resolveAnonKey()!, {
+      auth: { persistSession: false, autoRefreshToken: false },
     });
   }
   return browserClient;
 }
 
-// Server-side Supabase client (Uses service-role key if available for privileged queries, falls back to anon key)
 export function getServerSupabaseClient(): SupabaseClient {
-  const serviceKey =
-    getEnv("SUPABASE_SERVICE_ROLE_KEY") ||
-    getEnv("VITE_SUPABASE_ANON_KEY") ||
-    getEnv("SUPABASE_ANON_KEY") ||
-    "placeholder-key";
+  const url = resolveUrl();
+  const key =
+    getEnv("SUPABASE_SERVICE_ROLE_KEY") || resolveAnonKey();
 
-  return createClient(supabaseUrl, serviceKey, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-    },
+  if (!url || !key || looksLikePlaceholder(url) || looksLikePlaceholder(key)) {
+    throw new Error("Supabase is not configured (missing or placeholder env vars).");
+  }
+
+  return createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
   });
-}
-
-export function isSupabaseConfigured(): boolean {
-  const url = getEnv("VITE_SUPABASE_URL") || getEnv("SUPABASE_URL");
-  const key = getEnv("VITE_SUPABASE_ANON_KEY") || getEnv("SUPABASE_ANON_KEY");
-  return Boolean(url && key && !url.includes("placeholder-project"));
 }
