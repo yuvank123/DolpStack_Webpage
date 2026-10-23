@@ -1,6 +1,5 @@
 import { PRIVACY_POLICY_CONFIG } from "@/lib/privacy-policy-config";
 import { Placeholder } from "@/components/privacy/Placeholder";
-import { Shield, Lock, FileText, CheckCircle2, AlertCircle } from "lucide-react";
 
 export function PrivacyContent() {
   const { placeholders } = PRIVACY_POLICY_CONFIG;
@@ -12,14 +11,12 @@ export function PrivacyContent() {
 
       {/* 1. Introduction */}
       <section id="section-1" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             01
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Introduction
-          </h2>
-        </div>
+          <span>1. Introduction</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -58,14 +55,12 @@ export function PrivacyContent() {
 
       {/* 2. Definitions */}
       <section id="section-2" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             02
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Definitions
-          </h2>
-        </div>
+          <span>2. Definitions</span>
+        </h2>
 
         <div className="mt-5 overflow-hidden rounded-xl border border-border/70 bg-background/50 backdrop-blur-md shadow-xs">
           <div className="overflow-x-auto">
@@ -148,14 +143,12 @@ export function PrivacyContent() {
 
       {/* 3. Information We Collect */}
       <section id="section-3" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             03
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Information We Collect
-          </h2>
-        </div>
+          <span>3. Information We Collect</span>
+        </h2>
 
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           We collect only the information we need to provide and improve the Service.
@@ -287,14 +280,12 @@ export function PrivacyContent() {
 
       {/* 4. How We Use Your Information */}
       <section id="section-4" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             04
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            How We Use Your Information
-          </h2>
-        </div>
+          <span>4. How We Use Your Information</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <ul className="space-y-3">
@@ -342,14 +333,12 @@ export function PrivacyContent() {
 
       {/* 5. Present and Upcoming Features */}
       <section id="section-5" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             05
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Present and Upcoming Features
-          </h2>
-        </div>
+          <span>5. Present and Upcoming Features</span>
+        </h2>
 
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           We are an early-stage business and the Service will grow. This section tells you how this
@@ -459,14 +448,12 @@ export function PrivacyContent() {
 
       {/* 6. Sharing and Disclosure of Information */}
       <section id="section-6" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             06
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Sharing and Disclosure of Information
-          </h2>
-        </div>
+          <span>6. Sharing and Disclosure of Information</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <div className="rounded-xl border border-blue-500/20 bg-blue-500/5 px-4 py-3 text-sm font-medium text-foreground">
@@ -522,14 +509,12 @@ export function PrivacyContent() {
 
       {/* 7. Third-Party Services */}
       <section id="section-7" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             07
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Third-Party Services
-          </h2>
-        </div>
+          <span>7. Third-Party Services</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -556,14 +541,12 @@ export function PrivacyContent() {
 
       {/* 8. Cookies and Tracking Technologies */}
       <section id="section-8" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             08
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Cookies and Tracking Technologies
-          </h2>
-        </div>
+          <span>8. Cookies and Tracking Technologies</span>
+        </h2>
 
         <div className="mt-5 overflow-hidden rounded-xl border border-border/70 bg-background/50 backdrop-blur-md shadow-xs">
           <div className="overflow-x-auto">
@@ -623,14 +606,12 @@ export function PrivacyContent() {
 
       {/* 9. Data Retention */}
       <section id="section-9" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             09
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Data Retention
-          </h2>
-        </div>
+          <span>9. Data Retention</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -649,14 +630,12 @@ export function PrivacyContent() {
 
       {/* 10. Data Security */}
       <section id="section-10" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             10
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Data Security
-          </h2>
-        </div>
+          <span>10. Data Security</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -675,14 +654,12 @@ export function PrivacyContent() {
 
       {/* 11. Data Storage and Transfers */}
       <section id="section-11" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             11
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Data Storage and Transfers
-          </h2>
-        </div>
+          <span>11. Data Storage and Transfers</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -697,14 +674,12 @@ export function PrivacyContent() {
 
       {/* 12. Your Rights */}
       <section id="section-12" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             12
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Your Rights
-          </h2>
-        </div>
+          <span>12. Your Rights</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>Subject to applicable law, you have the right to:</p>
@@ -756,14 +731,12 @@ export function PrivacyContent() {
 
       {/* 13. Children's Privacy */}
       <section id="section-13" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             13
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Children&apos;s Privacy
-          </h2>
-        </div>
+          <span>13. Children&apos;s Privacy</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -779,14 +752,12 @@ export function PrivacyContent() {
 
       {/* 14. Commercial Communication */}
       <section id="section-14" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             14
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Commercial Communication
-          </h2>
-        </div>
+          <span>14. Commercial Communication</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -801,14 +772,12 @@ export function PrivacyContent() {
 
       {/* 15. Reporting Security Vulnerabilities */}
       <section id="section-15" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             15
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Reporting Security Vulnerabilities
-          </h2>
-        </div>
+          <span>15. Reporting Security Vulnerabilities</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -823,14 +792,12 @@ export function PrivacyContent() {
 
       {/* 16. Grievance Officer and Contact */}
       <section id="section-16" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             16
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Grievance Officer and Contact
-          </h2>
-        </div>
+          <span>16. Grievance Officer and Contact</span>
+        </h2>
 
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           In accordance with the Information Technology Act, 2000 and the rules made under it, the
@@ -906,14 +873,12 @@ export function PrivacyContent() {
 
       {/* 17. Changes to This Policy */}
       <section id="section-17" className="scroll-mt-24 border-b border-border/60 pb-10">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             17
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Changes to This Policy
-          </h2>
-        </div>
+          <span>17. Changes to This Policy</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
@@ -928,14 +893,12 @@ export function PrivacyContent() {
 
       {/* 18. Governing Law */}
       <section id="section-18" className="scroll-mt-24 pb-4">
-        <div className="flex items-center gap-3">
+        <h2 className="flex items-center gap-3 text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 border border-blue-500/20">
             18
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            Governing Law
-          </h2>
-        </div>
+          <span>18. Governing Law</span>
+        </h2>
 
         <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
