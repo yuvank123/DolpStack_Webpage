@@ -1566,6 +1566,15 @@ function Footer() {
 
           <span aria-hidden="true">•</span>
 
+          <Link
+            to="/privacy-policy"
+            className="font-medium transition-colors hover:text-foreground"
+          >
+            Privacy Policy
+          </Link>
+
+          <span aria-hidden="true">•</span>
+
           <span>
             © 2026 DolpStack. All Rights Reserved.
           </span>
