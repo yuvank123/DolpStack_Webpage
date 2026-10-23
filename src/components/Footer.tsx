@@ -37,8 +37,8 @@ export function Footer() {
 
         {/* Footer Links + Copyright */}
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-          <Link to="/opportunities" className="font-medium transition-colors hover:text-foreground">
-            Internships & Hackathons
+          <Link to="/privacy-policy" className="font-medium transition-colors hover:text-foreground">
+            Terms of Service
           </Link>
 
           <span aria-hidden="true">•</span>

@@ -1,32 +1,32 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   Activity,
+  Battery,
+  Bell,
   Bug,
   CheckCircle2,
-  LayoutGrid,
-  LayoutDashboard,
-  Languages,
-  PenTool,
-  Search,
-  TrendingUp,
-  Wifi,
-  Battery,
-  Rocket,
-  Shield,
-  Zap,
   ChevronLeft,
   ChevronRight,
-  Clock,
-  Apple,
-  Bell,
-  SlidersHorizontal,
+  Languages,
+  LayoutDashboard,
+  LayoutGrid,
+  Lock,
   MoreHorizontal,
-  Sparkles,
-  Layers,
+  PenTool,
+  Rocket,
+  Search,
+  Shield,
+  SlidersHorizontal,
+  TrendingUp,
+  Wifi,
+  Zap,
 } from "lucide-react";
 
+/* Brand: Blue #0b2fd1 · Lime #c6ff00 · type: Archivo wide (.font-wide) */
 const EASE = [0.22, 1, 0.36, 1] as const;
+const FILL = "bg-[#0b2fd1] dark:bg-[#c6ff00]";
+const INK = "text-[#0b2fd1] dark:text-[#c6ff00]";
 
 const NAV = [
   { icon: LayoutDashboard, label: "Dashboard", active: true },
@@ -37,715 +37,493 @@ const NAV = [
   { icon: Activity, label: "Analytics" },
 ];
 
+const STATS: [string, string, string, React.ElementType][] = [
+  ["Resources", "128", "+12 this week", LayoutGrid],
+  ["Open bugs", "6", "3 in review", Bug],
+  ["Docs indexed", "1.2k", "Instant search", Languages],
+  ["AI speedup", "99%", "Auto-context", Zap],
+];
+
+const ACTIVITY = [
+  ["api-gateway deployed", "2m ago"],
+  ["3 docs auto-indexed", "15m ago"],
+  ["Bug #204 resolved", "1h ago"],
+  ["Glassboard pipeline synced", "2h ago"],
+];
+
 const BARS = [42, 68, 52, 84, 65, 96, 78, 100, 72, 88, 60, 94, 82, 98];
-const BARS_MOBILE = [42, 68, 52, 84, 65, 96, 78, 100, 72, 88];
+
+const WALLPAPER = [
+  "radial-gradient(55% 70% at 85% 5%, rgba(198,255,0,.40), transparent 60%)",
+  "radial-gradient(60% 70% at 5% 100%, rgba(120,150,255,.65), transparent 60%)",
+  "linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px)",
+  "linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px)",
+  "linear-gradient(135deg, #0b2fd1, #08197a)",
+].join(",");
+
+/* ------------------------------ shared bits ------------------------------ */
+
+function Glare() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-40 bg-gradient-to-br from-white/[0.10] via-transparent to-transparent"
+    />
+  );
+}
+
+function Stat({
+  label,
+  value,
+  sub,
+  Icon,
+  hero = false,
+  dense = false,
+}: {
+  label: string;
+  value: string;
+  sub: string;
+  Icon: React.ElementType;
+  hero?: boolean;
+  dense?: boolean;
+}) {
+  return (
+    <div
+      className={`min-w-0 rounded-2xl border ${dense ? "p-2.5" : "p-3"} ${
+        hero ? "border-transparent bg-[#0b2fd1] text-white" : "border-border bg-card"
+      }`}
+    >
+      <div
+        className={`flex items-center justify-between gap-1 text-[10px] font-semibold ${
+          hero ? "text-white/70" : "text-muted-foreground"
+        }`}
+      >
+        <span className="truncate">{label}</span>
+        <Icon className={`h-3 w-3 shrink-0 ${hero ? "text-[#c6ff00]" : INK}`} />
+      </div>
+      <div className={`font-wide mt-1 tabular-nums ${dense ? "text-lg" : "text-xl"} ${hero ? "text-[#c6ff00]" : ""}`}>
+        {value}
+      </div>
+      <div className={`truncate text-[10px] ${hero ? "text-white/70" : "text-muted-foreground"}`}>
+        {sub}
+      </div>
+    </div>
+  );
+}
+
+function Chart({ bars, height }: { bars: number[]; height: string }) {
+  const peak = bars.length - 4;
+  return (
+    <div className={`relative flex items-end gap-1.5 ${height}`}>
+      {[25, 50, 75].map((g) => (
+        <span
+          key={g}
+          className="absolute inset-x-0 border-t border-dashed border-border"
+          style={{ bottom: `${g}%` }}
+        />
+      ))}
+      {bars.map((h, i) => (
+        <motion.div
+          key={i}
+          initial={{ height: 0 }}
+          animate={{ height: `${h}%` }}
+          transition={{ duration: 0.7, delay: 0.4 + i * 0.03, ease: EASE }}
+          className={`relative z-10 flex-1 rounded-t-md ${
+            i === peak ? "bg-[#c6ff00] dark:bg-white" : `${FILL} opacity-80`
+          }`}
+        >
+          {i === peak && (
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-1.5 py-0.5 text-[9px] font-bold text-background">
+              {h}
+            </span>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function ActivityList({ rows }: { rows: string[][] }) {
+  return (
+    <div className="divide-y divide-border text-[11px]">
+      {rows.map(([title, time]) => (
+        <div key={title} className="flex items-center justify-between gap-2 py-1.5">
+          <span className="flex min-w-0 items-center gap-1.5">
+            <CheckCircle2 className="h-3 w-3 shrink-0 text-emerald-500" />
+            <span className="truncate">{title}</span>
+          </span>
+          <span className="shrink-0 text-[9px] text-muted-foreground">{time}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Sidebar + dashboard used inside the laptop window and the iPad. */
+function AppBody({ side = "w-48", dense = false }: { side?: string; dense?: boolean }) {
+  return (
+    <div className="flex min-h-0 flex-1">
+      <aside className={`${side} shrink-0 border-r border-border bg-muted/40 p-3`}>
+        <div className="mb-2 px-2 text-[10px] font-semibold text-muted-foreground">Workspace</div>
+        <nav className="space-y-1">
+          {NAV.map((n) => (
+            <div
+              key={n.label}
+              className={`flex items-center justify-between rounded-xl px-2.5 py-2 text-xs font-semibold ${
+                n.active ? "bg-[#0b2fd1] text-white" : "text-muted-foreground"
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <n.icon className="h-3.5 w-3.5" />
+                {n.label}
+              </span>
+              {n.count && (
+                <span
+                  className={`rounded-full px-1.5 text-[9px] ${
+                    n.active ? "bg-[#c6ff00] text-[#0b2fd1]" : "bg-muted"
+                  }`}
+                >
+                  {n.count}
+                </span>
+              )}
+            </div>
+          ))}
+        </nav>
+        <div className="mt-5 rounded-2xl bg-[#c6ff00] p-3 text-[#0b2fd1]">
+          <div className="flex items-center gap-1.5 text-[11px] font-extrabold">
+            <Shield className="h-3.5 w-3.5" /> SOC2 verified
+          </div>
+          <div className="mt-0.5 text-[10px] opacity-80">Type II compliant</div>
+        </div>
+      </aside>
+
+      <main className="min-w-0 flex-1 space-y-3 overflow-hidden p-4">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <div className="text-[10px] font-semibold text-muted-foreground">Project surface</div>
+            <div className={`truncate font-extrabold ${dense ? "text-sm" : "text-base"}`}>
+              Team overview & analytics
+            </div>
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-1 text-[10px] text-muted-foreground">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" /> Synced 2s ago
+          </span>
+        </div>
+
+        <div className="grid grid-cols-4 gap-2.5">
+          {STATS.map(([l, v, s, I], i) => (
+            <Stat key={l} label={l} value={v} sub={s} Icon={I} hero={i === 0} dense={dense} />
+          ))}
+        </div>
+
+        <div className="grid grid-cols-[1.6fr_1fr] gap-3">
+          <div className="rounded-2xl border border-border bg-card p-3.5">
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <div className="text-xs font-bold">Weekly activity</div>
+                <div className="text-[10px] text-muted-foreground">Realtime event throughput</div>
+              </div>
+              <span className="inline-flex items-center gap-1 rounded-full bg-[#c6ff00] px-2 py-0.5 text-[10px] font-bold text-[#0b2fd1]">
+                <TrendingUp className="h-3 w-3" /> +24%
+              </span>
+            </div>
+            <Chart bars={BARS.slice(0, dense ? 12 : 14)} height={dense ? "h-20" : "h-28"} />
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-3.5">
+            <div className="mb-1 flex items-center justify-between text-xs font-bold">
+              Recent activity <Zap className={`h-3 w-3 ${INK}`} />
+            </div>
+            <ActivityList rows={ACTIVITY.slice(0, dense ? 3 : 4)} />
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+/* ------------------------------ main export ------------------------------ */
 
 export function HeroProductVisual() {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reduce || window.matchMedia("(pointer: coarse)").matches) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const dx = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    const dy = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-    setTilt({ x: -dy * 3, y: dx * 4 });
+    const r = e.currentTarget.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+    const dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+    setTilt({ x: -dy * 2.5, y: dx * 3.5 });
   };
+
+  const dock: [React.ElementType, string, string][] = [
+    [LayoutDashboard, "from-sky-400 to-blue-600", "text-white"],
+    [LayoutGrid, "from-fuchsia-400 to-purple-600", "text-white"],
+    [Bug, "from-amber-300 to-orange-500", "text-white"],
+    [Languages, "from-emerald-300 to-green-600", "text-white"],
+    [PenTool, "from-[#c6ff00] to-lime-400", "text-[#0b2fd1]"],
+    [Rocket, "from-rose-400 to-red-600", "text-white"],
+  ];
 
   return (
     <motion.div
-      ref={ref}
       onMouseMove={onMove}
       onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-      initial={{ opacity: 0, y: 70, rotateX: 18 }}
-      animate={{ opacity: 1, y: 0, rotateX: 10 }}
-      transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
-      className="relative mx-auto w-full max-w-[1380px] px-2 sm:px-4 pt-1"
-      style={{ perspective: "2400px" }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
+      className="relative mx-auto w-full max-w-[1240px] px-4 sm:px-6"
     >
-      {/* Ambient background glow using theme accent */}
+      {/* brand glow behind the device */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-x-16 -bottom-20 top-4 -z-10 rounded-[60px] opacity-80 blur-3xl"
+        className="pointer-events-none absolute -inset-x-10 inset-y-10 -z-10 opacity-60 blur-3xl"
         style={{
           background:
-            "radial-gradient(ellipse at center, color-mix(in oklab, var(--accent) 35%, transparent), transparent 70%)",
+            "radial-gradient(40% 50% at 30% 50%, rgba(11,47,209,.45), transparent 70%), radial-gradient(35% 45% at 75% 45%, rgba(198,255,0,.35), transparent 70%)",
         }}
       />
 
-      {/* =========================================================================
-          1. MOBILE PHONE VIEW (< 640px)
-          Authentic iPhone 16 Pro Titanium frame with Dynamic Island, native mobile app layout,
-          ultra-thin 2mm bezels, hardware buttons, seamless background gradient blend and bottom fade mask
-          ========================================================================= */}
-      <div className="block sm:hidden mx-auto max-w-[350px] relative">
-        {/* Hardware Side Buttons */}
-        <span className="absolute -left-[3px] top-[74px] h-3.5 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
-        <span className="absolute -left-[3px] top-[110px] h-7 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
-        <span className="absolute -left-[3px] top-[150px] h-7 w-[3px] rounded-l-[1px] bg-slate-400 dark:bg-zinc-600" />
-        <span className="absolute -right-[3px] top-[102px] h-11 w-[3px] rounded-r-[1px] bg-slate-400 dark:bg-zinc-600" />
+      {/* ===================== PHONE (< 640px) ===================== */}
+      <div className="relative mx-auto max-w-[330px] sm:hidden">
+        {/* hardware buttons */}
+        <span className="absolute -left-[3px] top-[92px] h-6 w-[3px] rounded-l bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -left-[3px] top-[138px] h-10 w-[3px] rounded-l bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -left-[3px] top-[190px] h-10 w-[3px] rounded-l bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -right-[3px] top-[150px] h-16 w-[3px] rounded-r bg-slate-400 dark:bg-zinc-600" />
 
-        <div
-          className="relative overflow-hidden rounded-t-[48px] p-[3px] bg-gradient-to-b from-slate-300 via-slate-400 to-slate-300 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-700 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.35)] dark:shadow-[0_30px_90px_-20px_rgba(0,0,0,0.8)] transition-all duration-300"
-          style={{
-            maskImage:
-              "linear-gradient(to bottom, black 40%, rgba(0,0,0,0.85) 70%, transparent 95%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, black 40%, rgba(0,0,0,0.85) 70%, transparent 95%)",
-          }}
-        >
-          {/* Inner Black Display Bezel */}
-          <div className="rounded-t-[45px] p-[2px] bg-black">
-            <div className="rounded-t-[43px] bg-card text-card-foreground flex flex-col overflow-hidden shadow-2xl">
-              {/* Mobile Status Bar with Dynamic Island */}
-              <div className="relative flex items-center justify-between border-b border-border/50 bg-slate-200/90 dark:bg-[#090D14] px-6 pt-3 pb-2 text-[11px] font-semibold tabular-nums text-slate-800 dark:text-zinc-300">
+        <div className="rounded-[56px] bg-gradient-to-b from-slate-200 via-slate-400 to-slate-300 p-[3px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] dark:from-zinc-600 dark:via-zinc-700 dark:to-zinc-800">
+          <div className="rounded-[53px] bg-black p-[6px]">
+            <div className="relative flex h-[620px] flex-col overflow-hidden rounded-[47px] bg-background">
+              {/* dynamic island */}
+              <div className="absolute left-1/2 top-2.5 z-30 flex h-[28px] w-[96px] -translate-x-1/2 items-center justify-end rounded-full bg-black px-3">
+                <span className="h-2 w-2 rounded-full bg-[#0a1230] ring-1 ring-slate-800" />
+              </div>
+
+              {/* status bar */}
+              <div className="relative z-20 flex h-12 shrink-0 items-end justify-between px-8 pb-1 text-[12px] font-semibold tabular-nums">
                 <span>9:41</span>
-                {/* Dynamic Island Pill */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 h-[24px] w-[90px] rounded-full bg-black flex items-center justify-between px-2.5 z-30 shadow-inner">
-                  <span className="h-2 w-2 rounded-full bg-slate-900 ring-1 ring-slate-800" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/90 animate-pulse" />
-                </div>
-                <div className="flex items-center gap-1.5 text-slate-700 dark:text-zinc-400">
-                  <span className="text-[9px] font-bold">5G</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-bold">5G</span>
                   <Wifi className="h-3 w-3" />
-                  <Battery className="h-3 w-3" />
-                </div>
+                  <Battery className="h-4 w-4" />
+                </span>
               </div>
 
-              {/* Mobile App Header */}
-              <div className="flex items-center justify-between border-b border-border bg-muted/40 px-3.5 py-2.5">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground shadow-xs">
-                    <Sparkles className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-bold tracking-tight text-foreground">
-                        DolpStack
-                      </span>
-                      <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.2 text-[9px] font-medium text-emerald-600 dark:text-emerald-400">
-                        Live
-                      </span>
-                    </div>
-                    <div className="text-[10px] text-muted-foreground">Workspace / Team</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1">
-                  <button className="flex h-7 w-7 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground">
-                    <Bell className="h-3.5 w-3.5" />
-                  </button>
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/20 text-[10px] font-bold text-accent">
-                    JD
-                  </div>
-                </div>
-              </div>
-
-              {/* Mobile App Search Bar */}
-              <div className="p-3 bg-muted/20 border-b border-border">
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-2.5 py-1.5 text-xs text-muted-foreground shadow-xs">
-                  <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                  <span className="truncate text-[11px]">Search workspace & resources...</span>
-                  <SlidersHorizontal className="h-3 w-3 ml-auto text-muted-foreground shrink-0" />
-                </div>
-              </div>
-
-              {/* Mobile Scrollable App Body */}
-              <div className="p-3 space-y-3.5 max-h-[460px] overflow-y-auto bg-background/50">
-                {/* Project Surface Title */}
+              {/* app body */}
+              <div className="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 pb-4 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider font-semibold text-accent">
-                      Project Surface
-                    </div>
-                    <div className="text-sm font-bold tracking-tight text-foreground">
-                      Team Overview & Analytics
-                    </div>
+                    <div className="text-[10px] font-semibold text-muted-foreground">Good afternoon</div>
+                    <div className="font-wide text-xl leading-none">Alex</div>
                   </div>
-                  <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2 py-0.5 text-[9px] text-muted-foreground shadow-xs">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
-                    Synced 2s ago
-                  </span>
-                </div>
-
-                {/* Mobile Stat Cards Grid (2x2) */}
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
-                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                      <span>Resources</span>
-                      <Layers className="h-3 w-3 text-accent" />
-                    </div>
-                    <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                      128
-                    </div>
-                    <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
-                      +12 this week
-                    </div>
-                  </div>
-
-                  <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
-                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                      <span>Open Bugs</span>
-                      <Bug className="h-3 w-3 text-amber-500" />
-                    </div>
-                    <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                      6
-                    </div>
-                    <div className="text-[10px] text-amber-600 dark:text-amber-400 font-medium">
-                      3 in review
-                    </div>
-                  </div>
-
-                  <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
-                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                      <span>Docs</span>
-                      <Languages className="h-3 w-3 text-blue-500" />
-                    </div>
-                    <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                      1.2k
-                    </div>
-                    <div className="text-[10px] text-muted-foreground">Instant search</div>
-                  </div>
-
-                  <div className="rounded-xl border border-border bg-card p-2.5 shadow-xs">
-                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                      <span>AI Speedup</span>
-                      <Zap className="h-3 w-3 text-accent" />
-                    </div>
-                    <div className="mt-1 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                      99%
-                    </div>
-                    <div className="text-[10px] text-muted-foreground">Auto-context</div>
-                  </div>
-                </div>
-
-                {/* Mobile Weekly Activity Chart */}
-                <div className="rounded-xl border border-border bg-card p-3 shadow-xs space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-xs font-semibold text-foreground">Weekly Activity</div>
-                      <div className="text-[10px] text-muted-foreground">Realtime throughput</div>
-                    </div>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
-                      <TrendingUp className="h-3 w-3" /> +24%
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border">
+                      <Bell className="h-4 w-4" />
+                      <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-[#0b2fd1] dark:bg-[#c6ff00]" />
+                    </span>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#c6ff00] text-xs font-black text-[#0b2fd1]">
+                      AL
                     </span>
                   </div>
-                  <div className="flex h-20 items-end gap-1.5 pt-1">
-                    {BARS_MOBILE.map((h, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ duration: 0.6, delay: 0.2 + i * 0.03, ease: EASE }}
-                        className="flex-1 rounded-xs bg-gradient-to-t from-accent to-accent/70"
-                      />
-                    ))}
-                  </div>
                 </div>
 
-                {/* Mobile Recent Activity */}
-                <div className="rounded-xl border border-border bg-card p-3 shadow-xs space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="text-xs font-semibold text-foreground">Recent Activity</div>
-                    <Zap className="h-3 w-3 text-accent" />
-                  </div>
-                  <div className="divide-y divide-border text-[11px]">
-                    {[
-                      ["api-gateway deployed", "2m ago"],
-                      ["3 docs auto-indexed", "15m ago"],
-                      ["Bug #204 resolved", "1h ago"],
-                    ].map(([title, time]) => (
-                      <div key={title} className="flex items-center justify-between py-1.5">
-                        <div className="flex items-center gap-1.5 text-foreground/90 truncate min-w-0">
-                          <CheckCircle2 className="h-3 w-3 text-emerald-500 shrink-0" />
-                          <span className="truncate">{title}</span>
-                        </div>
-                        <span className="text-[9px] text-muted-foreground shrink-0 ml-1">
-                          {time}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Mobile Bottom Tab Navigation */}
-              <div className="grid grid-cols-5 border-t border-border bg-card px-1 py-1.5 shadow-lg">
-                <button className="flex flex-col items-center gap-0.5 text-accent py-0.5">
-                  <LayoutDashboard className="h-4 w-4" />
-                  <span className="text-[9px] font-semibold">Home</span>
-                </button>
-                <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground relative">
-                  <LayoutGrid className="h-4 w-4" />
-                  <span className="text-[9px]">Resources</span>
-                  <span className="absolute top-0 right-3.5 h-1.5 w-1.5 rounded-full bg-accent" />
-                </button>
-                <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground relative">
-                  <Bug className="h-4 w-4" />
-                  <span className="text-[9px]">Debug</span>
-                  <span className="absolute top-0 right-3.5 h-1.5 w-1.5 rounded-full bg-amber-500" />
-                </button>
-                <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground">
-                  <Languages className="h-4 w-4" />
-                  <span className="text-[9px]">Docs</span>
-                </button>
-                <button className="flex flex-col items-center gap-0.5 text-muted-foreground py-0.5 hover:text-foreground">
-                  <MoreHorizontal className="h-4 w-4" />
-                  <span className="text-[9px]">More</span>
-                </button>
-              </div>
-
-              {/* Mobile Home Indicator */}
-              <div className="flex justify-center bg-card pb-1.5 pt-0.5">
-                <span className="h-1 w-24 rounded-full bg-foreground/30" />
-              </div>
-            </div>
-          </div>
-
-          {/* Deep Bottom Fade Mask Overlay for Mobile */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background via-background/85 to-transparent z-30"
-          />
-        </div>
-      </div>
-
-      {/* =========================================================================
-          2. TABLET IPAD VIEW (640px <= width < 1024px)
-          iPad tablet chassis, iPadOS status bar, tablet-optimized split navigation & layout,
-          seamless background gradient blend and bottom fade mask
-          ========================================================================= */}
-      <div className="hidden sm:block lg:hidden mx-auto max-w-[720px] relative">
-        <div
-          className="relative overflow-hidden rounded-t-[28px] sm:rounded-t-[32px] border-t border-x border-slate-300/80 dark:border-white/15 bg-slate-200 dark:bg-[#0B0F17] p-3 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.35)] dark:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] transition-all duration-300"
-          style={{
-            maskImage:
-              "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
-          }}
-        >
-          {/* iPad Top Status Bar */}
-          <div className="relative flex items-center justify-between rounded-t-[20px] border-b border-slate-300/60 dark:border-white/10 bg-slate-300/70 dark:bg-[#080B10] px-4 py-1.5 text-[11px] text-slate-700 dark:text-zinc-400">
-            <span className="font-semibold text-slate-900 dark:text-foreground">
-              9:41 AM · Tue Sep 24
-            </span>
-            {/* Centered Front Camera */}
-            <div className="h-2 w-2 rounded-full bg-slate-600 dark:bg-zinc-800 ring-1 ring-slate-400/30" />
-            <div className="flex items-center gap-2.5">
-              <Wifi className="h-3.5 w-3.5" />
-              <span className="text-[10px] font-semibold">100%</span>
-              <Battery className="h-3.5 w-3.5" />
-            </div>
-          </div>
-
-          {/* iPad Inner Application Window */}
-          <div className="relative bg-card text-card-foreground rounded-b-[20px] border-t border-x border-border shadow-md overflow-hidden">
-            {/* Tablet Window Header */}
-            <div className="flex items-center justify-between border-b border-border bg-muted/50 px-4 py-2.5">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-xs text-foreground tracking-tight">
-                  DolpStack Workspace
-                </span>
-                <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
-                  Tablet View
-                </span>
-              </div>
-
-              {/* Tablet Search */}
-              <div className="flex flex-1 max-w-xs items-center gap-2 rounded-md border border-border bg-background px-3 py-1 text-xs text-muted-foreground mx-3">
-                <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                <span className="truncate text-[11px]">Search dolpstack.app...</span>
-                <span className="ml-auto rounded border border-border px-1 text-[9px] font-mono">
-                  ⌘K
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button className="inline-flex items-center gap-1.5 rounded-md bg-accent px-2.5 py-1 text-xs font-medium text-accent-foreground shadow-xs">
-                  <Rocket className="h-3.5 w-3.5" /> Deploy
-                </button>
-              </div>
-            </div>
-
-            {/* Tablet Surface Layout (Compact Rail + Grid) */}
-            <div className="grid grid-cols-[160px_1fr] min-h-[420px]">
-              {/* Tablet Compact Rail */}
-              <div className="border-r border-border bg-muted/30 p-2.5 space-y-1">
-                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                  Workspace
-                </div>
-                {NAV.map((n) => (
-                  <div
-                    key={n.label}
-                    className={`flex items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-                      n.active
-                        ? "bg-background text-foreground shadow-xs border border-border"
-                        : "text-muted-foreground hover:bg-background/50 hover:text-foreground"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <n.icon className="h-3.5 w-3.5 shrink-0" />
-                      <span className="truncate">{n.label}</span>
-                    </div>
-                    {n.count && (
-                      <span className="rounded-full bg-muted px-1.5 py-0.2 text-[9px] text-muted-foreground">
-                        {n.count}
-                      </span>
-                    )}
-                  </div>
-                ))}
-
-                <div className="mt-6 rounded-lg border border-border bg-background/70 p-2.5 space-y-1">
-                  <div className="flex items-center gap-1.5 text-[10px] font-semibold text-foreground">
-                    <Shield className="h-3.5 w-3.5 text-accent shrink-0" /> SOC2 Verified
-                  </div>
-                </div>
-              </div>
-
-              {/* Tablet Main Surface Content */}
-              <div className="p-4 space-y-3.5 bg-background/50">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-[10px] uppercase tracking-wider font-semibold text-accent">
-                      Project Surface
-                    </div>
-                    <div className="text-base font-bold tracking-tight text-foreground">
-                      Team Overview & Analytics
-                    </div>
-                  </div>
-                  <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2.5 py-1 text-[10px] text-muted-foreground shadow-xs">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Synced 2s ago
-                  </span>
+                <div className="flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2.5 text-[11px] text-muted-foreground">
+                  <Search className="h-3.5 w-3.5 shrink-0" />
+                  <span className="truncate">Search workspace & resources</span>
+                  <SlidersHorizontal className="ml-auto h-3.5 w-3.5 shrink-0" />
                 </div>
 
-                {/* 4 Stat Cards in 4 columns */}
-                <div className="grid grid-cols-4 gap-2">
-                  {[
-                    ["Resources", "128", "+12 this week"],
-                    ["Open bugs", "6", "3 in review"],
-                    ["Docs indexed", "1.2k", "Instant search"],
-                    ["AI Speedup", "99%", "Auto-context"],
-                  ].map(([label, value, sub]) => (
-                    <div
-                      key={label}
-                      className="rounded-lg border border-border bg-card p-2.5 shadow-xs"
-                    >
-                      <div className="text-[10px] uppercase tracking-wider text-muted-foreground truncate">
-                        {label}
-                      </div>
-                      <div className="mt-0.5 text-lg font-bold tracking-tight text-foreground tabular-nums">
-                        {value}
-                      </div>
-                      <div className="text-[10px] text-muted-foreground truncate">{sub}</div>
-                    </div>
+                <div className="grid grid-cols-2 gap-2.5">
+                  {STATS.map(([l, v, s, I], i) => (
+                    <Stat key={l} label={l} value={v} sub={s} Icon={I} hero={i === 0} dense />
                   ))}
                 </div>
 
-                {/* Chart + Activity Grid */}
-                <div className="grid grid-cols-2 gap-3 pt-1">
-                  <div className="rounded-xl border border-border bg-card p-3 space-y-2 shadow-xs">
-                    <div className="flex items-center justify-between">
-                      <div className="text-xs font-semibold text-foreground">Weekly Activity</div>
-                      <TrendingUp className="h-3.5 w-3.5 text-accent" />
+                <div className="rounded-2xl border border-border bg-card p-3.5">
+                  <div className="mb-5 flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-bold">Weekly activity</div>
+                      <div className="text-[10px] text-muted-foreground">Realtime throughput</div>
                     </div>
-                    <div className="flex h-24 items-end gap-1 pt-1">
-                      {BARS.slice(0, 12).map((h, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ height: 0 }}
-                          animate={{ height: `${h}%` }}
-                          transition={{ duration: 0.6, delay: 0.3 + i * 0.03, ease: EASE }}
-                          className="flex-1 rounded-xs bg-gradient-to-t from-accent to-accent/70"
-                        />
-                      ))}
-                    </div>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-[#c6ff00] px-2 py-0.5 text-[10px] font-bold text-[#0b2fd1]">
+                      <TrendingUp className="h-3 w-3" /> +24%
+                    </span>
                   </div>
+                  <Chart bars={BARS.slice(0, 10)} height="h-20" />
+                </div>
 
-                  <div className="rounded-xl border border-border bg-card p-3 space-y-2 shadow-xs">
-                    <div className="flex items-center justify-between">
-                      <div className="text-xs font-semibold text-foreground">Recent Activity</div>
-                      <Zap className="h-3 w-3 text-accent" />
-                    </div>
-                    <div className="divide-y divide-border text-[11px]">
-                      {[
-                        ["api-gateway deployed", "2m ago"],
-                        ["3 docs auto-indexed", "15m ago"],
-                        ["Bug #204 resolved", "1h ago"],
-                      ].map(([title, time]) => (
-                        <div key={title} className="flex items-center justify-between py-1.5">
-                          <div className="flex items-center gap-1.5 text-foreground/90 truncate min-w-0">
-                            <CheckCircle2 className="h-3 w-3 text-emerald-500 shrink-0" />
-                            <span className="truncate">{title}</span>
-                          </div>
-                          <span className="text-[10px] text-muted-foreground shrink-0 ml-1">
-                            {time}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <div className="rounded-2xl border border-border bg-card p-3.5">
+                  <div className="mb-1 text-xs font-bold">Recent activity</div>
+                  <ActivityList rows={ACTIVITY.slice(0, 3)} />
                 </div>
               </div>
-            </div>
 
-            {/* Tablet Home Indicator */}
-            <div className="flex justify-center bg-card py-1.5 border-t border-border/40">
-              <span className="h-1 w-32 rounded-full bg-foreground/30" />
+              {/* tab bar */}
+              <div className="z-20 grid shrink-0 grid-cols-5 border-t border-border bg-card/95 px-2 pb-1 pt-1.5 backdrop-blur">
+                {[
+                  [LayoutDashboard, "Home", true],
+                  [LayoutGrid, "Resources", false],
+                  [Bug, "Debug", false],
+                  [Languages, "Docs", false],
+                  [MoreHorizontal, "More", false],
+                ].map(([I, label, on]) => {
+                  const Icon = I as React.ElementType;
+                  return (
+                    <div key={label as string} className="flex flex-col items-center gap-0.5">
+                      <span
+                        className={`flex h-7 w-11 items-center justify-center rounded-full ${
+                          on ? "bg-[#0b2fd1] text-white dark:bg-[#c6ff00] dark:text-[#0b2fd1]" : "text-muted-foreground"
+                        }`}
+                      >
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <span className={`text-[9px] font-semibold ${on ? "" : "text-muted-foreground"}`}>
+                        {label as string}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex shrink-0 justify-center bg-card pb-2 pt-1">
+                <span className="h-1 w-32 rounded-full bg-foreground/80" />
+              </div>
+              <Glare />
             </div>
           </div>
-
-          {/* Deep Bottom Fade Mask Overlay for Tablet */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background via-background/85 to-transparent z-30"
-          />
         </div>
       </div>
 
-      {/* =========================================================================
-          3. DESKTOP MACBOOK VIEW (>= 1024px / lg)
-          Original 3D Floating MacBook Outer Shell, macOS status bar & notch,
-          inner macOS desktop app window with traffic lights and rich interface
-          ========================================================================= */}
-      <div className="hidden lg:block">
+      {/* ===================== TABLET (640px – 1023px) ===================== */}
+      <div className="relative mx-auto hidden max-w-[780px] sm:block lg:hidden">
+        <span className="absolute -top-[3px] right-24 h-[3px] w-12 rounded-t bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -top-[3px] right-44 h-[3px] w-8 rounded-t bg-slate-400 dark:bg-zinc-600" />
+        <span className="absolute -top-[3px] right-[13.5rem] h-[3px] w-8 rounded-t bg-slate-400 dark:bg-zinc-600" />
+
+        <div className="rounded-[40px] bg-gradient-to-b from-slate-200 via-slate-400 to-slate-300 p-[3px] shadow-[0_40px_90px_-25px_rgba(0,0,0,0.55)] dark:from-zinc-600 dark:via-zinc-700 dark:to-zinc-800">
+          <div className="relative rounded-[37px] bg-black p-[13px]">
+            <span className="absolute left-1/2 top-[5px] h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-[#0a1230] ring-1 ring-slate-700" />
+            <div className="relative flex h-[480px] flex-col overflow-hidden rounded-[25px] bg-background">
+              <div className="flex shrink-0 items-center justify-between bg-background px-6 py-1.5 text-[11px] font-semibold tabular-nums">
+                <span>9:41 AM &nbsp; Sat 24 Oct</span>
+                <span className="flex items-center gap-1.5">
+                  <Wifi className="h-3.5 w-3.5" />
+                  100%
+                  <Battery className="h-4 w-4" />
+                </span>
+              </div>
+              <div className="flex shrink-0 items-center justify-between gap-3 border-y border-border bg-muted/50 px-4 py-2">
+                <span className="font-wide text-sm">DolpStack</span>
+                <div className="flex max-w-xs flex-1 items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-[11px] text-muted-foreground">
+                  <Search className="h-3 w-3 shrink-0" />
+                  <span className="truncate">Search workspace</span>
+                  <span className="ml-auto rounded border border-border px-1 font-mono text-[9px]">⌘K</span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#c6ff00] px-3 py-1 text-[11px] font-extrabold text-[#0b2fd1]">
+                  <Rocket className="h-3 w-3" /> Deploy
+                </span>
+              </div>
+              <AppBody side="w-40" dense />
+              <div className="flex shrink-0 justify-center bg-background pb-1.5 pt-1">
+                <span className="h-1 w-36 rounded-full bg-foreground/70" />
+              </div>
+              <Glare />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ===================== LAPTOP (>= 1024px) ===================== */}
+      <div className="hidden lg:block" style={{ perspective: "2200px" }}>
         <motion.div
-          animate={reduce ? undefined : { rotateX: 8 + tilt.x, rotateY: tilt.y, y: [0, -7, 0] }}
+          animate={reduce ? undefined : { rotateX: tilt.x, rotateY: tilt.y, y: [0, -6, 0] }}
           transition={{
             rotateX: { duration: 0.6, ease: EASE },
             rotateY: { duration: 0.6, ease: EASE },
             y: { duration: 9, repeat: Infinity, ease: "easeInOut" },
           }}
-          className="relative overflow-hidden rounded-t-[20px] border-t border-x border-slate-300/80 dark:border-white/15 bg-gradient-to-t from-700 via-slate-400 to-slate-700 dark:bg-gradient-to-t dark:from-slate-800 dark:via-slate-500 dark:to-slate-700 dark:bg-[#0B0F17] p-1 shadow-[0_50px_140px_-25px_rgba(0,0,0,0.4)] dark:shadow-[0_50px_140px_-25px_rgba(0,0,0,0.8)] transition-all duration-300"
-          style={{
-            transformStyle: "preserve-3d",
-            maskImage:
-              "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, black 35%, rgba(0,0,0,0.85) 60%, transparent 92%)",
-          }}
+          style={{ transformStyle: "preserve-3d" }}
         >
-          {/* Top MacBook Status Bar & Notch */}
-          <div className="relative flex items-center justify-between rounded-t-[15px] border-b border-slate-300/60 dark:border-white/10 bg-slate-300 dark:bg-[#080B10] px-3.5 py-1.5 text-[11px] text-slate-700 dark:text-zinc-400">
-            {/* Top Camera Notch */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 w-40 rounded-b-xl dark:border-white/10 bg-slate-800 dark:bg-[#080B10] flex items-center justify-center gap-2 z-30 pointer-events-none">
-              <span className="h-1.5 w-1.5 rounded-full bg-slate-700 dark:bg-zinc-800" />
-              <span className="h-1 w-1 rounded-full bg-emerald-500/80" />
-            </div>
-
-            {/* Left status items: Apple icon + Menu links */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 font-medium text-slate-700 dark:text-zinc-300">
-                <img src="./public/dolpstack_logo_dark.png" alt="Dolpstack_logo" className="w-15 hidden dark:block" />
-                <img src="./public/dolpstack_logo_light.png" alt="Dolpstack_logo" className="w-15 block dark:hidden" />
-
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
-                  File
-                </span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
-                  Edit
-                </span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
-                  View
-                </span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
-                  Go
-                </span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
-                  Window
-                </span>
-                <span className="inline hover:text-slate-900 dark:hover:text-foreground cursor-pointer">
-                  Help
-                </span>
-              </div>
-            </div>
-
-            {/* Right status items: Wifi, Battery, Time */}
-            <div className="flex items-center gap-3 text-slate-700 dark:text-zinc-400">
-              <Wifi className="h-3.5 w-3.5" />
-              <Battery className="h-3.5 w-3.5" />
-              <span className="text-[11px] font-medium inline">Fri 2:55 PM</span>
-            </div>
-          </div>
-
-          {/* MacBook Display Screen Area */}
-          <div className="relative bg-slate-100 dark:bg-[#0e131d] p-6 rounded-t-none rounded-b-none overflow-hidden min-h-[480px] flex items-center justify-center">
-            {/* INNER FLOATING APPLICATION WINDOW */}
-            <div className="relative w-full rounded-2xl border border-slate-300/80 dark:border-white/15 bg-card text-card-foreground shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-300">
-              {/* Inner Application Window Header */}
-              <div className="flex items-center justify-between border-b border-border bg-muted/60 px-4 py-2.5">
-                <div className="flex items-center gap-3">
-                  {/* Traffic lights inside app window */}
-                  <div className="flex items-center gap-1.5">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
-                  </div>
-                  <div className="flex items-center gap-1 text-muted-foreground">
-                    <ChevronLeft className="h-3.5 w-3.5 cursor-pointer hover:text-foreground" />
-                    <ChevronRight className="h-3.5 w-3.5 cursor-pointer hover:text-foreground" />
-                    <Clock className="h-3.5 w-3.5 ml-1 cursor-pointer hover:text-foreground" />
-                  </div>
+          {/* lid */}
+          <div className="mx-auto w-[92%] rounded-t-[26px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-400 p-[5px] shadow-[0_-1px_0_rgba(255,255,255,0.5)_inset] dark:from-zinc-600 dark:via-zinc-700 dark:to-zinc-800">
+            <div className="relative rounded-t-[21px] bg-black px-[14px] pb-[26px] pt-[14px]">
+              <div className="relative h-[500px] overflow-hidden rounded-[10px] xl:h-[570px]" style={{ background: WALLPAPER, backgroundSize: "auto, auto, 56px 56px, 56px 56px, auto" }}>
+                {/* camera notch */}
+                <div className="absolute left-1/2 top-0 z-30 flex h-[18px] w-36 -translate-x-1/2 items-center justify-center gap-2 rounded-b-xl bg-black">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#0a1230] ring-1 ring-slate-700" />
+                  <span className="h-1 w-1 rounded-full bg-emerald-500/80" />
                 </div>
 
-                {/* Inner App Search Bar */}
-                <div className="flex flex-1 max-w-md items-center gap-2 rounded-md border border-border bg-background px-3 py-1 text-xs text-muted-foreground mx-3 min-w-0">
-                  <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                  <span className="truncate text-xs">Search dolpstack.app / workspace</span>
-                  <span className="ml-auto rounded border border-border px-1.5 py-0.2 text-[10px] font-mono text-muted-foreground inline">
-                    ⌘K
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground hover:bg-muted shadow-xs">
-                    <Rocket className="h-3.5 w-3.5" /> Deploy
-                  </button>
-                </div>
-              </div>
-
-              {/* Inner Application Content Surface */}
-              <div className="grid grid-cols-[210px_1fr] min-h-[420px]">
-                {/* Sidebar Navigation */}
-                <div className="border-r border-border bg-muted/30 p-3.5">
-                  <div className="mb-3 px-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    Workspace
-                  </div>
-                  <div className="space-y-1">
-                    {NAV.map((n) => (
-                      <div
-                        key={n.label}
-                        className={`flex items-center justify-between rounded-md px-2.5 py-2 text-xs font-medium transition-colors ${
-                          n.active
-                            ? "bg-background text-foreground shadow-xs border border-border"
-                            : "text-muted-foreground hover:bg-background/50 hover:text-foreground"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <n.icon className="h-3.5 w-3.5" />
-                          <span>{n.label}</span>
-                        </div>
-                        {n.count && (
-                          <span className="rounded-full bg-muted px-1.5 py-0.2 text-[10px] text-muted-foreground">
-                            {n.count}
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 rounded-md border border-border bg-background/60 p-3 space-y-1.5">
-                    <div className="flex items-center gap-1.5 text-[11px] font-medium text-foreground">
-                      <Shield className="h-3.5 w-3.5 text-accent" /> Security Verified
-                    </div>
-                    <div className="text-[10px] text-muted-foreground">SOC2 Type II Compliant</div>
-                  </div>
-                </div>
-
-                {/* Main Application Interface */}
-                <div className="p-6 space-y-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                        Project Surface
-                      </div>
-                      <div className="text-lg font-semibold tracking-tight text-foreground">
-                        Team Overview & Analytics
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2.5 py-1 text-[11px] text-muted-foreground shadow-xs">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Synced 2s ago
+                {/* menu bar */}
+                <div className="absolute inset-x-0 top-0 z-20 flex h-[22px] items-center justify-between bg-black/30 px-4 text-[11px] font-medium text-white backdrop-blur-md">
+                  <div className="flex items-center gap-4">
+                    <img src="/dolpstack_logo_dark.png" alt="" className="h-3.5 w-auto" />
+                    <span className="font-bold">DolpStack</span>
+                    {["File", "Edit", "View", "Go", "Window", "Help"].map((m) => (
+                      <span key={m} className="hidden text-white/85 xl:inline">
+                        {m}
                       </span>
-                    </div>
+                    ))}
                   </div>
+                  <div className="flex items-center gap-3 pr-1">
+                    <Wifi className="h-3.5 w-3.5" />
+                    <Battery className="h-3.5 w-3.5" />
+                    <span>Sat 2:55 PM</span>
+                  </div>
+                </div>
 
-                  {/* Stat Cards Grid */}
-                  <div className="grid grid-cols-4 gap-3">
-                    {[
-                      ["Resources", "128", "+12 this week"],
-                      ["Open bugs", "6", "3 in review"],
-                      ["Docs indexed", "1.2k", "Instant search"],
-                      ["AI Speedup", "99%", "Auto-context"],
-                    ].map(([label, value, sub]) => (
-                      <div
-                        key={label}
-                        className="rounded-xl border border-border bg-background p-3.5 shadow-xs"
-                      >
-                        <div className="text-[11px] uppercase tracking-wider text-muted-foreground">
-                          {label}
-                        </div>
-                        <div className="mt-1 text-2xl font-bold tracking-tight text-foreground tabular-nums">
-                          {value}
-                        </div>
-                        <div className="mt-1 text-[11px] text-muted-foreground">{sub}</div>
+                {/* app window */}
+                <div className="absolute inset-x-6 bottom-[84px] top-10 z-10 flex flex-col overflow-hidden rounded-xl border border-white/30 bg-card text-card-foreground shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]">
+                  <div className="flex shrink-0 items-center justify-between gap-3 border-b border-border bg-muted/60 px-4 py-2.5">
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-1.5">
+                        <span className="h-2.5 w-2.5 rounded-full border border-[#E0443E] bg-[#FF5F56]" />
+                        <span className="h-2.5 w-2.5 rounded-full border border-[#DEA123] bg-[#FFBD2E]" />
+                        <span className="h-2.5 w-2.5 rounded-full border border-[#1AAB29] bg-[#27C93F]" />
+                      </div>
+                      <div className="flex items-center gap-1 text-muted-foreground">
+                        <ChevronLeft className="h-3.5 w-3.5" />
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </div>
+                    </div>
+                    <div className="flex max-w-md flex-1 items-center justify-center gap-1.5 rounded-full border border-border bg-background px-3 py-1 text-[11px] text-muted-foreground">
+                      <Lock className="h-3 w-3" /> dolpstack.app/dashboard
+                      <span className="ml-auto rounded border border-border px-1 font-mono text-[9px]">⌘K</span>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#c6ff00] px-3 py-1 text-[11px] font-extrabold text-[#0b2fd1]">
+                      <Rocket className="h-3 w-3" /> Deploy
+                    </span>
+                  </div>
+                  <AppBody side="w-48" />
+                </div>
+
+                {/* dock */}
+                <div className="absolute inset-x-0 bottom-2 z-20 flex justify-center">
+                  <div className="flex items-end gap-2.5 rounded-[22px] border border-white/30 bg-white/20 px-3 py-2 backdrop-blur-xl">
+                    {dock.map(([I, grad, ink], i) => (
+                      <div key={i} className="flex flex-col items-center gap-0.5">
+                        <span
+                          className={`flex h-11 w-11 items-center justify-center rounded-[13px] bg-gradient-to-b ${grad} ${ink} shadow-md`}
+                        >
+                          <I className="h-5 w-5" />
+                        </span>
+                        <span className={`h-1 w-1 rounded-full ${i === 0 ? "bg-white" : "bg-transparent"}`} />
                       </div>
                     ))}
                   </div>
-
-                  {/* Analytics Chart & Activity Grid */}
-                  <div className="grid gap-4 grid-cols-[1.6fr_1fr]">
-                    <div className="rounded-xl border border-border bg-background p-4 space-y-3 shadow-xs">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="text-xs font-semibold text-foreground">
-                            Weekly Activity
-                          </div>
-                          <div className="text-[11px] text-muted-foreground">
-                            Realtime event throughput
-                          </div>
-                        </div>
-                        <TrendingUp className="h-4 w-4 text-accent" />
-                      </div>
-                      <div className="flex h-32 items-end gap-2 pt-2">
-                        {BARS.map((h, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ height: 0 }}
-                            animate={{ height: `${h}%` }}
-                            transition={{ duration: 0.7, delay: 0.4 + i * 0.03, ease: EASE }}
-                            className="flex-1 rounded-sm bg-gradient-to-t from-accent to-accent/65 transition-opacity hover:opacity-100 opacity-90"
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Recent Activity Card */}
-                    <div className="rounded-xl border border-border bg-background p-4 space-y-3 shadow-xs">
-                      <div className="flex items-center justify-between">
-                        <div className="text-xs font-semibold text-foreground">Recent Activity</div>
-                        <Zap className="h-3.5 w-3.5 text-accent" />
-                      </div>
-                      <div className="divide-y divide-border text-xs">
-                        {[
-                          ["api-gateway deployed", "2m ago"],
-                          ["3 docs auto-indexed", "15m ago"],
-                          ["Bug #204 resolved", "1h ago"],
-                          ["Glassboard pipeline synced", "2h ago"],
-                        ].map(([title, time]) => (
-                          <div key={title} className="flex items-center justify-between py-2">
-                            <div className="flex items-center gap-2 text-foreground/90 min-w-0">
-                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
-                              <span className="truncate text-xs">{title}</span>
-                            </div>
-                            <span className="text-[10px] text-muted-foreground shrink-0 ml-1">
-                              {time}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
                 </div>
+                <Glare />
               </div>
+              <span className="absolute inset-x-0 bottom-[7px] text-center text-[8px] font-semibold tracking-[0.3em] text-white/30">
+                DOLPSTACK PRO
+              </span>
             </div>
           </div>
 
-          {/* Deep Bottom Fade Mask Overlay */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-background via-background/85 to-transparent z-30"
-          />
+          {/* hinge + base */}
+          <div className="relative mx-auto h-[15px] w-full rounded-b-[28px] rounded-t-[3px] bg-gradient-to-b from-slate-100 via-slate-300 to-slate-400 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_2px_0_rgba(0,0,0,0.12)] dark:from-zinc-500 dark:via-zinc-600 dark:to-zinc-800">
+            <span className="absolute left-1/2 top-0 h-[6px] w-32 -translate-x-1/2 rounded-b-xl bg-slate-400/80 dark:bg-zinc-900/80" />
+          </div>
+          <div className="mx-auto mt-1 h-5 w-[94%] rounded-[100%] bg-black/30 blur-xl" />
         </motion.div>
       </div>
     </motion.div>

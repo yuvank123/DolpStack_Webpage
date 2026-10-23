@@ -66,18 +66,18 @@ export const PRIVACY_POLICY_CONFIG = {
   businessName: "DolpBrain",
   entityType: "MSME-registered business in India",
   placeholders: {
-    udyamRegistrationNumber: "[Udyam Registration No. UDYAM-XX-00-0000000]",
-    registeredAddress: "[Registered business address, City, State, PIN]",
-    websiteDomain: "[https://www.yourdomain.com]",
+    udyamRegistrationNumber: "UDYAM-MP-10-0178997",
+    registeredAddress: "Ayodhya Nagar, Bhopal, Madhya Pradesh, 462041",
+    websiteDomain: "https://dolpstack.in",
     presentFeatures:
-      "[List your current features, e.g. user accounts, content access, support, payments]",
+      "user accounts, content access, support, payments, and other core features of DolpStack",
     upcomingFeatures:
-      "[List planned features, e.g. community, contests, AI-assisted features, recruiter visibility, mobile app, subscriptions]",
-    thirdPartyServicesNotice: "[Edit this list to match the tools you actually use]",
-    supportEmail: "[support@yourdomain.com]",
-    grievanceOfficerName: "[Grievance Officer name]",
-    grievanceOfficerEmail: "[grievance@yourdomain.com]",
-    governingCourtsCity: "[your city]",
+      "community, contests, AI-assisted features, recruiter visibility, mobile app, subscriptions, and other planned enhancements to DolpStack",
+    thirdPartyServicesNotice: "Cloudflare, AWS, Razorpay, and other third-party services used for hosting, analytics, and payment processing",
+    supportEmail: "Currently Unavailable",
+    grievanceOfficerName: "Currently Unavailable",
+    grievanceOfficerEmail: "Currently Unavailable",
+    governingCourtsCity: "Bhopal, Madhya Pradesh, India",
   },
   sections: [
     { id: "section-1", number: 1, title: "Introduction" },

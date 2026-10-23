@@ -9,25 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as OpportunitiesIndexRouteImport } from './routes/opportunities/index'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as OpportunitiesIdIndexRouteImport } from './routes/opportunities/$id/index'
 import { Route as OpportunitiesIdApplyRouteImport } from './routes/opportunities/$id/apply'
 
-const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
-  id: '/privacy-policy',
-  path: '/privacy-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OpportunitiesIndexRoute = OpportunitiesIndexRouteImport.update({
-  id: '/opportunities/',
-  path: '/opportunities/',
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OpportunitiesIdIndexRoute = OpportunitiesIdIndexRouteImport.update({
@@ -44,14 +38,12 @@ const OpportunitiesIdApplyRoute = OpportunitiesIdApplyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/opportunities/': typeof OpportunitiesIndexRoute
   '/opportunities/$id/apply': typeof OpportunitiesIdApplyRoute
   '/opportunities/$id/': typeof OpportunitiesIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/opportunities': typeof OpportunitiesIndexRoute
   '/opportunities/$id/apply': typeof OpportunitiesIdApplyRoute
   '/opportunities/$id': typeof OpportunitiesIdIndexRoute
 }
@@ -59,30 +51,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/opportunities/': typeof OpportunitiesIndexRoute
   '/opportunities/$id/apply': typeof OpportunitiesIdApplyRoute
   '/opportunities/$id/': typeof OpportunitiesIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/privacy-policy'
-    | '/opportunities/'
-    | '/opportunities/$id/apply'
-    | '/opportunities/$id/'
+    '/' | '/privacy-policy' | '/opportunities/$id/apply' | '/opportunities/$id/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/privacy-policy'
-    | '/opportunities'
-    | '/opportunities/$id/apply'
-    | '/opportunities/$id'
+    '/' | '/privacy-policy' | '/opportunities/$id/apply' | '/opportunities/$id'
   id:
     | '__root__'
     | '/'
     | '/privacy-policy'
-    | '/opportunities/'
     | '/opportunities/$id/apply'
     | '/opportunities/$id/'
   fileRoutesById: FileRoutesById
@@ -90,20 +72,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
-  OpportunitiesIndexRoute: typeof OpportunitiesIndexRoute
   OpportunitiesIdApplyRoute: typeof OpportunitiesIdApplyRoute
   OpportunitiesIdIndexRoute: typeof OpportunitiesIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/privacy-policy': {
-      id: '/privacy-policy'
-      path: '/privacy-policy'
-      fullPath: '/privacy-policy'
-      preLoaderRoute: typeof PrivacyPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -111,11 +85,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/opportunities/': {
-      id: '/opportunities/'
-      path: '/opportunities'
-      fullPath: '/opportunities/'
-      preLoaderRoute: typeof OpportunitiesIndexRouteImport
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/opportunities/$id/': {
@@ -138,7 +112,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
-  OpportunitiesIndexRoute: OpportunitiesIndexRoute,
   OpportunitiesIdApplyRoute: OpportunitiesIdApplyRoute,
   OpportunitiesIdIndexRoute: OpportunitiesIdIndexRoute,
 }

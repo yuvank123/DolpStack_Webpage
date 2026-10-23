@@ -51,21 +51,9 @@ export function PrivacyHeader() {
           <a href="/#faq" className="transition-colors hover:text-foreground">
             FAQ
           </a>
-          <Link
-            to="/opportunities"
-            className="inline-flex items-center gap-1 font-semibold text-primary transition-colors hover:text-primary/80"
-          >
-            Opportunities
-          </Link>
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <Link
-            to="/opportunities"
-            className="hidden sm:inline-flex items-center justify-center rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-xs transition-all hover:bg-primary/90"
-          >
-            Apply Now
-          </Link>
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
